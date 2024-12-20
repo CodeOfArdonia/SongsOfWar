@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.render.glint;
 
-import com.iafenvoy.neptune.Neptune;
+import com.iafenvoy.sow.SongsOfWar;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -17,15 +17,15 @@ public class GlintManager {
     public static final Map<String, GlintHolder> BY_ID = new HashMap<>();
 
     public static final GlintHolder DEFAULT = new GlintHolder("default", null, Formatting.WHITE);
-    public static final GlintHolder RED = new GlintHolder("red", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_red.png"), Formatting.RED);
-    public static final GlintHolder YELLOW = new GlintHolder("yellow", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_yellow.png"), Formatting.YELLOW);
-    public static final GlintHolder BLUE = new GlintHolder("blue", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_blue.png"), Formatting.BLUE);
-    public static final GlintHolder ORANGE = new GlintHolder("orange", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_orange.png"), Formatting.GOLD);
-    public static final GlintHolder GREEN = new GlintHolder("green", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_green.png"), Formatting.GREEN);
-    public static final GlintHolder PURPLE = new GlintHolder("purple", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_purple.png"), Formatting.DARK_PURPLE);
-    public static final GlintHolder WHITE = new GlintHolder("white", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_white.png"), Formatting.WHITE);
-    public static final GlintHolder PINK = new GlintHolder("pink", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_pink.png"), Formatting.LIGHT_PURPLE);
-    public static final GlintHolder AQUA = new GlintHolder("aqua", new Identifier(Neptune.MOD_ID, "textures/misc/glint_item_aqua.png"), Formatting.AQUA);
+    public static final GlintHolder RED = new GlintHolder("red", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_red.png"), Formatting.RED);
+    public static final GlintHolder YELLOW = new GlintHolder("yellow", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_yellow.png"), Formatting.YELLOW);
+    public static final GlintHolder BLUE = new GlintHolder("blue", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_blue.png"), Formatting.BLUE);
+    public static final GlintHolder ORANGE = new GlintHolder("orange", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_orange.png"), Formatting.GOLD);
+    public static final GlintHolder GREEN = new GlintHolder("green", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_green.png"), Formatting.GREEN);
+    public static final GlintHolder PURPLE = new GlintHolder("purple", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_purple.png"), Formatting.DARK_PURPLE);
+    public static final GlintHolder WHITE = new GlintHolder("white", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_white.png"), Formatting.WHITE);
+    public static final GlintHolder PINK = new GlintHolder("pink", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_pink.png"), Formatting.LIGHT_PURPLE);
+    public static final GlintHolder AQUA = new GlintHolder("aqua", Identifier.of(SongsOfWar.MOD_ID, "textures/misc/glint_item_aqua.png"), Formatting.AQUA);
 
     public static ItemStack removeGlint(ItemStack stack) {
         stack.getOrCreateNbt().remove(GLINT_KEY);

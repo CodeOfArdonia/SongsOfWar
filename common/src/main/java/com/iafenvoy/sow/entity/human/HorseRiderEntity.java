@@ -13,6 +13,6 @@ public class HorseRiderEntity extends AbstractHumanEntity {
 
     @Override
     public Identifier getTextureId() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/horse_rider.png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/horse_rider.png");
     }
 }

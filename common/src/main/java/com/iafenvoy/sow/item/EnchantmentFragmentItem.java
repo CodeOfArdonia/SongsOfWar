@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.item;
 
 import com.google.common.collect.Multimap;
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import net.minecraft.client.item.TooltipContext;
@@ -69,10 +69,9 @@ public class EnchantmentFragmentItem extends Item {
     }
 
     public static ItemStack removeFromStack(ItemStack stack) {
-        GlintManager.removeGlint(stack);
         stack.removeSubNbt("AttributeModifiers");
         if (stack.getName() instanceof MutableText mutableText)
             stack.setCustomName(mutableText.fillStyle(Style.EMPTY.withItalic(false)).formatted(Formatting.WHITE));//TODO: Bad code, should mixin renderer
-        return stack;
+        return GlintManager.removeGlint(stack);
     }
 }

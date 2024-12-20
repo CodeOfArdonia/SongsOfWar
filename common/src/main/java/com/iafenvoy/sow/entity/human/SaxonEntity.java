@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class SaxonEntity extends AbstractHumanEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/saxon.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/saxon.png");
 
     public SaxonEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

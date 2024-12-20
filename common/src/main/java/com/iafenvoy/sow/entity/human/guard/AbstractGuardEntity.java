@@ -84,6 +84,6 @@ public abstract class AbstractGuardEntity extends AbstractHumanEntity {
 
     @Override
     public Identifier getTextureId() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/guard/" + this.getKingdom().getId() + "/guard_" + this.getVariant() + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/guard/" + this.getKingdom().getId() + "/guard_" + this.getVariant() + ".png");
     }
 }

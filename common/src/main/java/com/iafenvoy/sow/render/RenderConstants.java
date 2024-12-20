@@ -7,6 +7,6 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public final class RenderConstants {
-    public static final Identifier WHITE_TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/white.png");
-    public static final Identifier STONE_TEXTURE = new Identifier("textures/block/stone.png");
+    public static final Identifier WHITE_TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/white.png");
+    public static final Identifier STONE_TEXTURE = Identifier.of(Identifier.DEFAULT_NAMESPACE, "textures/block/stone.png");
 }

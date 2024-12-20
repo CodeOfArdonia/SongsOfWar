@@ -27,7 +27,7 @@ public class ArdoniName implements SynchronousResourceReloader {
     public void reload(ResourceManager manager) {
         NAMES.clear();
 //        String language = MinecraftClient.getInstance().options.language.toLowerCase(Locale.ROOT);
-        Identifier file = new Identifier(SongsOfWar.MOD_ID, "ardoni_name/en_us.txt");
+        Identifier file = Identifier.of(SongsOfWar.MOD_ID, "ardoni_name/en_us.txt");
         for (Resource resource : manager.getAllResources(file))
             try {
                 BufferedReader reader = resource.getReader();

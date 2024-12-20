@@ -20,7 +20,7 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class BeaconTeleportScreen extends Screen {
-    private static final Identifier ARROW = new Identifier("textures/gui/recipe_book.png");
+    private static final Identifier ARROW = Identifier.of(Identifier.DEFAULT_NAMESPACE,"textures/gui/recipe_book.png");
     private static final int COUNT_PER_PAGE = 5;
     private final BeaconData beaconData;
     private final List<BeaconData.SingleBeaconData> data;

@@ -19,7 +19,7 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class ArdoniSkinFeatureRenderer extends FeatureRenderer<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> {
-    private static final Identifier ARDONI_SHADOW = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_shadow.png");
+    private static final Identifier ARDONI_SHADOW = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_shadow.png");
 
     public ArdoniSkinFeatureRenderer(FeatureRendererContext<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> context) {
         super(context);

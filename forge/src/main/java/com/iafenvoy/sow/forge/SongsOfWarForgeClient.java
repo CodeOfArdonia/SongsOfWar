@@ -22,7 +22,7 @@ public class SongsOfWarForgeClient {
     @SubscribeEvent
     public static void process(FMLClientSetupEvent event) {
         event.enqueueWork(SongsOfWarClient::process);
-        ItemPropertiesRegistry.register(SowItems.PROTEPOINT_SHIELD.get(), new Identifier("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() ? 1 : 0);
+        ItemPropertiesRegistry.register(SowItems.PROTEPOINT_SHIELD.get(), Identifier.of("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() ? 1 : 0);
         ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> new ConfigSelectScreen<>(Text.translatable("config.sow.title"), screen, SowConfig.INSTANCE, null)));
     }
 

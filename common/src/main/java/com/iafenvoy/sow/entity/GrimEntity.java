@@ -2,7 +2,7 @@ package com.iafenvoy.sow.entity;
 
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.EntityTextureProvider;
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowWeapons;
 import net.minecraft.entity.EntityGroup;
@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class GrimEntity extends MonsterEntityBase implements EntityTextureProvider {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/grim.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/grim.png");
 
     public GrimEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);

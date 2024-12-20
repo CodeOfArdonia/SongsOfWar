@@ -61,7 +61,7 @@ public class BartenderEntity extends AbstractHumanEntity {
     @Override
     public Identifier getTextureId() {
         if (this.getVariant() == 2)
-            return new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_bartender.png");
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/biggerton_bartender.png");
+            return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_bartender.png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/biggerton_bartender.png");
     }
 }

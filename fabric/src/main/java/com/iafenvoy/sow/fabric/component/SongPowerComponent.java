@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public class SongPowerComponent implements ComponentV3, AutoSyncedComponent, CommonTickingComponent {
-    public static final ComponentKey<SongPowerComponent> SONG_POWER_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(SongsOfWar.MOD_ID, "song_power"), SongPowerComponent.class);
+    public static final ComponentKey<SongPowerComponent> SONG_POWER_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of(SongsOfWar.MOD_ID, "song_power"), SongPowerComponent.class);
 
     private final PlayerEntity entity;
     private final SongPowerData data;

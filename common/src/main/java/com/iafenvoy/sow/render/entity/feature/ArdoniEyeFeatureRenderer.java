@@ -17,10 +17,10 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ArdoniEyeFeatureRenderer extends FeatureRenderer<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> {
-    private static final Identifier EYE_MALE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
-    private static final Identifier EYE_FEMALE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
-    private static final Identifier PUPIL_MALE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
-    private static final Identifier PUPIL_FEMALE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
+    private static final Identifier EYE_MALE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
+    private static final Identifier EYE_FEMALE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
+    private static final Identifier PUPIL_MALE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
+    private static final Identifier PUPIL_FEMALE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
 
     public ArdoniEyeFeatureRenderer(FeatureRendererContext<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> context) {
         super(context);

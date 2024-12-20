@@ -16,6 +16,6 @@ public final class SowDamageTypes {
     public static final RegistryKey<DamageType> AGGROBEAM = of("aggrobeam");
 
     private static RegistryKey<DamageType> of(String id) {
-        return RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier(SongsOfWar.MOD_ID, id));
+        return RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(SongsOfWar.MOD_ID, id));
     }
 }

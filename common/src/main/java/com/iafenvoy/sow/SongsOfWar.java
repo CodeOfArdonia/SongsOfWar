@@ -52,7 +52,7 @@ public class SongsOfWar {
                 BeaconData.getInstance(serverWorld).remove(pos);
             return EventResult.pass();
         });
-        ReloadListenerRegistry.register(ResourceType.SERVER_DATA, new ArdoniName(), new Identifier(MOD_ID, "ardoni_name"));
+        ReloadListenerRegistry.register(ResourceType.SERVER_DATA, new ArdoniName(), Identifier.of(MOD_ID, "ardoni_name"));
         ServerNetworkHelper.init();
     }
 }

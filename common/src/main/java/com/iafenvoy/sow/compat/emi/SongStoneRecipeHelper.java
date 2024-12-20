@@ -37,7 +37,7 @@ public class SongStoneRecipeHelper {
         private Item lastWeapon = Items.AIR;
 
         private SowAnvilRecipe(EnchantmentFragmentItem fragment) {
-            this.id = new Identifier(SongsOfWar.MOD_ID, "/song_stone_anvil/" + fragment.getGlint().id());
+            this.id = Identifier.of(SongsOfWar.MOD_ID, "/song_stone_anvil/" + fragment.getGlint().id());
             this.fragment = fragment;
         }
 
@@ -87,7 +87,7 @@ public class SongStoneRecipeHelper {
     }
 
     private static class SowGrindstoneRecipe implements EmiRecipe {
-        private static final Identifier BACKGROUND = new Identifier("minecraft", "textures/gui/container/grindstone.png");
+        private static final Identifier BACKGROUND = Identifier.of("minecraft", "textures/gui/container/grindstone.png");
         private final int unique = EmiUtil.RANDOM.nextInt();
         private final EnchantmentFragmentItem fragment;
         private final Identifier id;
@@ -95,7 +95,7 @@ public class SongStoneRecipeHelper {
 
         public SowGrindstoneRecipe(EnchantmentFragmentItem fragment) {
             this.fragment = fragment;
-            this.id = new Identifier(SongsOfWar.MOD_ID, "/sow_grindstone_" + fragment.getGlint().id());
+            this.id = Identifier.of(SongsOfWar.MOD_ID, "/sow_grindstone_" + fragment.getGlint().id());
         }
 
         @Override

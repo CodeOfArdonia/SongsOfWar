@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import java.util.Optional;
 
 public class PythusEntity extends AbstractNetheranEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/netharan/pythus.png");
-    public static final Identifier TEXTURE_MARKER = new Identifier(SongsOfWar.MOD_ID, "textures/entity/netharan/pythus_marker.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/netharan/pythus.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/netharan/pythus_marker.png");
 
     public PythusEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

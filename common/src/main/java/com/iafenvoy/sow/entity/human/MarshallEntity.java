@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class MarshallEntity extends AbstractHumanEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/marshall.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/marshall.png");
 
     public MarshallEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

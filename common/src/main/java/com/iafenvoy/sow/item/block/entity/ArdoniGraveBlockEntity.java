@@ -19,7 +19,7 @@ import java.util.Locale;
 public class ArdoniGraveBlockEntity extends BlockEntity {
     private long seed;
     private boolean fixed;
-    private Identifier texturePath = new Identifier("");
+    private Identifier texturePath = Identifier.tryParse("");
     private ArdoniType ardoniType = ArdoniType.NONE;
     private boolean fulfulled = false;
 
@@ -33,7 +33,7 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
         this.setSeed(nbt.getLong("seed"));
         this.setFixed(nbt.getBoolean("fixed"));
         this.setArdoniType(ArdoniType.byId(nbt.getString("type")));
-        this.setTexturePath(new Identifier(nbt.getString("texturePath").toLowerCase(Locale.ROOT)));
+        this.setTexturePath(Identifier.tryParse(nbt.getString("texturePath").toLowerCase(Locale.ROOT)));
     }
 
     @Override

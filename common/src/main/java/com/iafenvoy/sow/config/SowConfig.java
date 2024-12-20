@@ -16,7 +16,7 @@ public class SowConfig extends AutoInitConfigContainer {
     public final SupporiumPowerConfig supportium = new SupporiumPowerConfig();
 
     public SowConfig() {
-        super(new Identifier(SongsOfWar.MOD_ID, "sow_config"), "config.sow.server.title", "./config/sow/songs-of-war.json");
+        super(Identifier.of(SongsOfWar.MOD_ID, "sow_config"), "config.sow.server.title", "./config/sow/songs-of-war.json");
     }
 
     public static class CommonConfig extends AutoInitConfigCategoryBase {

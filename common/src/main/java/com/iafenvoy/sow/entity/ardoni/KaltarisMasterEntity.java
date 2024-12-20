@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import java.util.Optional;
 
 public class KaltarisMasterEntity extends AbstractArdoniEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/kaltaris_master.png");
-    public static final Identifier TEXTURE_MARKER = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/kaltaris_master_marker.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/kaltaris_master.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/kaltaris_master_marker.png");
 
     public KaltarisMasterEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

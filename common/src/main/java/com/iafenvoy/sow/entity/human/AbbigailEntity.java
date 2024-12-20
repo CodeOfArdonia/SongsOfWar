@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class AbbigailEntity extends AbstractHumanEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/abbigail.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/abbigail.png");
 
     public AbbigailEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

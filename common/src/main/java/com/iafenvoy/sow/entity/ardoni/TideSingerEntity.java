@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import java.util.Optional;
 
 public class TideSingerEntity extends AbstractArdoniEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer.png");
-    public static final Identifier TEXTURE_MARKER = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer_marker.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer_marker.png");
 
     public TideSingerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

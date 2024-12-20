@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class KiyoshiEntity extends AbstractFelinaEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/felina/kiyoshi.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/felina/kiyoshi.png");
 
     public KiyoshiEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

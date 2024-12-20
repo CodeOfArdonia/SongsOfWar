@@ -13,10 +13,10 @@ public final class SowTags {
     public static final TagKey<Item> MASTER_STAFF = item("master_staff");
 
     private static TagKey<Block> block(String id) {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(SongsOfWar.MOD_ID, id));
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SongsOfWar.MOD_ID, id));
     }
 
     private static TagKey<Item> item(String id) {
-        return TagKey.of(RegistryKeys.ITEM, new Identifier(SongsOfWar.MOD_ID, id));
+        return TagKey.of(RegistryKeys.ITEM, Identifier.of(SongsOfWar.MOD_ID, id));
     }
 }

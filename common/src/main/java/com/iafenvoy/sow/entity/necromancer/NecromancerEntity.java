@@ -60,6 +60,6 @@ public class NecromancerEntity extends AbstractNecromancerEntity {
 
     @Override
     public Identifier getTextureId() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/necromancer/necromancer_" + this.getVariant() + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/necromancer/necromancer_" + this.getVariant() + ".png");
     }
 }
