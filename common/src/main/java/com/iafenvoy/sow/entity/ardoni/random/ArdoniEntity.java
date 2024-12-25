@@ -47,7 +47,7 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
 
     @Override
     public Identifier getSkinTexture() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_base.png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_base.png");
     }
 
     @Override

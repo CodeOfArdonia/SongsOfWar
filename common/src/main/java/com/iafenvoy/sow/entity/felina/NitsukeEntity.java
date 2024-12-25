@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class NitsukeEntity extends AbstractFelinaEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/felina/nitsuke.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/felina/nitsuke.png");
 
     public NitsukeEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

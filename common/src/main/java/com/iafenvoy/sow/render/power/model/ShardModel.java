@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ShardModel<T extends Entity> extends EntityModel<T> {
-    public static final Identifier SHARD_TEXTURE_WHITE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/shard.png");
+    public static final Identifier SHARD_TEXTURE_WHITE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/shard.png");
     private final ModelPart root;
 
     public ShardModel(ModelPart root) {

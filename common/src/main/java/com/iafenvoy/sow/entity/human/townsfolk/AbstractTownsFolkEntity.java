@@ -65,6 +65,6 @@ public abstract class AbstractTownsFolkEntity extends AbstractHumanEntity {
 
     @Override
     public Identifier getTextureId() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/townsfolk/" + this.job() + "_" + this.getVariant() + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/townsfolk/" + this.job() + "_" + this.getVariant() + ".png");
     }
 }

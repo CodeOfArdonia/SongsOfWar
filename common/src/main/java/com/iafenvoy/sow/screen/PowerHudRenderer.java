@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class PowerHudRenderer {
-    private static final Identifier WIDGETS_TEXTURE = new Identifier("textures/gui/widgets.png");
+    private static final Identifier WIDGETS_TEXTURE = Identifier.of(Identifier.DEFAULT_NAMESPACE,"textures/gui/widgets.png");
     private static final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
     public static void render(MinecraftClient client, DrawContext context) {

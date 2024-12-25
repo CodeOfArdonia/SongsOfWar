@@ -25,7 +25,7 @@ public class SongsOfWarForge {
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(SongsOfWar.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         SongsOfWar.init();
-        CapabilitySyncHelper.register(new Identifier(SongsOfWar.MOD_ID, "song_power"), SongPowerDataProvider.CAPABILITY, SongPowerDataProvider::new);
+        CapabilitySyncHelper.register(Identifier.of(SongsOfWar.MOD_ID, "song_power"), SongPowerDataProvider.CAPABILITY, SongPowerDataProvider::new);
         if (Platform.getEnvironment() == Env.CLIENT)
             SongsOfWarClient.init();
     }
@@ -44,7 +44,7 @@ public class SongsOfWarForge {
 
         @SubscribeEvent
         public static void attachChunkData(AttachCapabilitiesEvent<WorldChunk> event) {
-            event.addCapability(new Identifier(SongsOfWar.MOD_ID, "song_chunk_data"), new SongChunkDataProvider());
+            event.addCapability(Identifier.of(SongsOfWar.MOD_ID, "song_chunk_data"), new SongChunkDataProvider());
         }
     }
 }

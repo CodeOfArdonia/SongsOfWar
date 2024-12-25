@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.registry;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.*;
 import com.iafenvoy.sow.item.impl.ProtepointShieldItem;

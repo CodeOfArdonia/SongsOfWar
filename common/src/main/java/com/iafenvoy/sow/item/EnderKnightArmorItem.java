@@ -19,6 +19,6 @@ public class EnderKnightArmorItem extends ArmorItem implements IArmorTextureProv
 
     @Override
     public Identifier getArmorTexture(ItemStack itemStack, Entity entity, EquipmentSlot equipmentSlot, String s) {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/models/armor/ender_knight_layer_" + (equipmentSlot == EquipmentSlot.LEGS ? 2 : 1) + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/models/armor/ender_knight_layer_" + (equipmentSlot == EquipmentSlot.LEGS ? 2 : 1) + ".png");
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class JalkarEntity extends AbstractHumanEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/jalkar.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/jalkar.png");
 
     public JalkarEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

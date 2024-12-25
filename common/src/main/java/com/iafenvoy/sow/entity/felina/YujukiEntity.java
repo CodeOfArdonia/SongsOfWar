@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class YujukiEntity extends AbstractFelinaEntity {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/felina/yujuki.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/felina/yujuki.png");
 
     public YujukiEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

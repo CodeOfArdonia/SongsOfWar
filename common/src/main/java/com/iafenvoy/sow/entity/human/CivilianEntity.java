@@ -61,9 +61,9 @@ public class CivilianEntity extends AbstractHumanEntity {
     @Override
     public Identifier getTextureId() {
         return switch (this.getVariant()) {
-            case 2 -> new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_civilian_1.png");
-            case 3 -> new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_civilian_2.png");
-            default -> new Identifier(SongsOfWar.MOD_ID, "textures/entity/human/biggerton_civilian.png");
+            case 2 -> Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_civilian_1.png");
+            case 3 -> Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/hogtown_civilian_2.png");
+            default -> Identifier.of(SongsOfWar.MOD_ID, "textures/entity/human/biggerton_civilian.png");
         };
     }
 }

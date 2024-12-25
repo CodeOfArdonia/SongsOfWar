@@ -19,8 +19,8 @@ import net.minecraft.world.World;
 import java.util.Optional;
 
 public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
-    public static final Identifier TEXTURE = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren.png");
-    public static final Identifier TEXTURE_MARKER = new Identifier(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren_marker.png");
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren_marker.png");
     private static final TrackedData<Boolean> FLAT = DataTracker.registerData(TygrenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public TygrenEntity(EntityType<? extends HostileEntity> entityType, World world) {

@@ -219,7 +219,7 @@ public final class SowRenderers {
     }
 
     public static void registerModelPredicate() {
-        ItemPropertiesRegistry.registerGeneric(new Identifier(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? PowerCategory.byId(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY)).map(Enum::ordinal).orElse(-1) + 1.0F : 0.0F) / PowerCategory.values().length);
-        ItemPropertiesRegistry.registerGeneric(new Identifier(SongsOfWar.MOD_ID, AdjustedSongStoneItem.NEAR_KEY), (stack, world, entity, seed) -> stack.hasNbt() ? stack.getOrCreateNbt().getFloat(AdjustedSongStoneItem.NEAR_KEY) : 0);
+        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? PowerCategory.byId(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY)).map(Enum::ordinal).orElse(-1) + 1.0F : 0.0F) / PowerCategory.values().length);
+        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, AdjustedSongStoneItem.NEAR_KEY), (stack, world, entity, seed) -> stack.hasNbt() ? stack.getOrCreateNbt().getFloat(AdjustedSongStoneItem.NEAR_KEY) : 0);
     }
 }

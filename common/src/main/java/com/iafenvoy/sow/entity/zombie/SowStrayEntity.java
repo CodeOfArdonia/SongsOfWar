@@ -62,11 +62,11 @@ public class SowStrayEntity extends AbstractZombieEntity {
 
     @Override
     public Identifier getTextureId() {
-        return new Identifier(SongsOfWar.MOD_ID, "textures/entity/zombie/stray_" + this.getVariant() + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/zombie/stray_" + this.getVariant() + ".png");
     }
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.of(new Identifier(SongsOfWar.MOD_ID, "textures/entity/zombie/eye.png"));
+        return Optional.of(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/zombie/eye.png"));
     }
 }

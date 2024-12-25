@@ -64,8 +64,8 @@ public sealed abstract class AbstractSongPower<T extends AbstractSongPower<T>> p
     }
 
     public Identifier getIconTexture() {
-        if (this.isEmpty()) return new Identifier("textures/item/barrier.png");
-        return new Identifier(SongsOfWar.MOD_ID, "textures/power/" + this.id + ".png");
+        if (this.isEmpty()) return Identifier.of(Identifier.DEFAULT_NAMESPACE, "textures/item/barrier.png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/power/" + this.id + ".png");
     }
 
     public T onInit(Consumer<AbstractSongPower<?>> init) {

@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.registry;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;

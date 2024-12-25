@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class MobiliumElytraFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
-    private static final Identifier SKIN = new Identifier(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
+    private static final Identifier SKIN = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
     private final ElytraEntityModel<T> elytra;
 
     public MobiliumElytraFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
