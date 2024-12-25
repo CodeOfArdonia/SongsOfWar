@@ -96,6 +96,8 @@ public final class SowSkulls {
     public static final RegistrySupplier<Block> TYGREN_WALL_HEAD = register("tygren_wall_head", () -> new WallSkullBlock(SkullType.TYGREN, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> VAL_HEAD = register("val_head", () -> new SkullBlock(SkullType.VAL, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> VAL_WALL_HEAD = register("val_wall_head", () -> new WallSkullBlock(SkullType.VAL, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> VULCANNUS_HEAD = register("vulcannus_head", () -> new SkullBlock(SkullType.VULCANNUS, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> VULCANNUS_WALL_HEAD = register("vulcannus_wall_head", () -> new WallSkullBlock(SkullType.VULCANNUS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> XARIA_HEAD = register("xaria_head", () -> new SkullBlock(SkullType.XARIA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> XARIA_WALL_HEAD = register("xaria_wall_head", () -> new WallSkullBlock(SkullType.XARIA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> YUJUKI_HEAD = register("yujuki_head", () -> new SkullBlock(SkullType.YUJUKI, AbstractBlock.Settings.create()));
@@ -144,6 +146,7 @@ public final class SowSkulls {
     public static final RegistrySupplier<Item> TREVOR_HEAD_ITEM = register("trevor", TREVOR_HEAD, TREVOR_WALL_HEAD);
     public static final RegistrySupplier<Item> TYGREN_HEAD_ITEM = register("tygren", TYGREN_HEAD, TYGREN_WALL_HEAD);
     public static final RegistrySupplier<Item> VAL_HEAD_ITEM = register("val", VAL_HEAD, VAL_WALL_HEAD);
+    public static final RegistrySupplier<Item> VULCANNUS_HEAD_ITEM = register("vulcannus", VULCANNUS_HEAD, VULCANNUS_WALL_HEAD);
     public static final RegistrySupplier<Item> XARIA_HEAD_ITEM = register("xaria", XARIA_HEAD, XARIA_WALL_HEAD);
     public static final RegistrySupplier<Item> YUJUKI_HEAD_ITEM = register("yujuki", YUJUKI_HEAD, YUJUKI_WALL_HEAD);
     public static final RegistrySupplier<Item> ZINAIDA_HEAD_ITEM = register("zinaida", ZINAIDA_HEAD, ZINAIDA_WALL_HEAD);
@@ -163,7 +166,7 @@ public final class SowSkulls {
     public enum SkullType implements SkullBlock.SkullType {
         ABBIGAIL, AEGUS, ALEC, ALLISTER, AURELIUS, CHRONOS, DARLENE, DEATH_SINGER, DENNY, EDDY, GALLEOUS, GRIM, HADION,
         HAWKEN, HUBRIS, IGNEOUS, JALKAR, KIYOSHI, LUCAN, LUCIDIUS, MARCUS, MARSHALL, MASANI, MRFINCH, NECROLORD, NIIKA,
-        NITSUKE, OSIVIAN, PYTHUS, RIA, SAXON, SENN, SIDERIAN, SULLIMAN, THALLEOUS, TIDE_SINGER, TREVOR, TYGREN, VAL, XARIA, YUJUKI,
-        ZINAIDA, ZULIUS
+        NITSUKE, OSIVIAN, PYTHUS, RIA, SAXON, SENN, SIDERIAN, SULLIMAN, THALLEOUS, TIDE_SINGER, TREVOR, TYGREN, VAL,
+        VULCANNUS, XARIA, YUJUKI, ZINAIDA, ZULIUS
     }
 }

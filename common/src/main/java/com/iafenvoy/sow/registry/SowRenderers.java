@@ -13,6 +13,7 @@ import com.iafenvoy.sow.entity.necromancer.NecrolordEntity;
 import com.iafenvoy.sow.entity.necromancer.XariaEntity;
 import com.iafenvoy.sow.entity.netharan.ChronosEntity;
 import com.iafenvoy.sow.entity.netharan.PythusEntity;
+import com.iafenvoy.sow.entity.netharan.VulcannusEntity;
 import com.iafenvoy.sow.item.AdjustedSongStoneItem;
 import com.iafenvoy.sow.item.SongStoneItem;
 import com.iafenvoy.sow.particle.AggroblastParticle;
@@ -108,6 +109,7 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.NETHARAN, CommonPlayerLikeWithMarkerEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.CHRONOS, CommonPlayerLikeWithMarkerEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.PYTHUS, CommonPlayerLikeWithMarkerEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.VULCANNUS, CommonPlayerLikeWithMarkerEntityRenderer::new);
 
         EntityRendererRegistry.register(SowEntities.HUSK, CommonPlayerLikeWithMarkerEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.STRAY, CommonPlayerLikeWithMarkerEntityRenderer::new);
@@ -189,6 +191,7 @@ public final class SowRenderers {
         SkullRenderRegistry.register(SowSkulls.SkullType.TREVOR, TrevorEntity.TEXTURE, SowSkulls.TREVOR_HEAD.get(), SowSkulls.TREVOR_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.TYGREN, TygrenEntity.TEXTURE, SowSkulls.TYGREN_HEAD.get(), SowSkulls.TYGREN_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.VAL, ValEntity.TEXTURE, SowSkulls.VAL_HEAD.get(), SowSkulls.VAL_WALL_HEAD.get());
+        SkullRenderRegistry.register(SowSkulls.SkullType.VULCANNUS, VulcannusEntity.TEXTURE, SowSkulls.PYTHUS_HEAD.get(), SowSkulls.PYTHUS_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.XARIA, XariaEntity.TEXTURE, SowSkulls.XARIA_HEAD.get(), SowSkulls.XARIA_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.YUJUKI, YujukiEntity.TEXTURE, SowSkulls.YUJUKI_HEAD.get(), SowSkulls.YUJUKI_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.ZINAIDA, ZinaidaEntity.TEXTURE, SowSkulls.ZINAIDA_HEAD.get(), SowSkulls.ZINAIDA_WALL_HEAD.get());

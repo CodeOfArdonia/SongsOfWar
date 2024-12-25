@@ -19,6 +19,7 @@ import com.iafenvoy.sow.entity.necromancer.XariaEntity;
 import com.iafenvoy.sow.entity.netharan.ChronosEntity;
 import com.iafenvoy.sow.entity.netharan.NetharanEntity;
 import com.iafenvoy.sow.entity.netharan.PythusEntity;
+import com.iafenvoy.sow.entity.netharan.VulcannusEntity;
 import com.iafenvoy.sow.entity.power.*;
 import com.iafenvoy.sow.entity.zombie.SowHuskEntity;
 import com.iafenvoy.sow.entity.zombie.SowStrayEntity;
@@ -105,6 +106,7 @@ public final class SowEntities {
     public static final RegistrySupplier<EntityType<NetharanEntity>> NETHARAN = build("netharan", NetharanEntity::new, SpawnGroup.CREATURE, 64, 3, true, EntityBuildHelper.PLAYER.scale(1.15f));
     public static final RegistrySupplier<EntityType<ChronosEntity>> CHRONOS = build("chronos", ChronosEntity::new, SpawnGroup.CREATURE, 64, 3, true, EntityBuildHelper.PLAYER.scale(1.15f));
     public static final RegistrySupplier<EntityType<PythusEntity>> PYTHUS = build("pythus", PythusEntity::new, SpawnGroup.CREATURE, 64, 3, true, EntityBuildHelper.PLAYER.scale(1.15f));
+    public static final RegistrySupplier<EntityType<VulcannusEntity>> VULCANNUS = build("vulcannus", VulcannusEntity::new, SpawnGroup.CREATURE, 64, 3, true, EntityBuildHelper.PLAYER.scale(1.15f));
     //Zombie
     public static final RegistrySupplier<EntityType<SowHuskEntity>> HUSK = build("husk", SowHuskEntity::new, SpawnGroup.MONSTER, 64, 3, false, EntityBuildHelper.PLAYER);
     public static final RegistrySupplier<EntityType<SowStrayEntity>> STRAY = build("stray", SowStrayEntity::new, SpawnGroup.MONSTER, 64, 3, false, EntityBuildHelper.PLAYER);
@@ -217,6 +219,7 @@ public final class SowEntities {
         EntityAttributeRegistry.register(NETHARAN, NetharanEntity::createAttributes);
         EntityAttributeRegistry.register(CHRONOS, ChronosEntity::createAttributes);
         EntityAttributeRegistry.register(PYTHUS, PythusEntity::createAttributes);
+        EntityAttributeRegistry.register(VULCANNUS, VulcannusEntity::createAttributes);
 
         EntityAttributeRegistry.register(HUSK, SowHuskEntity::createZombieAttributes);
         EntityAttributeRegistry.register(STRAY, SowStrayEntity::createZombieAttributes);

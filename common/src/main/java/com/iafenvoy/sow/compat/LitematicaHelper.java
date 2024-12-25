@@ -1,10 +1,8 @@
 package com.iafenvoy.sow.compat;
 
 import com.iafenvoy.sow.SongsOfWar;
-import org.apache.commons.io.FileUtils;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.List;
 
 public class LitematicaHelper {
@@ -12,8 +10,7 @@ public class LitematicaHelper {
     private static final List<String> FILES = List.of("shrine.litematic");
 
     public static void extractFile() {
-        if(!new File(EXTRACT_PATH).mkdirs())
-            SongsOfWar.LOGGER.error("Failed to create folder {}.", EXTRACT_PATH);
+        new File(EXTRACT_PATH).mkdirs();
         for (String file : FILES) {
             try {
                 write2File(LitematicaHelper.class.getResourceAsStream("/litematica/" + file), EXTRACT_PATH + file);
