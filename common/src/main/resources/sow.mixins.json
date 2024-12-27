@@ -14,14 +14,14 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "StructureTemplateAccessor",
+    "WorldAccessor",
     "integration.ModPacketsC2SMixin"
   ],
   "client": [
     "BufferBuilderStorageMixin",
     "InGameHudMixin",
     "ItemRendererMixin",
-    "PlayerEntityRendererMixin",
-    "WorldAccessor"
+    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
