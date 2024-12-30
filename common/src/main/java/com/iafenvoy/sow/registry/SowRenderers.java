@@ -22,6 +22,7 @@ import com.iafenvoy.sow.particle.SongEffectParticle;
 import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
+import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
 import com.iafenvoy.sow.render.entity.ArdoniEntityRenderer;
 import com.iafenvoy.sow.render.power.*;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
@@ -206,6 +207,7 @@ public final class SowRenderers {
 
     public static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(SowBlockEntities.ARDONI_GRAVE.get(), ctx -> new ArdoniGraveBlockEntityRenderer());
+        BlockEntityRendererRegistry.register(SowBlockEntities.WALLS_OF_TIME.get(), WallsOfTimeBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(SowBlockEntities.AGGRESSIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.AggressiumSongCubeBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(SowBlockEntities.MOBILIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.MobiliumSongCubeBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(SowBlockEntities.PROTISIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.ProtisiumSongCubeBlockEntityRenderer::new);
@@ -214,8 +216,7 @@ public final class SowRenderers {
 
     public static void registerRenderType() {
         RenderTypeRegistry.register(RenderLayer.getCutout(), SowBlocks.PEAS.get(), SowDelight.WOODEN_FOOD_PLATE.get(), SowDelight.BAMBOO_FOOD_PLATE.get());
-        RenderTypeRegistry.register(RenderLayer.getTranslucent(), SowBlocks.MOBILIBOUNCE_PLATFORM.get());
-        RenderTypeRegistry.register(RenderLayer.getTranslucent(), SowBlocks.PROTE_BARRIER.get());
+        RenderTypeRegistry.register(RenderLayer.getTranslucent(), SowBlocks.MOBILIBOUNCE_PLATFORM.get(), SowBlocks.PROTE_BARRIER.get());
     }
 
     public static void registerModelPredicate() {

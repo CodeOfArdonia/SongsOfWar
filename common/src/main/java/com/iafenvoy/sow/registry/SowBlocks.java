@@ -20,8 +20,8 @@ public final class SowBlocks {
     public static final DeferredRegister<Item> ITEM_REGISTRY = DeferredRegister.create(SongsOfWar.MOD_ID, RegistryKeys.ITEM);
 
     public static final RegistrySupplier<PeasBlock> PEAS = register("peas", PeasBlock::new, block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.PEAS_DELIGHT)));
-    public static final RegistrySupplier<Block> WALLS_OF_TIME = register("walls_of_time", () -> new Block(AbstractBlock.Settings.create()), block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.ITEMS)));
     public static final RegistrySupplier<ArdoniGraveBlock> ARDONI_GRAVE = register("ardoni_grave", ArdoniGraveBlock::new, block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.ITEMS)));
+    public static final RegistrySupplier<WallsOfTimeBlock> WALLS_OF_TIME = register("walls_of_time", () -> new WallsOfTimeBlock(AbstractBlock.Settings.create()), block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.ITEMS)));
 
     public static final RegistrySupplier<AggressiumSongCubeBlock> AGGRESSIUM_SONG = register("aggressium_song", AggressiumSongCubeBlock::new, SongCubeItem::new);
     public static final RegistrySupplier<MobiliumSongCubeBlock> MOBILIUM_SONG = register("mobilium_song", MobiliumSongCubeBlock::new, SongCubeItem::new);
