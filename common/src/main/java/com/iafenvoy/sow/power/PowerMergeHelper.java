@@ -8,16 +8,20 @@ import com.iafenvoy.sow.power.type.AbstractSongPower;
 import com.iafenvoy.sow.registry.SowParticles;
 import com.iafenvoy.sow.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
-import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,18 +42,18 @@ public class PowerMergeHelper {
                 if (dirs[0] == mergeData.lastDir && player.getBlockPos().equals(mergeData.sneakPos)) {
                     mergeData.sneakTick++;
                     BlockPos songPos = mergeData.sneakPos.add(dirs[0].getVector().multiply(6)).add(0, 1, 0);
-                    BlockState songState = serverWorld.getBlockState(songPos);
-                    if (songState.getBlock() instanceof AbstractSongCubeBlock songCubeBlock && serverWorld.getBlockEntity(songPos) instanceof AbstractSongCubeBlockEntity blockEntity && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
+                    InteractHolder holder = InteractHolder.of(serverWorld, songPos);
+                    if (holder.isPresent() && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
                         Vec3d center = songPos.toCenterPos();
-                        PowerCategory category = songCubeBlock.getCategory();
+                        PowerCategory category = holder.getCategory();
                         Color4i color = category.getColor();
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.spawnParticles(SowParticles.SONG_EFFECT.get(), center.getX(), center.getY() - 0.25, center.getZ(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
                             SongPowerData.SinglePowerData d = songPowerData.get(category);
-                            AbstractSongPower<?> newPower = blockEntity.getPower();
-                            if (d.hasPower()) blockEntity.setPower(d.getActivePower());
-                            else serverWorld.breakBlock(songPos, false);
+                            AbstractSongPower<?> newPower = holder.getPower();
+                            if (d.hasPower()) holder.setPower(d.getActivePower());
+                            else holder.destroy();
                             d.setActivePower(newPower);
                             serverWorld.createExplosion(player, DamageUtil.build(player, DamageTypes.EXPLOSION), new FakeExplosionBehavior(), center, 1, false, World.ExplosionSourceType.NONE);
                             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 20));
@@ -72,6 +76,61 @@ public class PowerMergeHelper {
             this.lastDir = Direction.UP;
             this.sneakPos = null;
             this.sneakTick = 0;
+        }
+    }
+
+    private static class InteractHolder {
+        private final BlockPos pos;
+        @Nullable
+        private final AbstractSongCubeBlockEntity blockEntity;
+        @Nullable
+        private final ItemEntity itemEntity;
+
+        private static InteractHolder of(ServerWorld world, BlockPos pos) {
+            return world.getBlockState(pos).getBlock() instanceof AbstractSongCubeBlock && world.getBlockEntity(pos) instanceof AbstractSongCubeBlockEntity blockEntity ?
+                    new InteractHolder(pos, blockEntity) :
+                    new InteractHolder(pos, world.getEntitiesByClass(ItemEntity.class, new Box(pos), x -> x.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock).stream().findFirst().orElse(null));
+        }
+
+        private InteractHolder(BlockPos pos, @Nullable AbstractSongCubeBlockEntity blockEntity) {
+            this.pos = pos;
+            this.blockEntity = blockEntity;
+            this.itemEntity = null;
+        }
+
+        private InteractHolder(BlockPos pos, @Nullable ItemEntity itemEntity) {
+            this.pos = pos;
+            this.blockEntity = null;
+            this.itemEntity = itemEntity;
+        }
+
+        public boolean isPresent() {
+            return this.blockEntity != null || this.itemEntity != null;
+        }
+
+        public AbstractSongPower<?> getPower() {
+            if (this.blockEntity != null) return this.blockEntity.getPower();
+            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
+                return songCubeBlock.getPower(this.itemEntity.getStack());
+            return null;
+        }
+
+        public PowerCategory getCategory() {
+            if (this.blockEntity != null) return this.blockEntity.getCategory();
+            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
+                return songCubeBlock.getCategory();
+            return PowerCategory.AGGRESSIUM;
+        }
+
+        public void setPower(AbstractSongPower<?> power) {
+            if (this.blockEntity != null) this.blockEntity.setPower(power);
+            if (this.itemEntity != null) this.itemEntity.setStack(power.getStack());
+        }
+
+        public void destroy() {
+            if (this.blockEntity != null && this.blockEntity.getWorld() != null)
+                this.blockEntity.getWorld().breakBlock(this.pos, false);
+            if (this.itemEntity != null) this.itemEntity.remove(Entity.RemovalReason.DISCARDED);
         }
     }
 }
