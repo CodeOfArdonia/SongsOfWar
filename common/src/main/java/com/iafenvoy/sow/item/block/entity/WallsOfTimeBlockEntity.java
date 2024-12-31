@@ -1,5 +1,8 @@
 package com.iafenvoy.sow.item.block.entity;
 
+import com.iafenvoy.neptune.ServerHelper;
+import com.iafenvoy.neptune.network.ClientNetworkHelper;
+import com.iafenvoy.neptune.network.ServerNetworkHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowBlockEntities;
 import com.iafenvoy.sow.util.BookUtils;
@@ -11,13 +14,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class WallsOfTimeBlockEntity extends BlockEntity {
     private WotContents contents = WotContents.EMPTY.get();
+    private boolean fulfilled = false;
 
     public WallsOfTimeBlockEntity(BlockPos pos, BlockState state) {
         super(SowBlockEntities.WALLS_OF_TIME.get(), pos, state);
@@ -27,6 +33,7 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         this.contents = WotContents.CODEC.parse(NbtOps.INSTANCE, nbt.get("content")).resultOrPartial(SongsOfWar.LOGGER::error).orElse(WotContents.EMPTY.get());
+        this.fulfilled = true;
     }
 
     @Override
@@ -36,11 +43,18 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
     }
 
     public WotContents getContents() {
+        if (!this.fulfilled) ClientNetworkHelper.requestBlockEntityData(this.pos);
         return this.contents;
     }
 
+    public void sync() {
+        if (this.world != null && this.world.isClient || ServerHelper.server == null) return;
+        for (ServerPlayerEntity player : ServerHelper.server.getPlayerManager().getPlayerList())
+            ServerNetworkHelper.sendBlockEntityData(player, this.pos, this);
+    }
+
     public static final class WotContents {
-        public static final Supplier<WotContents> EMPTY = () -> new WotContents(Direction.UP, ItemStack.EMPTY, 0, 0, 1, 1);
+        public static final Supplier<WotContents> EMPTY = () -> new WotContents(Direction.EAST, ItemStack.EMPTY, 0, 0, 1, 1);
         public static final Codec<WotContents> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Direction.CODEC.optionalFieldOf("direction", EMPTY.get().direction).forGetter(WotContents::getDirection),
                 ItemStack.CODEC.optionalFieldOf("content", EMPTY.get().content).forGetter(WotContents::getContent),
@@ -99,23 +113,37 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
             return this;
         }
 
-        public WotContents withOffset(int x, int y) {
-            this.offsetX = x;
-            this.offsetY = y;
-            return this;
-        }
-
-        public WotContents withSize(int x, int y) {
-            this.sizeX = x;
-            this.sizeY = y;
-            return this;
-        }
-
         public String getContentString() {
             NbtList nbtList = this.content.getOrCreateNbt().getList("pages", 8);
             if (nbtList != null)
                 return BookUtils.nbtToString(nbtList);
             return "";
+        }
+    }
+
+    public enum EditType {
+        OFFSET_X_PLUS(c -> c.offsetX++),
+        OFFSET_X_SUB(c -> c.offsetX--),
+        OFFSET_Y_PLUS(c -> c.offsetY++),
+        OFFSET_Y_SUB(c -> c.offsetY--),
+        SIZE_X_PLUS(c -> c.sizeX++),
+        SIZE_X_SUB(c -> c.sizeX--),
+        SIZE_Y_PLUS(c -> c.sizeY++),
+        SIZE_Y_SUB(c -> c.sizeY--),
+        CLEAR(c -> c.content = ItemStack.EMPTY);
+
+        private final Consumer<WotContents> process;
+
+        EditType(Consumer<WotContents> process) {
+            this.process = process;
+        }
+
+        public Consumer<WotContents> getProcess() {
+            return this.process;
+        }
+
+        public EditType next() {
+            return values()[(this.ordinal() + 1) % values().length];
         }
     }
 }

@@ -41,6 +41,7 @@ public class WallsOfTimeBlock extends BlockWithEntity {
                 NbtList nbtList = stack.getOrCreateNbt().getList("pages", 8);
                 if (nbtList != null) {
                     blockEntity.getContents().withContent(stack.copy()).withDirection(hit.getSide());
+                    blockEntity.sync();
                     return ActionResult.SUCCESS;
                 }
             } else if (stack.isOf(Items.WRITABLE_BOOK)) {

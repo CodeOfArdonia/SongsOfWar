@@ -5,6 +5,7 @@ import com.iafenvoy.jupiter.ServerConfigManager;
 import com.iafenvoy.sow.config.SowConfig;
 import com.iafenvoy.sow.data.ArdoniName;
 import com.iafenvoy.sow.data.BeaconData;
+import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.network.ServerNetworkHelper;
 import com.iafenvoy.sow.registry.*;
 import com.iafenvoy.sow.registry.power.SowPowers;
@@ -13,9 +14,9 @@ import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
 import dev.architectury.registry.ReloadListenerRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
@@ -51,6 +52,10 @@ public class SongsOfWar {
         BlockEvent.BREAK.register((world, pos, state, player, xp) -> {
             if (state.isOf(Blocks.BEACON) && world instanceof ServerWorld serverWorld)
                 BeaconData.getInstance(serverWorld).remove(pos);
+            else if (world.getBlockEntity(pos) instanceof WallsOfTimeBlockEntity blockEntity && !blockEntity.getContents().getContent().isEmpty()) {
+                player.sendMessage(Text.translatable("block.sow.walls_of_time.cannot_break"));
+                return EventResult.interruptFalse();
+            }
             return EventResult.pass();
         });
         ReloadListenerRegistry.register(ResourceType.SERVER_DATA, new ArdoniName(), Identifier.of(MOD_ID, "ardoni_name"));

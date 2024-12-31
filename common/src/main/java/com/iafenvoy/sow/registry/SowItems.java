@@ -44,6 +44,7 @@ public final class SowItems {
     public static final RegistrySupplier<Item> GREEN_NOTE = REGISTRY.register("green_note", () -> new NoteItem(PowerCategory.SUPPORTIUM));
 
     public static final RegistrySupplier<ShrineDebugItem> SHRINE_DEBUG = REGISTRY.register("shrine_debug", ShrineDebugItem::new);
+    public static final RegistrySupplier<WallsOfTimeEditItem> WALLS_OF_TIME_EDIT = REGISTRY.register("walls_of_time_edit", WallsOfTimeEditItem::new);
     //Fake Items, should not use in game without song power.
     public static final RegistrySupplier<Item> PROTEPOINT_SHIELD = REGISTRY.register("protepoint_shield", ProtepointShieldItem::create);
 }
