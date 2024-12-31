@@ -37,6 +37,6 @@ public class WallsOfTimeBlockEntityRenderer implements BlockEntityRenderer<Walls
     private void renderSingle(String string, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         List<OrderedText> texts = this.textRenderer.wrapLines(Text.literal(string).fillStyle(STYLE), 32);
         for (int i = 0; i < texts.size(); i++)
-            this.textRenderer.draw(texts.get(i), 0, i * 8, 0x777777, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
+            this.textRenderer.draw(texts.get(i), 2, 2 + i * 10, 0x777777, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
     }
 }

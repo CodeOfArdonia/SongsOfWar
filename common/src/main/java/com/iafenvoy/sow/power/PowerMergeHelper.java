@@ -27,11 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PowerMergeHelper {
-    private static final Map<PlayerEntity, MergeData> data = new HashMap<>();
+    private static final Map<PlayerEntity, MergeData> DATA = new HashMap<>();
 
     public static void run(SongPowerData songPowerData, PlayerEntity player, ServerWorld serverWorld) {
-        if (!data.containsKey(player)) data.put(player, new MergeData());
-        MergeData mergeData = data.get(player);
+        if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
+        MergeData mergeData = DATA.get(player);
         if (player.isSneaking()) {
             Direction[] dirs = Direction.getEntityFacingOrder(player);
             if (dirs[0].getAxis() != Direction.Axis.Y) {
