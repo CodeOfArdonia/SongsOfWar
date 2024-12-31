@@ -12,6 +12,7 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.RotationAxis;
 
 import java.util.List;
 
@@ -28,15 +29,14 @@ public class WallsOfTimeBlockEntityRenderer implements BlockEntityRenderer<Walls
     @Override
     public void render(WallsOfTimeBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        matrices.scale(0.03125F, 0.03125F, 0.03125F);
-        matrices.translate(0, 0, -0.1);
-        this.renderSingle("abcdefghijklmn", matrices, vertexConsumers, light);
-        matrices.pop();
-    }
-
-    private void renderSingle(String string, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        List<OrderedText> texts = this.textRenderer.wrapLines(Text.literal(string).fillStyle(STYLE), 32);
+        WallsOfTimeBlockEntity.WotContents contents = entity.getContents();
+        matrices.translate(0.5, 0.5, 0.5);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180 - contents.getDirection().getHorizontal() * 90));
+        matrices.translate(0.5, 0.5, -0.501F);
+        matrices.scale(-0.03125F, -0.03125F, 0.03125F);
+        List<OrderedText> texts = this.textRenderer.wrapLines(Text.literal(contents.getContentString()).fillStyle(STYLE), contents.getSizeX() * 32);
         for (int i = 0; i < texts.size(); i++)
-            this.textRenderer.draw(texts.get(i), 2, 2 + i * 10, 0x777777, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
+            this.textRenderer.draw(texts.get(i), 2 + contents.getOffsetX() * 32, 2 + (int) (i * 10.6) + contents.getOffsetY() * 32, 0x777777, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
+        matrices.pop();
     }
 }

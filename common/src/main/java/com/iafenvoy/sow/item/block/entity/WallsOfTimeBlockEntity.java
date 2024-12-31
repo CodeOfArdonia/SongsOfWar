@@ -2,17 +2,22 @@ package com.iafenvoy.sow.item.block.entity;
 
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowBlockEntities;
+import com.iafenvoy.sow.util.BookUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
+import java.util.function.Supplier;
+
 public class WallsOfTimeBlockEntity extends BlockEntity {
-    private WotContents contents = WotContents.EMPTY;
+    private WotContents contents = WotContents.EMPTY.get();
 
     public WallsOfTimeBlockEntity(BlockPos pos, BlockState state) {
         super(SowBlockEntities.WALLS_OF_TIME.get(), pos, state);
@@ -21,7 +26,7 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.contents = WotContents.CODEC.parse(NbtOps.INSTANCE, nbt.get("content")).resultOrPartial(SongsOfWar.LOGGER::error).orElse(WotContents.EMPTY);
+        this.contents = WotContents.CODEC.parse(NbtOps.INSTANCE, nbt.get("content")).resultOrPartial(SongsOfWar.LOGGER::error).orElse(WotContents.EMPTY.get());
     }
 
     @Override
@@ -35,23 +40,23 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
     }
 
     public static final class WotContents {
-        public static final WotContents EMPTY = new WotContents(Direction.UP, "", 0, 0, 0, 0);
+        public static final Supplier<WotContents> EMPTY = () -> new WotContents(Direction.UP, ItemStack.EMPTY, 0, 0, 1, 1);
         public static final Codec<WotContents> CODEC = RecordCodecBuilder.create(i -> i.group(
-                Direction.CODEC.optionalFieldOf("direction", EMPTY.direction).forGetter(WotContents::getDirection),
-                Codec.STRING.optionalFieldOf("content", EMPTY.content).forGetter(WotContents::getContent),
-                Codec.INT.optionalFieldOf("offsetX", EMPTY.offsetX).forGetter(WotContents::getOffsetX),
-                Codec.INT.optionalFieldOf("offsetY", EMPTY.offsetY).forGetter(WotContents::getOffsetY),
-                Codec.INT.optionalFieldOf("sizeX", EMPTY.sizeX).forGetter(WotContents::getSizeX),
-                Codec.INT.optionalFieldOf("sizeY", EMPTY.sizeY).forGetter(WotContents::getSizeY)
+                Direction.CODEC.optionalFieldOf("direction", EMPTY.get().direction).forGetter(WotContents::getDirection),
+                ItemStack.CODEC.optionalFieldOf("content", EMPTY.get().content).forGetter(WotContents::getContent),
+                Codec.INT.optionalFieldOf("offsetX", EMPTY.get().offsetX).forGetter(WotContents::getOffsetX),
+                Codec.INT.optionalFieldOf("offsetY", EMPTY.get().offsetY).forGetter(WotContents::getOffsetY),
+                Codec.INT.optionalFieldOf("sizeX", EMPTY.get().sizeX).forGetter(WotContents::getSizeX),
+                Codec.INT.optionalFieldOf("sizeY", EMPTY.get().sizeY).forGetter(WotContents::getSizeY)
         ).apply(i, WotContents::new));
         private Direction direction;
-        private String content;
+        private ItemStack content;
         private int offsetX;
         private int offsetY;
         private int sizeX;
         private int sizeY;
 
-        public WotContents(Direction direction, String content, int offsetX, int offsetY, int sizeX, int sizeY) {
+        public WotContents(Direction direction, ItemStack content, int offsetX, int offsetY, int sizeX, int sizeY) {
             this.direction = direction;
             this.content = content;
             this.offsetX = offsetX;
@@ -64,7 +69,7 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
             return this.direction;
         }
 
-        public String getContent() {
+        public ItemStack getContent() {
             return this.content;
         }
 
@@ -89,7 +94,7 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
             return this;
         }
 
-        public WotContents withContent(String content) {
+        public WotContents withContent(ItemStack content) {
             this.content = content;
             return this;
         }
@@ -104,6 +109,13 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
             this.sizeX = x;
             this.sizeY = y;
             return this;
+        }
+
+        public String getContentString() {
+            NbtList nbtList = this.content.getOrCreateNbt().getList("pages", 8);
+            if (nbtList != null)
+                return BookUtils.nbtToString(nbtList);
+            return "";
         }
     }
 }
