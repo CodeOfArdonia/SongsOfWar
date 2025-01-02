@@ -147,7 +147,7 @@ Add some origins related to the animation.
 | Origin    | Impact | Advantages                                                                                   | Disadvantages                                                                          |
 |:----------|:-------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
 | Ardoni    | High   | +10 Health **(Recommend Max Health Fix)** <br> Use song ability <br> Invulnerable to potions | Cannot use redstone <br> Cannot wear armor greater than leather <br> Cannot use elytra |
-| Felina    | Medium | Can climb <br> Speed and jump boost <br> Invulnerable to fall                                | Afraid of water <br> Cannot wear armor greater than iron                               |
+| Felina    | Medium | Can climb <br> Speed and jump boost <br> Invulnerable to fall                                | Afraid of water <br> Cannot wear armor greater than iron <br> Can only eat meat        |
 | Magnorite | High   | Invulnerable to fire, lava and fall <br> Faster in lava <br> +10 Defense                     | Very afraid of water&cold <br> Cannot use elytra                                       |
 | Netharan  | Low    | Invulnerable to fire                                                                         | Afraid of water&cold <br> Cannot use elytra                                            |
 | Glacian   | Medium | Invulnerable to powder snow <br> +5 Defense                                                  | Afraid of hot                                                                          |

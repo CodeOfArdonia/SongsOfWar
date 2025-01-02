@@ -4,7 +4,8 @@
     "sow:agile",
     "sow:fall_invulnerable",
     "sow:afraid_water",
-    "sow:felina_no_armor"
+    "sow:felina_no_armor",
+    "sow:carnivore"
   ],
   "icon": "minecraft:cod",
   "impact": 2,

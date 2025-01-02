@@ -8,6 +8,8 @@ import com.iafenvoy.sow.registry.SowBlockEntities;
 import com.iafenvoy.sow.util.BookUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
@@ -42,8 +44,12 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
         nbt.put("content", WotContents.CODEC.encodeStart(NbtOps.INSTANCE, this.contents).resultOrPartial(SongsOfWar.LOGGER::error).orElse(new NbtCompound()));
     }
 
-    public WotContents getContents() {
+    @Environment(EnvType.CLIENT)
+    public void checkIfFulfilled(){
         if (!this.fulfilled) ClientNetworkHelper.requestBlockEntityData(this.pos);
+    }
+
+    public WotContents getContents() {
         return this.contents;
     }
 

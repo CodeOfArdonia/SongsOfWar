@@ -29,6 +29,7 @@ public class WallsOfTimeBlockEntityRenderer implements BlockEntityRenderer<Walls
     @Override
     public void render(WallsOfTimeBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
+        entity.checkIfFulfilled();
         WallsOfTimeBlockEntity.WotContents contents = entity.getContents();
         matrices.translate(0.5, 0.5, 0.5);
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180 - contents.getDirection().getHorizontal() * 90));
