@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.power;
 
-import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
 import com.iafenvoy.sow.render.RenderConstants;
@@ -29,7 +28,7 @@ public class ProteArmorFeatureRenderer<T extends PlayerEntity, M extends PlayerE
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (SongPowerData.byPlayer(entity).powerEnabled(PowerCategory.PROTISIUM, ProtisiumPowers.PROTEARMOR)) {
+        if (SongPowerData.byPlayer(entity).powerEnabled(ProtisiumPowers.PROTEARMOR)) {
             matrices.push();
             this.getContextModel().copyBipedStateTo(this.model);
             VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(RenderConstants.WHITE_TEXTURE));

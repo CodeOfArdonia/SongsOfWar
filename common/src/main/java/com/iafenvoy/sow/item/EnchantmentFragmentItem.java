@@ -1,9 +1,9 @@
 package com.iafenvoy.sow.item;
 
 import com.google.common.collect.Multimap;
-import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowItemGroups;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;

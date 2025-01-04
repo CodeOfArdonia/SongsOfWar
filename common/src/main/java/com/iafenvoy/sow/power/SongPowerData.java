@@ -120,6 +120,10 @@ public class SongPowerData implements Serializable, Tickable {
         this.components.remove(id);
     }
 
+    public boolean powerEnabled(AbstractSongPower<?> power) {
+       return this.powerEnabled(power.getCategory(), power);
+    }
+
     public boolean powerEnabled(PowerCategory category, AbstractSongPower<?> power) {
         SinglePowerData data = this.get(category);
         return data.hasPower() && data.getActivePower() == power && data.isEnabled();

@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.registry.power;
 
-import com.iafenvoy.sow.power.type.*;
+import com.iafenvoy.sow.power.type.AbstractSongPower;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import dev.architectury.registry.CreativeTabRegistry;
 
