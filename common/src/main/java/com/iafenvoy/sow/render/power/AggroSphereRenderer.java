@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power;
 
 import com.iafenvoy.sow.entity.power.AggroSphereEntity;
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -35,6 +35,6 @@ public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
 
     @Override
     public Identifier getTexture(AggroSphereEntity entity) {
-        return RenderConstants.WHITE_TEXTURE;
+        return ImageRenderUtils.WHITE_TEXTURE;
     }
 }

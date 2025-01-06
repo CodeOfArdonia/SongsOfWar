@@ -1,10 +1,9 @@
 package com.iafenvoy.sow.render.util;
 
-import com.iafenvoy.neptune.render.SimpleTexture;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.util.Identifier;
 
@@ -12,9 +11,7 @@ import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class ArdoniMarkerGenerator {
-    private static final Map<Long, ArdoniMarkerGenerator> GENERATOR = new HashMap<>();
-    private static final int BODY_OFFSET_X = 0, BODY_OFFSET_Y = 20;
-    private static final int LEGS_OFFSET_X = 16, LEGS_OFFSET_Y = 52;
+    private static final Map<Long, ArdoniMarkerGenerator> GENERATORS = new HashMap<>();
     private final ArdoniLikeBooleanMapGenerator body;
     private final ArdoniLikeBooleanMapGenerator legs;
     private final Random random;
@@ -30,12 +27,12 @@ public class ArdoniMarkerGenerator {
     }
 
     public static ArdoniMarkerGenerator getOrCreate(long seed) {
-        if (!GENERATOR.containsKey(seed)) GENERATOR.put(seed, new ArdoniMarkerGenerator(seed));
-        return GENERATOR.get(seed);
+        if (!GENERATORS.containsKey(seed)) GENERATORS.put(seed, new ArdoniMarkerGenerator(seed));
+        return GENERATORS.get(seed);
     }
 
     public static void resetAll() {
-        GENERATOR.values().forEach(ArdoniMarkerGenerator::reset);
+        GENERATORS.values().forEach(ArdoniMarkerGenerator::reset);
     }
 
     private static int generateColor(Random random) {
@@ -43,30 +40,14 @@ public class ArdoniMarkerGenerator {
         return 0xFF << 24 | r << 16 | r << 8 | r;
     }
 
-    private static void fill(Random random, NativeImage skin, NativeImage grave, int offsetX, int offsetY, boolean[][] map) {
-        for (int i = 0; i < map.length; i++)
-            for (int j = 0; j < map[i].length; j++) {
-                int x = offsetX + i, y = offsetY + j;
-                int color = map[i][j] ? generateColor(random) : 0;
-                skin.setColor(x, y, color);
-                grave.setColor(x, y, 20 <= x && x <= 27 && 20 <= y && y <= 31 ? color : 0);
-            }
-    }
-
-    private static void upload(NativeImage texture, Identifier id) {
-        SimpleTexture skinTexture = new SimpleTexture(texture);
-        skinTexture.upload(false, false);
-        MinecraftClient.getInstance().getTextureManager().registerTexture(id, skinTexture);
-    }
-
     private void generate() {
         this.present = true;
         NativeImage skin = new NativeImage(64, 64, true);
         NativeImage grave = new NativeImage(64, 64, true);
-        fill(this.random, skin, grave, BODY_OFFSET_X, BODY_OFFSET_Y, this.body.generate());
-        fill(this.random, skin, grave, LEGS_OFFSET_X, LEGS_OFFSET_Y, this.legs.generate());
-        upload(skin, this.skinId);
-        upload(grave, this.graveId);
+        ImageRenderUtils.directFill(this.random, skin, grave, ImageRenderUtils.BODY_OFFSET_X, ImageRenderUtils.BODY_OFFSET_Y, this.body.generate(), ArdoniMarkerGenerator::generateColor);
+        ImageRenderUtils.directFill(this.random, skin, grave, ImageRenderUtils.LEGS_OFFSET_X, ImageRenderUtils.LEGS_OFFSET_Y, this.legs.generate(), ArdoniMarkerGenerator::generateColor);
+        ImageRenderUtils.upload(skin, this.skinId);
+        ImageRenderUtils.upload(grave, this.graveId);
     }
 
     public Identifier getForSkin() {

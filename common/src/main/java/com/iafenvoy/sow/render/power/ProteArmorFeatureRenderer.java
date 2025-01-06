@@ -2,7 +2,7 @@ package com.iafenvoy.sow.render.power;
 
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
@@ -31,7 +31,7 @@ public class ProteArmorFeatureRenderer<T extends PlayerEntity, M extends PlayerE
         if (SongPowerData.byPlayer(entity).powerEnabled(ProtisiumPowers.PROTEARMOR)) {
             matrices.push();
             this.getContextModel().copyBipedStateTo(this.model);
-            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(RenderConstants.WHITE_TEXTURE));
+            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(ImageRenderUtils.WHITE_TEXTURE));
             this.model.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 0, 0.5f, 1, 0.1f);
             matrices.pop();
         }

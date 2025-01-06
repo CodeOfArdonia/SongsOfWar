@@ -29,7 +29,7 @@ public class SendarisMasterEntity extends AbstractArdoniEntity {
 
     @Override
     public Optional<Identifier> getMarkerTexture() {
-        return Optional.of(TEXTURE_MARKER);
+        return Optional.ofNullable(TEXTURE_MARKER);
     }
 
     @Override

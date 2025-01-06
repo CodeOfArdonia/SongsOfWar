@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power;
 
 import com.iafenvoy.sow.entity.power.ProteCloneEntity;
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -31,6 +31,6 @@ public class ProteCloneRenderer extends BipedEntityRenderer<ProteCloneEntity, Bi
 
     @Override
     public Identifier getTexture(ProteCloneEntity entity) {
-        return RenderConstants.WHITE_TEXTURE;
+        return ImageRenderUtils.WHITE_TEXTURE;
     }
 }

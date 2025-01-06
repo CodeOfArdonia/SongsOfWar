@@ -23,6 +23,6 @@ public class IgneousEntity extends AbstractMagnoriteEntity {
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.of(TEXTURE_MARKER);
+        return Optional.ofNullable(TEXTURE_MARKER);
     }
 }

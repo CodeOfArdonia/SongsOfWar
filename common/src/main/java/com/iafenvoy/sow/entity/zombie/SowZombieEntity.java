@@ -67,6 +67,6 @@ public class SowZombieEntity extends AbstractZombieEntity {
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.of(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/zombie/eye.png"));
+        return Optional.ofNullable(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/zombie/eye.png"));
     }
 }

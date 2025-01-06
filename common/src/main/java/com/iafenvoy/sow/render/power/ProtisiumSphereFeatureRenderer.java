@@ -2,7 +2,7 @@ package com.iafenvoy.sow.render.power;
 
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -31,7 +31,7 @@ public class ProtisiumSphereFeatureRenderer<T extends PlayerEntity, M extends Pl
             matrices.push();
             matrices.scale(2.5f, 2.5f, 2.5f);
             matrices.translate(0, -0.8, 0);
-            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(RenderConstants.WHITE_TEXTURE));
+            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(ImageRenderUtils.WHITE_TEXTURE));
             this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 0, 0.5f, 1, 0.1f);
             matrices.pop();
         }

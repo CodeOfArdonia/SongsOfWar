@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power;
 
 import com.iafenvoy.sow.entity.power.AggroDetonateEntity;
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.ImageRenderUtils;
 import com.iafenvoy.sow.render.power.model.DetonateModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -39,6 +39,6 @@ public class AggroDetonateRenderer extends EntityRenderer<AggroDetonateEntity> {
 
     @Override
     public Identifier getTexture(AggroDetonateEntity entity) {
-        return RenderConstants.WHITE_TEXTURE;
+        return ImageRenderUtils.WHITE_TEXTURE;
     }
 }

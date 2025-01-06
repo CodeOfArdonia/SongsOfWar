@@ -67,6 +67,6 @@ public class NetharanEntity extends AbstractNetheranEntity {
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.of(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/netharan/netharan_" + this.getVariant() + "_marker.png"));
+        return Optional.ofNullable(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/netharan/netharan_" + this.getVariant() + "_marker.png"));
     }
 }

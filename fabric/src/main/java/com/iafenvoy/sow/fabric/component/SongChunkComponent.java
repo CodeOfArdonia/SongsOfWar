@@ -10,8 +10,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.chunk.Chunk;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class SongChunkComponent implements ComponentV3 {
-    public static final ComponentKey<SongChunkComponent> SONG_CHUNK_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of(SongsOfWar.MOD_ID, "song_chunk_data"), SongChunkComponent.class);
+    public static final ComponentKey<SongChunkComponent> SONG_CHUNK_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(Objects.requireNonNull(Identifier.of(SongsOfWar.MOD_ID, "song_chunk_data")), SongChunkComponent.class);
 
     private final Chunk chunk;
     private final SongChunkData data;

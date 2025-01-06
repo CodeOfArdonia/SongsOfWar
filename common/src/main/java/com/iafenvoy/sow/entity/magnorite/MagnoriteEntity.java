@@ -67,6 +67,6 @@ public class MagnoriteEntity extends AbstractMagnoriteEntity {
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.of(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_" + this.getVariant() + "_marker.png"));
+        return Optional.ofNullable(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_" + this.getVariant() + "_marker.png"));
     }
 }
