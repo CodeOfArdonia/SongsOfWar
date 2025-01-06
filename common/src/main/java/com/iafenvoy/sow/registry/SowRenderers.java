@@ -24,6 +24,7 @@ import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
 import com.iafenvoy.sow.render.entity.ArdoniEntityRenderer;
+import com.iafenvoy.sow.render.entity.MagnoriteEntityRenderer;
 import com.iafenvoy.sow.render.power.*;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
@@ -100,8 +101,8 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.SAXON, CommonPlayerLikeEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.TREVOR, CommonPlayerLikeEntityRenderer::new);
 
-        EntityRendererRegistry.register(SowEntities.IGNEOUS, CommonPlayerLikeWithMarkerEntityRenderer::new);
-        EntityRendererRegistry.register(SowEntities.MAGNORITE, CommonPlayerLikeWithMarkerEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.IGNEOUS, MagnoriteEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.MAGNORITE, MagnoriteEntityRenderer::new);
 
         EntityRendererRegistry.register(SowEntities.NECROMANCER, CommonPlayerLikeEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.NECROLORD, CommonPlayerLikeEntityRenderer::new);

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "sow:food_plate"
+    "sow:wooden_food_plate",
+    "sow:bamboo_food_plate"
   ]
 }

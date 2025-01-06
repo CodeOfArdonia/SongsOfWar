@@ -34,7 +34,7 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Optional<Identifier> getMarkerTexture() {
+    public Optional<Identifier> getMarkerTextureId() {
         return Optional.empty();
     }
 
@@ -46,7 +46,7 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Identifier getSkinTexture() {
+    public Identifier getTextureId() {
         return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_base.png");
     }
 

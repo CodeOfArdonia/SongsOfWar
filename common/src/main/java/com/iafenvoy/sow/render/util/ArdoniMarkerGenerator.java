@@ -8,6 +8,7 @@ import net.minecraft.client.texture.NativeImage;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
+import java.util.function.ToIntFunction;
 
 @Environment(EnvType.CLIENT)
 public class ArdoniMarkerGenerator {
@@ -40,14 +41,24 @@ public class ArdoniMarkerGenerator {
         return 0xFF << 24 | r << 16 | r << 8 | r;
     }
 
+    public static void fill(Random random, NativeImage skin, NativeImage grave, int offsetX, int offsetY, boolean[][] map, ToIntFunction<Random> colorProvider) {
+        for (int i = 0; i < map.length; i++)
+            for (int j = 0; j < map[i].length; j++) {
+                int x = offsetX + i, y = offsetY + j;
+                int color = map[i][j] ? colorProvider.applyAsInt(random) : 0;
+                skin.setColor(x, y, color);
+                grave.setColor(x, y, 20 <= x && x <= 27 && 20 <= y && y <= 31 ? color : 0);
+            }
+    }
+
     private void generate() {
-        this.present = true;
         NativeImage skin = new NativeImage(64, 64, true);
         NativeImage grave = new NativeImage(64, 64, true);
-        ImageRenderUtils.directFill(this.random, skin, grave, ImageRenderUtils.BODY_OFFSET_X, ImageRenderUtils.BODY_OFFSET_Y, this.body.generate(), ArdoniMarkerGenerator::generateColor);
-        ImageRenderUtils.directFill(this.random, skin, grave, ImageRenderUtils.LEGS_OFFSET_X, ImageRenderUtils.LEGS_OFFSET_Y, this.legs.generate(), ArdoniMarkerGenerator::generateColor);
+        fill(this.random, skin, grave, ImageRenderUtils.BODY_OFFSET_X, ImageRenderUtils.BODY_OFFSET_Y, this.body.generate(), ArdoniMarkerGenerator::generateColor);
+        fill(this.random, skin, grave, ImageRenderUtils.LEGS_OFFSET_X, ImageRenderUtils.LEGS_OFFSET_Y, this.legs.generate(), ArdoniMarkerGenerator::generateColor);
         ImageRenderUtils.upload(skin, this.skinId);
         ImageRenderUtils.upload(grave, this.graveId);
+        this.present = true;
     }
 
     public Identifier getForSkin() {

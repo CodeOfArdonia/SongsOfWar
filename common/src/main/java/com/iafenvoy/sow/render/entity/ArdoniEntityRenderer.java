@@ -11,19 +11,20 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class ArdoniEntityRenderer extends BipedEntityRenderer<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> {
+public class ArdoniEntityRenderer extends BipedEntityRenderer<AbstractArdoniEntity, PlayerEntityModel<AbstractArdoniEntity>> {
     public ArdoniEntityRenderer(EntityRendererFactory.Context ctx) {
-        super(ctx, new BipedEntityModel<>(ctx.getPart(EntityModelLayers.PLAYER)), 0.5F);
+        super(ctx, new PlayerEntityModel<>(ctx.getPart(EntityModelLayers.PLAYER), false), 0.5F);
         this.addFeature(new ArdoniSkinFeatureRenderer(this));
         this.addFeature(new ArdoniEyeFeatureRenderer(this));
         this.addFeature(new ArdoniHairFeatureRenderer(this));
         this.addFeature(new ArdoniMarkerFeatureRenderer(this));
+        this.model.setVisible(true);
     }
 
     @Override
@@ -38,6 +39,6 @@ public class ArdoniEntityRenderer extends BipedEntityRenderer<AbstractArdoniEnti
 
     @Override
     public Identifier getTexture(AbstractArdoniEntity entity) {
-        return entity.getSkinTexture();
+        return entity.getTextureId();
     }
 }

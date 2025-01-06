@@ -35,12 +35,12 @@ public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
     }
 
     @Override
-    public Identifier getSkinTexture() {
+    public Identifier getTextureId() {
         return TEXTURE;
     }
 
     @Override
-    public Optional<Identifier> getMarkerTexture() {
+    public Optional<Identifier> getMarkerTextureId() {
         return Optional.ofNullable(TEXTURE_MARKER);
     }
 

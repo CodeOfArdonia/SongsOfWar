@@ -1,6 +1,7 @@
 package com.iafenvoy.sow.entity.ardoni;
 
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
+import com.iafenvoy.neptune.render.EntityWithMarkerTextureProvider;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
@@ -15,12 +16,9 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.util.Optional;
-
-public abstract class AbstractArdoniEntity extends MonsterEntityBase {
+public abstract class AbstractArdoniEntity extends MonsterEntityBase implements EntityWithMarkerTextureProvider {
     public AbstractArdoniEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);
     }
@@ -65,16 +63,12 @@ public abstract class AbstractArdoniEntity extends MonsterEntityBase {
         this.dropStack(this.toGrave());
     }
 
-    public abstract Identifier getSkinTexture();
-
-    public abstract Optional<Identifier> getMarkerTexture();
-
     public abstract Color4i getColor();
 
     public abstract ArdoniType getArdoniType();
 
     public ItemStack toGrave() {
-        return this.getMarkerTexture().map(ArdoniGraveBlockEntity::buildGrave).orElse(ItemStack.EMPTY);
+        return this.getMarkerTextureId().map(ArdoniGraveBlockEntity::buildGrave).orElse(ItemStack.EMPTY);
     }
 
     public boolean isFemale() {

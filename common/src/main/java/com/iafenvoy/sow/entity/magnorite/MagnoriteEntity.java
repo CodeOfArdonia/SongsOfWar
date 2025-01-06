@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.magnorite;
 
-import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -19,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class MagnoriteEntity extends AbstractMagnoriteEntity {
-    private static final TrackedData<Integer> VARIANT = DataTracker.registerData(MagnoriteEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    protected static final TrackedData<Long> MARKER_SEED = DataTracker.registerData(MagnoriteEntity.class, TrackedDataHandlerRegistry.LONG);
 
     public MagnoriteEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -28,45 +27,45 @@ public class MagnoriteEntity extends AbstractMagnoriteEntity {
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, 1);
+        this.dataTracker.startTracking(MARKER_SEED, 0L);
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putInt("variant", this.getVariant());
+        nbt.putLong("markerSeed", this.getMarkerSeed());
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("variant")) this.setVariant(nbt.getInt("variant"));
-        else this.setVariant(RandomHelper.nextInt(1, 13));
+        if (nbt.contains("markerSeed")) this.setMarkerSeed(nbt.getLong("markerSeed"));
+        else this.setMarkerSeed(this.getRandom().nextLong());
+    }
+
+    public long getMarkerSeed() {
+        return this.dataTracker.get(MARKER_SEED);
+    }
+
+    public void setMarkerSeed(long markerSeed) {
+        this.dataTracker.set(MARKER_SEED, markerSeed);
     }
 
     @Nullable
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-        this.setVariant(RandomHelper.nextInt(1, 13));
+        this.setMarkerSeed(this.getRandom().nextLong());
         return data;
-    }
-
-    public int getVariant() {
-        return this.dataTracker.get(VARIANT);
-    }
-
-    public void setVariant(int variant) {
-        this.dataTracker.set(VARIANT, variant);
     }
 
     @Override
     public Identifier getTextureId() {
-        return Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_" + this.getVariant() + ".png");
+        return Identifier.of(SongsOfWar.MOD_ID, "textures/white.png");
     }
 
     @Override
     public Optional<Identifier> getMarkerTextureId() {
-        return Optional.ofNullable(Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_" + this.getVariant() + "_marker.png"));
+        return Optional.empty();
     }
 }

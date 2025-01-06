@@ -3,17 +3,17 @@ package com.iafenvoy.sow.render;
 import com.iafenvoy.neptune.render.SimpleTexture;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.util.lambda.Int2BooleanBiFunction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-import java.util.function.ToIntFunction;
 
 @Environment(EnvType.CLIENT)
 public final class ImageRenderUtils {
@@ -23,6 +23,26 @@ public final class ImageRenderUtils {
     public static final int BODY_OFFSET_Y = 20;
     public static final int LEGS_OFFSET_X = 16;
     public static final int LEGS_OFFSET_Y = 52;
+    public static final List<Pair<Rectangle, Rectangle>> LAYER_MAPPING = List.of(
+            new Pair<>(new Rectangle(8, 0, 23, 7), new Rectangle(40, 0, 55, 7)),
+            new Pair<>(new Rectangle(0, 8, 31, 15), new Rectangle(32, 8, 63, 15)),
+            new Pair<>(new Rectangle(4, 16, 11, 19), new Rectangle(4, 32, 11, 35)),
+            new Pair<>(new Rectangle(20, 16, 35, 19), new Rectangle(20, 32, 35, 35)),
+            new Pair<>(new Rectangle(44, 16, 51, 19), new Rectangle(44, 32, 51, 35)),
+            new Pair<>(new Rectangle(0, 20, 55, 31), new Rectangle(0, 36, 55, 47)),
+            new Pair<>(new Rectangle(20, 48, 27, 51), new Rectangle(4, 48, 11, 51)),
+            new Pair<>(new Rectangle(36, 48, 43, 51), new Rectangle(52, 48, 59, 51)),
+            new Pair<>(new Rectangle(16, 52, 31, 63), new Rectangle(0, 52, 15, 63)),
+            new Pair<>(new Rectangle(32, 52, 47, 63), new Rectangle(48, 52, 63, 63))
+    );
+
+    public static Color4i[][] create(int x, int y) {
+        Color4i[][] data = new Color4i[x][y];
+        for (int i = 0; i < x; i++)
+            for (int j = 0; j < y; j++)
+                data[i][j] = new Color4i(0, 0, 0, 0);
+        return data;
+    }
 
     public static void upload(NativeImage texture, Identifier id) {
         SimpleTexture skinTexture = new SimpleTexture(texture);
@@ -30,21 +50,18 @@ public final class ImageRenderUtils {
         MinecraftClient.getInstance().getTextureManager().registerTexture(id, skinTexture);
     }
 
-    public static void directFill(Random random, NativeImage skin, NativeImage grave, int offsetX, int offsetY, boolean[][] map, ToIntFunction<Random> colorProvider) {
-        for (int i = 0; i < map.length; i++)
-            for (int j = 0; j < map[i].length; j++) {
-                int x = offsetX + i, y = offsetY + j;
-                int color = map[i][j] ? colorProvider.applyAsInt(random) : 0;
-                skin.setColor(x, y, color);
-                grave.setColor(x, y, 20 <= x && x <= 27 && 20 <= y && y <= 31 ? color : 0);
-            }
-    }
-
-    public static void fillWithCondition(NativeImage image, Color4i[][] source, PointAllow allow) {
+    public static void fillWithCondition(NativeImage image, Color4i[][] source, Int2BooleanBiFunction allow) {
         for (int i = 0; i < 64; i++)
             for (int j = 0; j < 64; j++)
-                if (allow.allow(i, j))
+                if (allow.applyAsBoolean(i, j) && source[i][j].a > 0)
                     image.setColor(i, j, source[i][j].getIntValue());
+    }
+
+    public static void removeDuplicateWithCondition(NativeImage image, Color4i[][] source, Int2BooleanBiFunction allow) {
+        for (int i = 0; i < 64; i++)
+            for (int j = 0; j < 64; j++)
+                if (allow.applyAsBoolean(i, j) && source[i][j].a > 0)
+                    image.setColor(i, j, 0);
     }
 
     public static Color4i interpolateColor(Color4i color1, Color4i color2, double t) {
@@ -56,7 +73,6 @@ public final class ImageRenderUtils {
                 (int) (color1.a + (color2.a - color1.a) * t)
         );
     }
-
 
     public static void smooth(Color4i[][] colorMap, int minX, int minY, int maxX, int maxY) {
         for (int i = minX; i < maxX; i++)
@@ -95,8 +111,39 @@ public final class ImageRenderUtils {
         );
     }
 
-    @FunctionalInterface
-    public interface PointAllow {
-        boolean allow(int i, int j);
+    public static boolean inFirstLayer(int i, int j) {
+        if (isFirstFace(i, j)) return false;
+        for (Pair<Rectangle, Rectangle> pair : LAYER_MAPPING)
+            if (pair.getLeft().xMin() <= i && i <= pair.getLeft().xMax() && pair.getLeft().yMin() <= j && j <= pair.getLeft().yMax())
+                return true;
+        return false;
+    }
+
+    public static boolean inSecondLayer(int i, int j) {
+        if (isSecondFace(i, j)) return false;
+        for (Pair<Rectangle, Rectangle> pair : LAYER_MAPPING)
+            if (pair.getRight().xMin() <= i && i <= pair.getRight().xMax() && pair.getRight().yMin() <= j && j <= pair.getRight().yMax())
+                return true;
+        return false;
+    }
+
+    public static boolean isFirstFace(int i, int j) {
+        return 8 <= i && i <= 15 && 9 <= j && j <= 12 || 10 <= i && i <= 13 && 13 <= j && j <= 15;
+    }
+
+    private static boolean isSecondFace(int i, int j) {
+        return 41 <= i && i <= 42 && 10 <= j && j <= 12 || 45 <= i && i <= 46 && 10 <= j && j <= 12;
+    }
+
+    public static void resolveCarve(Color4i[][] carveColor, Color4i[][] carve, Color4i[][] firstLayer, Color4i[][] secondLayer) {
+        for (Pair<Rectangle, Rectangle> pair : LAYER_MAPPING)
+            for (int i = pair.getLeft().xMin(); i <= pair.getLeft().xMax(); i++)
+                for (int j = pair.getLeft().yMin(); j <= pair.getLeft().yMax(); j++)
+                    if (carve[i][j].a > 0) firstLayer[i][j] = carveColor[i][j];
+                    else
+                        secondLayer[i - pair.getLeft().xMin() + pair.getRight().xMin()][j - pair.getLeft().yMin() + pair.getRight().yMin()] = carveColor[i][j];
+    }
+
+    public record Rectangle(int xMin, int yMin, int xMax, int yMax) {
     }
 }

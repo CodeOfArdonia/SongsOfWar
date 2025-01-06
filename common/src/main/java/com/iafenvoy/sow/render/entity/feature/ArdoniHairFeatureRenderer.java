@@ -12,20 +12,21 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class ArdoniHairFeatureRenderer extends FeatureRenderer<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> {
+public class ArdoniHairFeatureRenderer extends FeatureRenderer<AbstractArdoniEntity, PlayerEntityModel<AbstractArdoniEntity>> {
     private static final Identifier FEMALE_EXTRA_HAIR = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_female_extra.png");
 
-    public ArdoniHairFeatureRenderer(FeatureRendererContext<AbstractArdoniEntity, BipedEntityModel<AbstractArdoniEntity>> context) {
+    public ArdoniHairFeatureRenderer(FeatureRendererContext<AbstractArdoniEntity, PlayerEntityModel<AbstractArdoniEntity>> context) {
         super(context);
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractArdoniEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        BipedEntityModel<AbstractArdoniEntity> model = this.getContextModel();
+        PlayerEntityModel<AbstractArdoniEntity> model = this.getContextModel();
         Color4i color = entity.getColor();
         if (!(entity instanceof ArdoniEntity ardoni)) return;
         int age = ardoni.getAge();
