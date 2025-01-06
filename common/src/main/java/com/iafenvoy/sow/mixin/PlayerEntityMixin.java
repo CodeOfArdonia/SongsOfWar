@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.minecraft.entity.EntityType;
@@ -21,7 +20,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @SuppressWarnings("all")
     @Inject(method = "tick", at = @At("RETURN"))
     private void handleFallDistance(CallbackInfo ci) {
-        if (SongPowerData.byPlayer((PlayerEntity) (Object) this).powerEnabled(PowerCategory.MOBILIUM, MobiliumPowers.MOBILILEAP))
+        if (SongPowerData.byPlayer((PlayerEntity) (Object) this).powerEnabled(MobiliumPowers.MOBILILEAP))
             this.fallDistance = 0;
     }
 }

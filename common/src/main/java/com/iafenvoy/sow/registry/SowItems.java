@@ -1,10 +1,10 @@
 package com.iafenvoy.sow.registry;
 
-import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.*;
 import com.iafenvoy.sow.item.impl.ProtepointShieldItem;
 import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.item.ArmorItem;

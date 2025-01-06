@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.network;
 
-import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.power.component.MobiliWingsComponent;
@@ -34,7 +34,7 @@ public class ServerNetworkHelper {
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, Constants.JUMP_PRESS, (buf, context) -> {
             PlayerEntity player = context.getPlayer();
             SongPowerData data = SongPowerData.byPlayer(player);
-            if (data.powerEnabled(PowerCategory.MOBILIUM, MobiliumPowers.MOBILIWINGS))
+            if (data.powerEnabled(MobiliumPowers.MOBILIWINGS))
                 context.queue(() -> {
                     if (SongPowerData.byPlayer(player).getComponent(MobiliWingsComponent.ID) instanceof MobiliWingsComponent component)
                         component.speedUp();

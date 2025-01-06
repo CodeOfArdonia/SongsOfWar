@@ -37,7 +37,7 @@ public final class ProtisiumPowers {
             .onInit(self -> LivingEntityEvents.DAMAGE.register((entity, source, amount) -> {
                 if (entity instanceof PlayerEntity player) {
                     SongPowerData data = SongPowerData.byPlayer(player);
-                    if (data.powerEnabled(PowerCategory.PROTISIUM, self)) {
+                    if (data.powerEnabled(self)) {
                         data.get(PowerCategory.PROTISIUM).disable();
                         return Math.max(amount - SowConfig.INSTANCE.protisium.protearmorMaxReduceDamage.getValue().floatValue(), 0);
                     }

@@ -2,9 +2,9 @@ package com.iafenvoy.sow.entity;
 
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.EntityTextureProvider;
-import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowWeapons;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

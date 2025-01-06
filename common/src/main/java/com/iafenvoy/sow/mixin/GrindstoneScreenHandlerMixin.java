@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.sow.item.EnchantmentFragmentItem;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;

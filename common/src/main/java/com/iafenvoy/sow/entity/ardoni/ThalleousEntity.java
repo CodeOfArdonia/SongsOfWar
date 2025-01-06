@@ -1,12 +1,12 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.sow.render.glint.GlintManager;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.Anniversary;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.registry.SowDelight;
 import com.iafenvoy.sow.registry.SowWeapons;
+import com.iafenvoy.sow.render.glint.GlintManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ItemStack;

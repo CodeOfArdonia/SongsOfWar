@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.glint;
 
-import com.iafenvoy.sow.render.glint.GlintManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.*;
