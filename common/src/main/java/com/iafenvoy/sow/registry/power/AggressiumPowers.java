@@ -153,7 +153,7 @@ public final class AggressiumPowers {
             });
     public static final DelaySongPower AGGROSPHERE = new DelaySongPower("aggrosphere", PowerCategory.AGGRESSIUM)
             .setApplySound(SowSounds.AGGROSPHERE)
-            .setDelay(6)
+            .setDelay(36)
             .setPrimaryCooldown(holder -> SowConfig.INSTANCE.aggressium.aggrospherePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowConfig.INSTANCE.aggressium.aggrosphereSecondaryCooldown.getValue())
             .setExhaustion(holder -> SowConfig.INSTANCE.aggressium.aggrosphereExhaustion.getValue())

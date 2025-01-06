@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class TemporaryTransparentBlockEntity extends BlockEntity {
-    private BlockState state;
+    private BlockState state = Blocks.AIR.getDefaultState();
     private int tick = -1;
 
     public TemporaryTransparentBlockEntity(BlockPos pos, BlockState state) {
