@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class FoodBlockWithPiece extends Block {
-    public static final IntProperty BITES = Properties.BITES;
+    public static final IntProperty BITES = IntProperty.of("bites", 0, 3);
     private final int maxBite;
     private final FoodComponent food;
 
