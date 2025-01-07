@@ -4,19 +4,26 @@ import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.render.ImageRenderUtils;
 import com.iafenvoy.sow.util.PerlinNoise;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.function.DoubleFunction;
 
 public class MagnoriteSkinGenerator {
+    private static final Identifier DEFAULT = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_default.png");
+    private static final Identifier DEFAULT_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_default_marker.png");
     private static final Map<Long, MagnoriteSkinGenerator> GENERATORS = new HashMap<>();
+    private static final ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(1, 3, 10, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
     private final long seed;
     private final Identifier skinId, markerId;
-    private boolean present = false;
+    private boolean present = false, executing = false;
 
     private MagnoriteSkinGenerator(long seed) {
         this.seed = seed;
@@ -38,54 +45,68 @@ public class MagnoriteSkinGenerator {
     }
 
     public Identifier getForSkin() {
-        if (!this.present) this.generate();
+        if (!this.present) {
+            this.generate();
+            return DEFAULT;
+        }
         return this.skinId;
     }
 
     public Identifier getForMarker() {
-        if (!this.present) this.generate();
+        if (!this.present) {
+            this.generate();
+            return DEFAULT_MARKER;
+        }
         return this.markerId;
     }
 
     //FIXME::We need to swap all R and B color value in this method, I can't understand why.
     private void generate() {
-        NativeImage skin = new NativeImage(64, 64, true);
-        NativeImage marker = new NativeImage(64, 64, true);
-        Color4i[][] lavaMap = generateColors(this.seed, 0.2, List.of(
-                PerlinNoise.NoiseConfig.of(8, 0.5),
-                PerlinNoise.NoiseConfig.of(5, 0.25),
-                PerlinNoise.NoiseConfig.of(3, 0.125),
-                PerlinNoise.NoiseConfig.of(1, 0.0625)
-        ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x00, 0x45, 0xff, 0xff), new Color4i(0x00, 0xff, 0xff, 0xff), h));
-        ImageRenderUtils.fillWithCondition(skin, lavaMap, ImageRenderUtils::inFirstLayer);
-        ImageRenderUtils.fillWithCondition(marker, lavaMap, ImageRenderUtils::inFirstLayer);
+        if (!this.executing) {
+            this.executing = true;
+            EXECUTOR.execute(() -> {
+                NativeImage skin = new NativeImage(64, 64, true);
+                NativeImage marker = new NativeImage(64, 64, true);
+                Color4i[][] lavaMap = generateColors(this.seed, 0.2, List.of(
+                        PerlinNoise.NoiseConfig.of(8, 0.5),
+                        PerlinNoise.NoiseConfig.of(5, 0.25),
+                        PerlinNoise.NoiseConfig.of(3, 0.125),
+                        PerlinNoise.NoiseConfig.of(1, 0.0625)
+                ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x00, 0x45, 0xff, 0xff), new Color4i(0x00, 0xff, 0xff, 0xff), h));
+                ImageRenderUtils.fillWithCondition(skin, lavaMap, ImageRenderUtils::inFirstLayer);
+                ImageRenderUtils.fillWithCondition(marker, lavaMap, ImageRenderUtils::inFirstLayer);
 
-        Color4i[][] carveColor = generateColors(this.seed + 1, 0, List.of(
-                PerlinNoise.NoiseConfig.of(1, 0.75),
-                PerlinNoise.NoiseConfig.of(0.5, 0.5),
-                PerlinNoise.NoiseConfig.of(0.25, 0.25)
-        ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x52, 0x5f, 0x72, 0xff), new Color4i(0x12, 0x15, 0x1c, 0xff), h));
-        Color4i[][] carve = generateColors(this.seed + 2, -0.5, List.of(
-                PerlinNoise.NoiseConfig.of(2, 1.5),
-                PerlinNoise.NoiseConfig.of(1.5, 1.5),
-                PerlinNoise.NoiseConfig.of(0.5, 0.5)
-        ), h -> h > 0 ? new Color4i(0xff, 0xff, 0xff, 0xff) : new Color4i(0, 0, 0, 0));
-        Color4i[][] firstLayer = ImageRenderUtils.create(64, 64), secondLayer = ImageRenderUtils.create(64, 64);
-        ImageRenderUtils.resolveCarve(carveColor, carve, firstLayer, secondLayer);
-        ImageRenderUtils.fillWithCondition(skin, firstLayer, ImageRenderUtils::inFirstLayer);
-        ImageRenderUtils.fillWithCondition(skin, secondLayer, ImageRenderUtils::inSecondLayer);
-        ImageRenderUtils.fillWithCondition(skin, carveColor, ImageRenderUtils::isFirstFace);
-        ImageRenderUtils.removeDuplicateWithCondition(marker, firstLayer, ImageRenderUtils::inFirstLayer);
-        ImageRenderUtils.removeDuplicateWithCondition(marker, carveColor, ImageRenderUtils::isFirstFace);
+                Color4i[][] carveColor = generateColors(this.seed + 1, 0, List.of(
+                        PerlinNoise.NoiseConfig.of(1, 0.75),
+                        PerlinNoise.NoiseConfig.of(0.5, 0.5),
+                        PerlinNoise.NoiseConfig.of(0.25, 0.25)
+                ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x52, 0x5f, 0x72, 0xff), new Color4i(0x12, 0x15, 0x1c, 0xff), h));
+                Color4i[][] carve = generateColors(this.seed + 2, -0.5, List.of(
+                        PerlinNoise.NoiseConfig.of(2, 1.5),
+                        PerlinNoise.NoiseConfig.of(1.5, 1.5),
+                        PerlinNoise.NoiseConfig.of(0.5, 0.5)
+                ), h -> h > 0 ? new Color4i(0xff, 0xff, 0xff, 0xff) : new Color4i(0, 0, 0, 0));
+                Color4i[][] firstLayer = ImageRenderUtils.create(64, 64), secondLayer = ImageRenderUtils.create(64, 64);
+                ImageRenderUtils.resolveCarve(carveColor, carve, firstLayer, secondLayer);
+                ImageRenderUtils.fillWithCondition(skin, firstLayer, ImageRenderUtils::inFirstLayer);
+                ImageRenderUtils.fillWithCondition(skin, secondLayer, ImageRenderUtils::inSecondLayer);
+                ImageRenderUtils.fillWithCondition(skin, carveColor, ImageRenderUtils::isFirstFace);
+                ImageRenderUtils.removeDuplicateWithCondition(marker, firstLayer, ImageRenderUtils::inFirstLayer);
+                ImageRenderUtils.removeDuplicateWithCondition(marker, carveColor, ImageRenderUtils::isFirstFace);
 
-        skin.setColor(9, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
-        skin.setColor(14, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
-        marker.setColor(10, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
-        marker.setColor(13, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
+                skin.setColor(9, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
+                skin.setColor(14, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
+                marker.setColor(10, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
+                marker.setColor(13, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
 
-        ImageRenderUtils.upload(skin, this.skinId);
-        ImageRenderUtils.upload(marker, this.markerId);
-        this.present = true;
+                MinecraftClient.getInstance().execute(() -> {
+                    ImageRenderUtils.upload(skin, this.skinId);
+                    ImageRenderUtils.upload(marker, this.markerId);
+                    this.present = true;
+                    this.executing = false;
+                });
+            });
+        }
     }
 
     public static double[][] generatePerlin(long seed, double base, List<PerlinNoise.NoiseConfig> config) {
