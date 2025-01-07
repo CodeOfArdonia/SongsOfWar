@@ -20,7 +20,7 @@ public class MagnoriteSkinGenerator {
     private static final Identifier DEFAULT = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_default.png");
     private static final Identifier DEFAULT_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_default_marker.png");
     private static final Map<Long, MagnoriteSkinGenerator> GENERATORS = new HashMap<>();
-    private static final ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(1, 3, 10, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+    private static final ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(0, 3, 10, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
     private final long seed;
     private final Identifier skinId, markerId;
     private boolean present = false, executing = false;
