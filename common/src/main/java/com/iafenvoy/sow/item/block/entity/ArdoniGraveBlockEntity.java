@@ -1,18 +1,19 @@
 package com.iafenvoy.sow.item.block.entity;
 
-import com.iafenvoy.neptune.network.ClientNetworkHelper;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.block.ArdoniGraveBlock;
 import com.iafenvoy.sow.registry.SowBlockEntities;
 import com.iafenvoy.sow.registry.SowBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
@@ -82,9 +83,7 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
         return this.getCachedState().get(ArdoniGraveBlock.ACTIVATED);
     }
 
-    @Environment(EnvType.CLIENT)
     public float getRotationDegree() {
-        if (!this.fulfulled) ClientNetworkHelper.requestBlockEntityData(this.pos);
         return -this.getCachedState().get(ArdoniGraveBlock.FACING).asRotation() + 180;
     }
 
@@ -105,5 +104,16 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
         ItemStack stack = new ItemStack(SowBlocks.ARDONI_GRAVE.get());
         stack.setSubNbt("BlockEntityTag", nbt);
         return stack;
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return this.createNbt();
     }
 }

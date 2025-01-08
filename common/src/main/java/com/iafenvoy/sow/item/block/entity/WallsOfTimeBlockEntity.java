@@ -1,24 +1,25 @@
 package com.iafenvoy.sow.item.block.entity;
 
 import com.iafenvoy.neptune.ServerHelper;
-import com.iafenvoy.neptune.network.ClientNetworkHelper;
 import com.iafenvoy.neptune.network.ServerNetworkHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowBlockEntities;
 import com.iafenvoy.sow.util.BookUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -44,11 +45,6 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
         nbt.put("content", WotContents.CODEC.encodeStart(NbtOps.INSTANCE, this.contents).resultOrPartial(SongsOfWar.LOGGER::error).orElse(new NbtCompound()));
     }
 
-    @Environment(EnvType.CLIENT)
-    public void checkIfFulfilled(){
-        if (!this.fulfilled) ClientNetworkHelper.requestBlockEntityData(this.pos);
-    }
-
     public WotContents getContents() {
         return this.contents;
     }
@@ -57,6 +53,17 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
         if (this.world != null && this.world.isClient || ServerHelper.server == null) return;
         for (ServerPlayerEntity player : ServerHelper.server.getPlayerManager().getPlayerList())
             ServerNetworkHelper.sendBlockEntityData(player, this.pos, this);
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return this.createNbt();
     }
 
     public static final class WotContents {
