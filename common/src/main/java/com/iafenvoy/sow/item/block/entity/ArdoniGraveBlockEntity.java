@@ -22,7 +22,6 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
     private boolean fixed;
     private Identifier texturePath = Identifier.tryParse("");
     private ArdoniType ardoniType = ArdoniType.NONE;
-    private boolean fulfulled = false;
 
     public ArdoniGraveBlockEntity(BlockPos pos, BlockState state) {
         super(SowBlockEntities.ARDONI_GRAVE.get(), pos, state);
@@ -44,7 +43,6 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
         nbt.putBoolean("fixed", this.isFixed());
         nbt.putString("type", this.getArdoniType().id());
         nbt.putString("texturePath", this.getTexturePath().toString());
-        this.fulfulled = true;
     }
 
     public boolean isFixed() {

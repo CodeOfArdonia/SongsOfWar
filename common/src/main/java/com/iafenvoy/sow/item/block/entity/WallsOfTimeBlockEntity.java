@@ -1,7 +1,5 @@
 package com.iafenvoy.sow.item.block.entity;
 
-import com.iafenvoy.neptune.ServerHelper;
-import com.iafenvoy.neptune.network.ServerNetworkHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowBlockEntities;
 import com.iafenvoy.sow.util.BookUtils;
@@ -16,7 +14,6 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +23,6 @@ import java.util.function.Supplier;
 
 public class WallsOfTimeBlockEntity extends BlockEntity {
     private WotContents contents = WotContents.EMPTY.get();
-    private boolean fulfilled = false;
 
     public WallsOfTimeBlockEntity(BlockPos pos, BlockState state) {
         super(SowBlockEntities.WALLS_OF_TIME.get(), pos, state);
@@ -36,7 +32,6 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         this.contents = WotContents.CODEC.parse(NbtOps.INSTANCE, nbt.get("content")).resultOrPartial(SongsOfWar.LOGGER::error).orElse(WotContents.EMPTY.get());
-        this.fulfilled = true;
     }
 
     @Override
@@ -47,12 +42,6 @@ public class WallsOfTimeBlockEntity extends BlockEntity {
 
     public WotContents getContents() {
         return this.contents;
-    }
-
-    public void sync() {
-        if (this.world != null && this.world.isClient || ServerHelper.server == null) return;
-        for (ServerPlayerEntity player : ServerHelper.server.getPlayerManager().getPlayerList())
-            ServerNetworkHelper.sendBlockEntityData(player, this.pos, this);
     }
 
     @Nullable

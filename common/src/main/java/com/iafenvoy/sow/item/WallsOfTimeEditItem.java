@@ -2,6 +2,7 @@ package com.iafenvoy.sow.item;
 
 import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.registry.SowItemGroups;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,9 +54,12 @@ public class WallsOfTimeEditItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        if (context.getWorld().getBlockEntity(context.getBlockPos()) instanceof WallsOfTimeBlockEntity blockEntity) {
+        World world = context.getWorld();
+        BlockPos pos = context.getBlockPos();
+        BlockState state = world.getBlockState(pos);
+        if (world.getBlockEntity(pos) instanceof WallsOfTimeBlockEntity blockEntity) {
             WallsOfTimeBlockEntity.EditType.valueOf(context.getStack().getOrCreateNbt().getString(EDIT_TYPE_KEY)).getProcess().accept(blockEntity.getContents());
-            blockEntity.sync();
+            world.updateListeners(pos, state, state, 0);
             return ActionResult.SUCCESS;
         }
         return super.useOnBlock(context);
