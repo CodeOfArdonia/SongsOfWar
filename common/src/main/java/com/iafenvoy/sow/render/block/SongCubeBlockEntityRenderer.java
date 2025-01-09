@@ -23,7 +23,7 @@ public abstract class SongCubeBlockEntityRenderer<T extends AbstractSongCubeBloc
     @Override
     public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        matrices.translate(0.5, 0.25, 0.5);
+        matrices.translate(0.5, 0.125, 0.5);
         this.itemRenderer.renderItem(this.getStack(), ModelTransformationMode.FIXED, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);
         matrices.pop();
     }

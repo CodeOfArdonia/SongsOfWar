@@ -56,12 +56,12 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.5, 0.75);
+        return VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.25, 0.625);
     }
 
     @Override
     public VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) {
-        return VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.5, 0.75);
+        return VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.25, 0.625);
     }
 
     @Override
@@ -92,7 +92,7 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return (world1, pos, state1, blockEntity) -> {
             if (blockEntity instanceof AbstractSongCubeBlockEntity songCubeBlockEntity)
-                Proxies.songCubeSoundManager.startPlaying(pos, songCubeBlockEntity.getCategory());
+                Proxies.songCubeSoundManager.startPlaying(songCubeBlockEntity.getPos(), songCubeBlockEntity.getCategory());
         };
     }
 }

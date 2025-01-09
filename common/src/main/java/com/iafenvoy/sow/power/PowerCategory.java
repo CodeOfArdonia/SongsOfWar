@@ -4,26 +4,31 @@ import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.power.type.AbstractSongPower;
 import com.iafenvoy.sow.power.type.DummySongPower;
+import com.iafenvoy.sow.registry.SowSounds;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public enum PowerCategory {
-    AGGRESSIUM("aggressium", new Color4i(237, 28, 36, 255), 231),
-    MOBILIUM("mobilium", new Color4i(255, 242, 0, 255), 9035),
-    PROTISIUM("protisium", new Color4i(115, 251, 253, 255), 4290),
-    SUPPORTIUM("supportium", new Color4i(117, 249, 77, 255), 10);
+    AGGRESSIUM("aggressium", new Color4i(237, 28, 36, 255), 231,SowSounds.AGGRESSIUM),
+    MOBILIUM("mobilium", new Color4i(255, 242, 0, 255), 9035,SowSounds.MOBILIUM),
+    PROTISIUM("protisium", new Color4i(115, 251, 253, 255), 4290,SowSounds.PROTISIUM),
+    SUPPORTIUM("supportium", new Color4i(117, 249, 77, 255), 10,SowSounds.SUPPORTIUM);
     private final String id;
     private final Color4i color;
     private final long randomOffset;
+    private final Supplier<SoundEvent> sound;
     private final List<AbstractSongPower<?>> powers = new ArrayList<>();
     private final Map<String, AbstractSongPower<?>> byId = new HashMap<>();
 
-    PowerCategory(String id, Color4i color, long randomOffset) {
+    PowerCategory(String id, Color4i color, long randomOffset, Supplier<SoundEvent> sound) {
         this.id = id;
         this.color = color;
         this.randomOffset = randomOffset;
+        this.sound = sound;
     }
 
     public String getId() {
@@ -36,6 +41,10 @@ public enum PowerCategory {
 
     public long getRandomOffset() {
         return this.randomOffset;
+    }
+
+    public SoundEvent getSound() {
+        return this.sound.get();
     }
 
     public MutableText appendColor(MutableText text) {
