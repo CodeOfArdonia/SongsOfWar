@@ -2,12 +2,12 @@ package com.iafenvoy.sow.mixin;
 
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,12 +31,13 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @SuppressWarnings("all")
-    @ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 0))
-    private boolean handleSlideSpeed(boolean original) {
+    @Inject(method = "tick", at = @At("RETURN"))
+    private void endTick(CallbackInfo ci) {
+        if (this.isRemoved() || this.hasNoGravity()) return;
         if ((Object) this instanceof PlayerEntity player && SongPowerData.byPlayer(player).powerEnabled(MobiliumPowers.MOBILIGLIDE)) {
+            Vec3d velocity = this.getVelocity();
+            this.setVelocity(velocity.x, 0.01 / 4.0, velocity.z);
             this.fallDistance = 0;
-            return true;
         }
-        return original;
     }
 }

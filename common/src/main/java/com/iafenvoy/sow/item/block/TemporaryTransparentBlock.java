@@ -8,6 +8,7 @@ import net.minecraft.block.GlassBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -36,5 +37,12 @@ public class TemporaryTransparentBlock extends GlassBlock implements BlockEntity
             blockEntity.setTick(tick);
             blockEntity.setState(s);
         }
+    }
+
+    @Override
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (this.getJumpVelocityMultiplier() > 2)
+            entity.handleFallDamage(fallDistance, 0, world.getDamageSources().fall());
+        else super.onLandedUpon(world, state, pos, entity, fallDistance);
     }
 }
