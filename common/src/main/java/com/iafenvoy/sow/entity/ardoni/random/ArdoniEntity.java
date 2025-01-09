@@ -2,9 +2,8 @@ package com.iafenvoy.sow.entity.ardoni.random;
 
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.data.ArdoniName;
-import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
 import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
 import net.minecraft.entity.EntityData;
@@ -36,6 +35,18 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
     @Override
     public Optional<Identifier> getMarkerTextureId() {
         return Optional.empty();
+    }
+
+    @Override
+    protected Text getDefaultName() {
+        String random = Proxies.ardoniNameProxy.getNameBySeed(this.getMarkerSeed());
+        if (!random.isBlank()) return this.getArdoniType().formatName(random);
+        return super.getDefaultName();
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return true;
     }
 
     @Override
@@ -86,9 +97,6 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
         this.setDefaultData();
-        if (this.getArdoniType() == ArdoniType.NONE) this.setCustomName(Text.literal(ArdoniName.randomName()));
-        else
-            this.setCustomName(Text.literal(String.format("%s %s", ArdoniName.randomName(), this.getArdoniType().getFormattedName())));
         return data;
     }
 

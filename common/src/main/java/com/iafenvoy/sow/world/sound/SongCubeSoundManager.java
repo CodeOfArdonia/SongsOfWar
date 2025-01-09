@@ -9,4 +9,20 @@ public interface SongCubeSoundManager {
     void destroy(BlockPos pos);
 
     void tick();
+
+    enum Empty implements SongCubeSoundManager {
+        INSTANCE;
+
+        @Override
+        public void startPlaying(BlockPos pos, PowerCategory category) {
+        }
+
+        @Override
+        public void destroy(BlockPos pos) {
+        }
+
+        @Override
+        public void tick() {
+        }
+    }
 }

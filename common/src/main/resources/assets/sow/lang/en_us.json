@@ -1,4 +1,9 @@
 {
+  "ardoniType.sow.kaltaris": "%s Kaltaris",
+  "ardoniType.sow.mendoris": "%s Mendoris",
+  "ardoniType.sow.nestoris": "%s Nestoris",
+  "ardoniType.sow.sendaris": "%s Sendaris",
+  "ardoniType.sow.voltaris": "%s Voltaris",
   "banner.sow.conchord": "Conchord Banner",
   "banner.sow.conchord_simple": "Conchord Simple Banner",
   "banner.sow.crown_peak": "Crown Peak Banner",

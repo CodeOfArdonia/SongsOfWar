@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.item.block.entity;
 
-import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.type.AbstractSongPower;
 import com.iafenvoy.sow.power.type.DummySongPower;
@@ -40,7 +40,7 @@ public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
     @Override
     public void markRemoved() {
         super.markRemoved();
-        Constants.songCubeSoundManager.destroy(this.pos);
+        Proxies.songCubeSoundManager.destroy(this.pos);
     }
 
     public abstract PowerCategory getCategory();

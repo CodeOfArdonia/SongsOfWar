@@ -6,6 +6,7 @@ import com.iafenvoy.sow.item.SowSpawnEggItem;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.text.Text;
 
 import java.util.*;
 
@@ -41,9 +42,9 @@ public record ArdoniType(String id, boolean dark, Color4i primaryColor, List<Col
         return new SowSpawnEggItem(type, 0xFF888888, this.primaryColor.getIntValue());
     }
 
-    public String getFormattedName() {
-        if (this.id.isEmpty()) return "";
-        return this.id.substring(0, 1).toUpperCase(Locale.ROOT) + this.id.substring(1);
+    public Text formatName(String prefix) {
+        if (this == NONE || this.id.isEmpty()) return Text.literal(prefix);
+        return Text.translatable("ardoniType.sow.%s".formatted(this.id), Text.literal(prefix));
     }
 
     static {
