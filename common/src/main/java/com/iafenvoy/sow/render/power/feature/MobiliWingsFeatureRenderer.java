@@ -20,11 +20,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class MobiliumElytraFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
+public class MobiliWingsFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
     private static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
     private final ElytraEntityModel<T> elytra;
 
-    public MobiliumElytraFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
+    public MobiliWingsFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
         super(context);
         this.elytra = new ElytraEntityModel<>(loader.getModelPart(EntityModelLayers.ELYTRA));
     }

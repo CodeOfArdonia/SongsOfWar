@@ -1,6 +1,7 @@
 package com.iafenvoy.sow.power.component;
 
 import com.iafenvoy.sow.power.SongPowerData;
+import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import com.iafenvoy.sow.util.Serializable;
 import com.iafenvoy.sow.util.SowMath;
 import com.iafenvoy.sow.util.Tickable;
@@ -55,7 +56,7 @@ public class MobiliBurstComponent implements Serializable, Tickable {
         if (this.player.getVelocity().length() <= 0.1) this.tick = 0;
         else {
             Vec3d pos = this.player.getPos();
-            double r = 1;
+            double r = 1.5;
             List<Entity> entities = this.player.getWorld().getOtherEntities(this.player, new Box(pos.add(new Vec3d(r, r, r)), pos.subtract(new Vec3d(r, r, r))), entity -> true);
             entities.forEach(entity -> {
                 Vec3d dir = entity.getPos().subtract(this.player.getPos()).add(this.player.getVelocity());
@@ -68,6 +69,7 @@ public class MobiliBurstComponent implements Serializable, Tickable {
         if (this.tick == 0) {
             this.activate = false;
             SongPowerData.byPlayer(this.player).removeComponent(ID);
+            MobiliumPowers.MOBILIBURST.sendApplyMessage(this.player, false);
         }
         this.tick--;
     }

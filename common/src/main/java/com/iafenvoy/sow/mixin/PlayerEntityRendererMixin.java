@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.mixin;
 
 import com.iafenvoy.sow.render.power.feature.MobiliBurstFeatureRenderer;
-import com.iafenvoy.sow.render.power.feature.MobiliumElytraFeatureRenderer;
+import com.iafenvoy.sow.render.power.feature.MobiliWingsFeatureRenderer;
 import com.iafenvoy.sow.render.power.feature.ProteArmorFeatureRenderer;
 import com.iafenvoy.sow.render.power.feature.ProteSphereFeatureRenderer;
 import net.fabricmc.api.EnvType;
@@ -28,7 +28,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "<init>", at = @At("RETURN"))
     private void addCustomRenderer(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
         this.addFeature(new MobiliBurstFeatureRenderer<>(this));
-        this.addFeature(new MobiliumElytraFeatureRenderer<>(this, ctx.getModelLoader()));
+        this.addFeature(new MobiliWingsFeatureRenderer<>(this, ctx.getModelLoader()));
         this.addFeature(new ProteSphereFeatureRenderer<>(this));
         this.addFeature(new ProteArmorFeatureRenderer<>(this, new ArmorEntityModel<>(ctx.getPart(slim ? EntityModelLayers.PLAYER_SLIM_INNER_ARMOR : EntityModelLayers.PLAYER_INNER_ARMOR))));
     }

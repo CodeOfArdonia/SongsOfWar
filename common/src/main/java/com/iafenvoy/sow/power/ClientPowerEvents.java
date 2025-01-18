@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 @Environment(EnvType.CLIENT)
 public class ClientPowerEvents {
     public static final Event<PowerStateChange> POWER_ENABLE = EventFactory.of(callbacks -> (player, songPower) -> callbacks.forEach(x -> x.onChange(player, songPower)));
-    //Note: Disable only invoke for persist song power
     public static final Event<PowerStateChange> POWER_DISABLE = EventFactory.of(callbacks -> (player, songPower) -> callbacks.forEach(x -> x.onChange(player, songPower)));
 
     @FunctionalInterface
