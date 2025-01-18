@@ -1,4 +1,4 @@
-package com.iafenvoy.sow.render.util;
+package com.iafenvoy.sow.render.generator;
 
 import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import net.fabricmc.api.EnvType;

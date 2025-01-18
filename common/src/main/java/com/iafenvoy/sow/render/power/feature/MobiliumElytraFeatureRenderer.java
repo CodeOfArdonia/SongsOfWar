@@ -1,4 +1,4 @@
-package com.iafenvoy.sow.render.power;
+package com.iafenvoy.sow.render.power.feature;
 
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.power.SongPowerData;
@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class MobiliumElytraFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
-    private static final Identifier SKIN = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
+    private static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
     private final ElytraEntityModel<T> elytra;
 
     public MobiliumElytraFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
@@ -36,7 +36,7 @@ public class MobiliumElytraFeatureRenderer<T extends PlayerEntity, M extends Pla
             matrixStack.translate(0.0F, 0.0F, 0.125F);
             this.getContextModel().copyStateTo(this.elytra);
             this.elytra.setAngles(entity, f, g, j, k, l);
-            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityTranslucentEmissive(SKIN));
+            VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityTranslucentEmissive(TEXTURE));
             this.elytra.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1, 1, 0, 0.5f);
             matrixStack.pop();
         }

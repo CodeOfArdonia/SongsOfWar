@@ -25,7 +25,7 @@ import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
 import com.iafenvoy.sow.render.entity.ArdoniEntityRenderer;
 import com.iafenvoy.sow.render.entity.MagnoriteEntityRenderer;
-import com.iafenvoy.sow.render.power.*;
+import com.iafenvoy.sow.render.power.entity.*;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;

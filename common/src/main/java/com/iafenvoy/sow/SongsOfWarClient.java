@@ -5,7 +5,7 @@ import com.iafenvoy.sow.data.ArdoniName;
 import com.iafenvoy.sow.network.ClientNetworkHelper;
 import com.iafenvoy.sow.registry.SowKeybindings;
 import com.iafenvoy.sow.registry.SowRenderers;
-import com.iafenvoy.sow.render.util.GeneratorReloader;
+import com.iafenvoy.sow.render.generator.GeneratorReloader;
 import com.iafenvoy.sow.world.sound.ClientSongCubeSoundManager;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.registry.ReloadListenerRegistry;

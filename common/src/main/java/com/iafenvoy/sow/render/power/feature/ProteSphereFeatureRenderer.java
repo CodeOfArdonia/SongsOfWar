@@ -1,8 +1,8 @@
-package com.iafenvoy.sow.render.power;
+package com.iafenvoy.sow.render.power.feature;
 
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
-import com.iafenvoy.sow.render.ImageRenderUtils;
+import com.iafenvoy.sow.render.RenderConstants;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,10 +17,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 
 @Environment(EnvType.CLIENT)
-public class ProtisiumSphereFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
+public class ProteSphereFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
     private final SphereModel<T> sphereModel;
 
-    public ProtisiumSphereFeatureRenderer(FeatureRendererContext<T, M> context) {
+    public ProteSphereFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
         this.sphereModel = new SphereModel<>(SphereModel.getTexturedModelData().createModel());
     }
@@ -30,8 +30,8 @@ public class ProtisiumSphereFeatureRenderer<T extends PlayerEntity, M extends Pl
         if (SongPowerData.byPlayer(entity).powerEnabled(ProtisiumPowers.PROTESPHERE)) {
             matrices.push();
             matrices.scale(2.5f, 2.5f, 2.5f);
-            matrices.translate(0, -0.8, 0);
-            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(ImageRenderUtils.WHITE_TEXTURE));
+            matrices.translate(0, -1.3, 0);
+            VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(RenderConstants.WHITE_TEXTURE));
             this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 0, 0.5f, 1, 0.1f);
             matrices.pop();
         }

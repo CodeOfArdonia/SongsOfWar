@@ -1,13 +1,19 @@
 package com.iafenvoy.sow.power.type;
 
+import com.iafenvoy.neptune.network.PacketBufferUtils;
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.power.SongPowerDataHolder;
+import dev.architectury.networking.NetworkManager;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -143,10 +149,21 @@ public sealed abstract class AbstractSongPower<T extends AbstractSongPower<T>> p
     }
 
     public boolean apply(SongPowerData.SinglePowerData data) {
-        return this.applyInternal(new SongPowerDataHolder(data));
+        boolean success = this.applyInternal(new SongPowerDataHolder(data));
+        if (success) this.sendApplyMessage(data.getPlayer(), true);
+        return success;
     }
 
     public void unapply(SongPowerData.SinglePowerData data) {
+        this.sendApplyMessage(data.getPlayer(), false);
+    }
+
+    public void sendApplyMessage(PlayerEntity player, boolean enable) {
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            PacketByteBuf buf = PacketBufferUtils.create();
+            buf.writeUuid(player.getUuid()).writeString(this.id).writeBoolean(enable);
+            NetworkManager.sendToPlayer(serverPlayer, Constants.POWER_STATE_CHANGE, buf);
+        }
     }
 
     public boolean isEmpty() {

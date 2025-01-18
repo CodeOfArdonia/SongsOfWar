@@ -2,8 +2,8 @@ package com.iafenvoy.sow.render.block;
 
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
-import com.iafenvoy.sow.render.ImageRenderUtils;
-import com.iafenvoy.sow.render.util.ArdoniMarkerGenerator;
+import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.sow.render.generator.ArdoniMarkerGenerator;
 import com.mojang.blaze3d.platform.TextureUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.*;
@@ -33,7 +33,7 @@ public class ArdoniGraveBlockEntityRenderer implements BlockEntityRenderer<Ardon
         matrices.translate(0.5, 1.5, 0.5);
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(entity.getRotationDegree()));
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
-        part.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityCutout(ImageRenderUtils.STONE_TEXTURE)), light, overlay);
+        part.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityCutout(RenderConstants.STONE_TEXTURE)), light, overlay);
         Color4i color = entity.activated() ? entity.getArdoniType().getColor(seed) : new Color4i(0x20, 0x20, 0x20, 0xFF);
         part.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(texture)), light, overlay, color.getR(), color.getG(), color.getB(), color.getA());
         matrices.pop();

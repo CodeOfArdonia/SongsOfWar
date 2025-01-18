@@ -3,7 +3,7 @@ package com.iafenvoy.sow.render.entity;
 import com.iafenvoy.sow.entity.magnorite.AbstractMagnoriteEntity;
 import com.iafenvoy.sow.entity.magnorite.MagnoriteEntity;
 import com.iafenvoy.sow.render.entity.feature.MagnoriteMarkerFeatureRenderer;
-import com.iafenvoy.sow.render.util.MagnoriteSkinGenerator;
+import com.iafenvoy.sow.render.generator.MagnoriteSkinGenerator;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;

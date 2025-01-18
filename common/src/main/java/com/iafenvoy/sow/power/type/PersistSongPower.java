@@ -41,6 +41,7 @@ public final class PersistSongPower extends AbstractSongPower<PersistSongPower> 
         playSound(holder, this.unapplySound);
         this.unapply.accept(holder);
         holder.cooldown();
+        super.unapply(data);
     }
 
     public boolean tick(SongPowerData.SinglePowerData data) {

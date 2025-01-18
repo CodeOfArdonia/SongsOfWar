@@ -2,7 +2,7 @@ package com.iafenvoy.sow.render.entity.feature;
 
 import com.iafenvoy.sow.entity.magnorite.AbstractMagnoriteEntity;
 import com.iafenvoy.sow.entity.magnorite.MagnoriteEntity;
-import com.iafenvoy.sow.render.util.MagnoriteSkinGenerator;
+import com.iafenvoy.sow.render.generator.MagnoriteSkinGenerator;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

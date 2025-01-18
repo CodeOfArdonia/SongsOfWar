@@ -1,4 +1,4 @@
-package com.iafenvoy.sow.render.power;
+package com.iafenvoy.sow.render.power.entity;
 
 import com.iafenvoy.sow.entity.power.SupporoSpikeEntity;
 import net.minecraft.client.render.OverlayTexture;

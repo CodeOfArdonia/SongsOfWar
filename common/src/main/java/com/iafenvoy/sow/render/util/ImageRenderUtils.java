@@ -1,8 +1,7 @@
-package com.iafenvoy.sow.render;
+package com.iafenvoy.sow.render.util;
 
 import com.iafenvoy.neptune.render.SimpleTexture;
 import com.iafenvoy.neptune.util.Color4i;
-import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.util.lambda.Int2BooleanBiFunction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,8 +16,6 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public final class ImageRenderUtils {
-    public static final Identifier WHITE_TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/white.png");
-    public static final Identifier STONE_TEXTURE = Identifier.of(Identifier.DEFAULT_NAMESPACE, "textures/block/stone.png");
     public static final int BODY_OFFSET_X = 0;
     public static final int BODY_OFFSET_Y = 20;
     public static final int LEGS_OFFSET_X = 16;

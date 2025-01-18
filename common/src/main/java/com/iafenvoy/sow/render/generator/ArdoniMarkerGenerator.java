@@ -1,7 +1,7 @@
-package com.iafenvoy.sow.render.util;
+package com.iafenvoy.sow.render.generator;
 
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.render.ImageRenderUtils;
+import com.iafenvoy.sow.render.util.ImageRenderUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.texture.NativeImage;

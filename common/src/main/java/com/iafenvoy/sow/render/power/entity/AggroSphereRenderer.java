@@ -1,7 +1,7 @@
-package com.iafenvoy.sow.render.power;
+package com.iafenvoy.sow.render.power.entity;
 
 import com.iafenvoy.sow.entity.power.AggroSphereEntity;
-import com.iafenvoy.sow.render.ImageRenderUtils;
+import com.iafenvoy.sow.render.RenderConstants;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,7 +27,7 @@ public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
     public void render(AggroSphereEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
         matrices.scale(0.5f, 0.5f, 0.5f);
-        matrices.translate(0, -0.5, 0);
+        matrices.translate(0, -1, 0);
         VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(this.getTexture(entity)));
         this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 0, 0, 0.3f);
         matrices.pop();
@@ -35,6 +35,6 @@ public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
 
     @Override
     public Identifier getTexture(AggroSphereEntity entity) {
-        return ImageRenderUtils.WHITE_TEXTURE;
+        return RenderConstants.WHITE_TEXTURE;
     }
 }
