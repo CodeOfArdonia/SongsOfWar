@@ -29,13 +29,12 @@ public class AggroSphereEntity extends AggroProjectileEntity {
             target.damage(DamageUtil.build(this.ownerOrSelf(), SowDamageTypes.AGGROSPHERE), this.transformDamage(SowConfig.INSTANCE.aggressium.aggrosphereDamage.getValue().floatValue()));
             this.remove(RemovalReason.DISCARDED);
         }
-        for (int i = 0; i < 9; i++)
-            this.getEntityWorld().addParticle(ParticleTypes.FLAME,
-                    RandomHelper.rangeRand(this.getX(), 0.3),
-                    RandomHelper.rangeRand(this.getY() + 0.25, 0.3),
-                    RandomHelper.rangeRand(this.getZ(), 0.3),
-                    this.getVelocity().getX(),
-                    this.getVelocity().getY(),
-                    this.getVelocity().getZ());
+        this.getEntityWorld().addParticle(ParticleTypes.FLAME,
+                RandomHelper.rangeRand(this.getX(), 0.3),
+                RandomHelper.rangeRand(this.getY() + 0.25, 0.3),
+                RandomHelper.rangeRand(this.getZ(), 0.3),
+                this.getVelocity().getX(),
+                this.getVelocity().getY(),
+                this.getVelocity().getZ());
     }
 }

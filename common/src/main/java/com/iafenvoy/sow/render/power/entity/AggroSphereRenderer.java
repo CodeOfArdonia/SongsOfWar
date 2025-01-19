@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power.entity;
 
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.entity.power.AggroSphereEntity;
-import com.iafenvoy.sow.render.RenderConstants;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
+    private static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/sphere/aggrosphere.png");
     private final SphereModel<AggroSphereEntity> sphereModel;
 
     public AggroSphereRenderer(EntityRendererFactory.Context ctx) {
@@ -26,15 +27,18 @@ public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
     @Override
     public void render(AggroSphereEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
+        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(TEXTURE));
+        matrices.translate(0, -0.5, 0);
         matrices.scale(0.5f, 0.5f, 0.5f);
-        matrices.translate(0, -1, 0);
-        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(this.getTexture(entity)));
-        this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 0, 0, 0.3f);
+        this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 1, 1, 0.15f);
+        matrices.translate(0, 0.375, 0);
+        matrices.scale(0.75f, 0.75f, 0.75f);
+        this.sphereModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 1, 1, 0.4f);
         matrices.pop();
     }
 
     @Override
     public Identifier getTexture(AggroSphereEntity entity) {
-        return RenderConstants.WHITE_TEXTURE;
+        return TEXTURE;
     }
 }
