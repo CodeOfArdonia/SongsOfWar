@@ -24,6 +24,7 @@ import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
 import com.iafenvoy.sow.render.entity.ArdoniEntityRenderer;
+import com.iafenvoy.sow.render.entity.KikiEntityRenderer;
 import com.iafenvoy.sow.render.entity.MagnoriteEntityRenderer;
 import com.iafenvoy.sow.render.power.entity.*;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
@@ -53,6 +54,7 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.NESTORIS_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.KALTARIS_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.GRIM, CommonPlayerLikeEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.KIKI, KikiEntityRenderer::new);
 
         EntityRendererRegistry.register(SowEntities.TIDE_SINGER, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.DEATH_SINGER, ArdoniEntityRenderer::new);

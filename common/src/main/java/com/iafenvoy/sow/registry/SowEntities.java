@@ -3,6 +3,7 @@ package com.iafenvoy.sow.registry;
 import com.iafenvoy.neptune.util.EntityBuildHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.entity.GrimEntity;
+import com.iafenvoy.sow.entity.KikiEntity;
 import com.iafenvoy.sow.entity.ardoni.*;
 import com.iafenvoy.sow.entity.ardoni.random.*;
 import com.iafenvoy.sow.entity.author.PixelZnimationEntity;
@@ -48,6 +49,7 @@ public final class SowEntities {
     public static final RegistrySupplier<EntityType<SendarisArdoniEntity>> SENDARIS_ARDONI = build("sendaris_ardoni", SendarisArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<VoltarisArdoniEntity>> VOLTARIS_ARDONI = build("voltaris_ardoni", VoltarisArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<GrimEntity>> GRIM = build("grim", GrimEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
+    public static final RegistrySupplier<EntityType<KikiEntity>> KIKI = build("kiki", KikiEntity::new, SpawnGroup.CREATURE, 10, 3, true, new EntityBuildHelper.Dimension(0.5F, 0.5F));
     //Ardoni
     public static final RegistrySupplier<EntityType<TideSingerEntity>> TIDE_SINGER = build("tide_singer", TideSingerEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<DeathSingerEntity>> DEATH_SINGER = build("death_singer", DeathSingerEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
@@ -161,6 +163,7 @@ public final class SowEntities {
         EntityAttributeRegistry.register(SENDARIS_ARDONI, SendarisArdoniEntity::createAttributes);
         EntityAttributeRegistry.register(VOLTARIS_ARDONI, VoltarisArdoniEntity::createAttributes);
         EntityAttributeRegistry.register(GRIM, GrimEntity::createAttributes);
+        EntityAttributeRegistry.register(KIKI, KikiEntity::createAttributes);
 
         EntityAttributeRegistry.register(TIDE_SINGER, TideSingerEntity::createAttributes);
         EntityAttributeRegistry.register(DEATH_SINGER, DeathSingerEntity::createAttributes);
