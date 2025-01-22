@@ -19,6 +19,7 @@
   ],
   "client": [
     "BufferBuilderStorageMixin",
+    "MinecraftClientMixin",
     "InGameHudMixin",
     "ItemRendererMixin",
     "PlayerEntityRendererMixin"

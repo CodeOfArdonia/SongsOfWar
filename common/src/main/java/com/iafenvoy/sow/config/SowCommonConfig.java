@@ -7,15 +7,15 @@ import com.iafenvoy.jupiter.interfaces.IConfigEnumEntry;
 import com.iafenvoy.sow.SongsOfWar;
 import net.minecraft.util.Identifier;
 
-public class SowConfig extends AutoInitConfigContainer {
-    public static final SowConfig INSTANCE = new SowConfig();
+public class SowCommonConfig extends AutoInitConfigContainer {
+    public static final SowCommonConfig INSTANCE = new SowCommonConfig();
     public final CommonConfig common = new CommonConfig();
     public final AggressiumPowerConfig aggressium = new AggressiumPowerConfig();
     public final MobiliumPowerConfig mobilium = new MobiliumPowerConfig();
     public final ProtisiumPowerConfig protisium = new ProtisiumPowerConfig();
     public final SupporiumPowerConfig supportium = new SupporiumPowerConfig();
 
-    public SowConfig() {
+    public SowCommonConfig() {
         super(Identifier.of(SongsOfWar.MOD_ID, "sow_config"), "config.sow.server.title", "./config/sow/songs-of-war.json");
     }
 

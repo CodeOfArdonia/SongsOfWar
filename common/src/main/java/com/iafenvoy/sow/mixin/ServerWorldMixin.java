@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.world.song.SongChunkData;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.chunk.WorldChunk;
@@ -20,7 +20,7 @@ public class ServerWorldMixin {
 
     @Inject(method = "tickChunk", at = @At("RETURN"))
     private void onMidnight(WorldChunk chunk, int randomTickSpeed, CallbackInfo ci) {
-        if (!SowConfig.INSTANCE.common.songChunkRegen.getValue() || this.worldProperties.getTimeOfDay() % 24000 != 18000)
+        if (!SowCommonConfig.INSTANCE.common.songChunkRegen.getValue() || this.worldProperties.getTimeOfDay() % 24000 != 18000)
             return;
         SongChunkData.byChunk(chunk).increaseRemainNotes();
     }

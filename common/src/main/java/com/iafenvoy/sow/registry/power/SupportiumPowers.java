@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.registry.power;
 
 import com.iafenvoy.neptune.util.RandomHelper;
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.entity.power.SupporekesisControllable;
 import com.iafenvoy.sow.entity.power.SupporoSpikeEntity;
 import com.iafenvoy.sow.power.PowerCategory;
@@ -35,16 +35,16 @@ public final class SupportiumPowers {
     public static final DelaySongPower SUPPOREKESIS = new DelaySongPower("supporekesis", PowerCategory.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOREKESIS)
             .setDelay(20)
-            .setPrimaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporekesisPrimaryCooldown.getValue())
-            .setSecondaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporekesisSecondaryCooldown.getValue())
-            .setExhaustion(holder -> SowConfig.INSTANCE.supportium.supporekesisExhaustion.getValue())
+            .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporekesisPrimaryCooldown.getValue())
+            .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporekesisSecondaryCooldown.getValue())
+            .setExhaustion(holder -> SowCommonConfig.INSTANCE.supportium.supporekesisExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 World world = holder.getWorld();
-                double r = SowConfig.INSTANCE.supportium.supporekesisRange.getValue();
+                double r = SowCommonConfig.INSTANCE.supportium.supporekesisRange.getValue();
                 List<Entity> controllables = world.getEntitiesByClass(Entity.class, new Box(player.getX() - r, player.getY() - r, player.getZ() - r, player.getX() + r, player.getY() + r, player.getZ() + r), c -> c instanceof SupporekesisControllable);
                 for (Entity c : controllables) {
-                    if (c instanceof Ownable ownable && ownable.getOwner() != null && Objects.equals(ownable.getOwner().getUuid(), player.getUuid()) && !SowConfig.INSTANCE.supportium.supporekesisControlSelf.getValue())
+                    if (c instanceof Ownable ownable && ownable.getOwner() != null && Objects.equals(ownable.getOwner().getUuid(), player.getUuid()) && !SowCommonConfig.INSTANCE.supportium.supporekesisControlSelf.getValue())
                         continue;
                     if (c instanceof SupporekesisControllable controllable)
                         controllable.setDisappearCd(70, true);
@@ -53,9 +53,9 @@ public final class SupportiumPowers {
     public static final DelaySongPower SUPPOROFORM = new DelaySongPower("supporoform", PowerCategory.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROFORM)
             .setDelay(20)
-            .setPrimaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporoformPrimaryCooldown.getValue())
-            .setSecondaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporoformSecondaryCooldown.getValue())
-            .setExhaustion(holder -> SowConfig.INSTANCE.supportium.supporoformExhaustion.getValue())
+            .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoformPrimaryCooldown.getValue())
+            .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoformSecondaryCooldown.getValue())
+            .setExhaustion(holder -> SowCommonConfig.INSTANCE.supportium.supporoformExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 World world = holder.getWorld();
@@ -79,12 +79,12 @@ public final class SupportiumPowers {
             });
     public static final InstantSongPower SUPPOROLIFT = new InstantSongPower("supporolift", PowerCategory.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROLIFT)
-            .setPrimaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporoliftPrimaryCooldown.getValue())
-            .setSecondaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporoliftSecondaryCooldown.getValue())
-            .setExhaustion(holder -> SowConfig.INSTANCE.supportium.supporoliftExhaustion.getValue())
+            .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftPrimaryCooldown.getValue())
+            .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftSecondaryCooldown.getValue())
+            .setExhaustion(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
-                EntityHitResult result = WorldUtil.raycastNearest(player, SowConfig.INSTANCE.supportium.supporoliftRange.getValue());
+                EntityHitResult result = WorldUtil.raycastNearest(player, SowCommonConfig.INSTANCE.supportium.supporoliftRange.getValue());
                 if (result != null && result.getEntity() instanceof LivingEntity living) {
                     Vec3d dir = player.getPos().subtract(living.getPos()).multiply(0.2);
                     living.setVelocity(dir.add(0, 0.3, 0));
@@ -93,13 +93,13 @@ public final class SupportiumPowers {
             });
     public static final InstantSongPower SUPPOROSPIKE = new InstantSongPower("supporospike", PowerCategory.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROSPIKE)
-            .setPrimaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporospikePrimaryCooldown.getValue())
-            .setSecondaryCooldown(holder -> SowConfig.INSTANCE.supportium.supporospikeSecondaryCooldown.getValue())
-            .setExhaustion(holder -> SowConfig.INSTANCE.supportium.supporospikeExhaustion.getValue())
+            .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikePrimaryCooldown.getValue())
+            .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikeSecondaryCooldown.getValue())
+            .setExhaustion(holder -> SowCommonConfig.INSTANCE.supportium.supporospikeExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 World world = holder.getWorld();
-                EntityHitResult result = WorldUtil.raycastNearest(player, SowConfig.INSTANCE.supportium.supporospikeRange.getValue());
+                EntityHitResult result = WorldUtil.raycastNearest(player, SowCommonConfig.INSTANCE.supportium.supporospikeRange.getValue());
                 if (result != null && result.getEntity() instanceof LivingEntity living) {
                     Vec3d[] vecs = new Vec3d[]{
                             new Vec3d(-0.5, -0.5, -0.5),

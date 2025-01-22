@@ -10,11 +10,13 @@ import net.minecraft.util.Identifier;
 public final class SowSounds {
     public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(SongsOfWar.MOD_ID, RegistryKeys.SOUND_EVENT);
 
+    public static final RegistrySupplier<SoundEvent> SOW_DEATH = register("sow_death");
+    //song cube
     public static final RegistrySupplier<SoundEvent> AGGRESSIUM = register("aggressium");
     public static final RegistrySupplier<SoundEvent> MOBILIUM = register("mobilium");
     public static final RegistrySupplier<SoundEvent> PROTISIUM = register("protisium");
     public static final RegistrySupplier<SoundEvent> SUPPORTIUM = register("supportium");
-
+    //power
     public static final RegistrySupplier<SoundEvent> AGGROBEAM = register("aggrobeam");
     public static final RegistrySupplier<SoundEvent> AGGROBLAST = register("aggroblast");
     public static final RegistrySupplier<SoundEvent> AGGRODETONATE = register("aggrodetonate");

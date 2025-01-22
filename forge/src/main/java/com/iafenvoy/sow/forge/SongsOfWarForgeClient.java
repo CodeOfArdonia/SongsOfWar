@@ -2,7 +2,8 @@ package com.iafenvoy.sow.forge;
 
 import com.iafenvoy.jupiter.render.screen.ConfigSelectScreen;
 import com.iafenvoy.sow.SongsOfWarClient;
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowClientConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.registry.SowItems;
 import com.iafenvoy.sow.screen.PowerHudRenderer;
 import dev.architectury.registry.item.ItemPropertiesRegistry;
@@ -23,7 +24,7 @@ public class SongsOfWarForgeClient {
     public static void process(FMLClientSetupEvent event) {
         event.enqueueWork(SongsOfWarClient::process);
         ItemPropertiesRegistry.register(SowItems.PROTEPOINT_SHIELD.get(), Identifier.of(Identifier.DEFAULT_NAMESPACE, "blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() ? 1 : 0);
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> new ConfigSelectScreen<>(Text.translatable("config.sow.title"), screen, SowConfig.INSTANCE, null)));
+        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> new ConfigSelectScreen<>(Text.translatable("config.sow.title"), screen, SowCommonConfig.INSTANCE, SowClientConfig.INSTANCE)));
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)

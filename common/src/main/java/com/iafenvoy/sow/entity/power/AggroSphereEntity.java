@@ -2,7 +2,7 @@ package com.iafenvoy.sow.entity.power;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.registry.SowDamageTypes;
 import com.iafenvoy.sow.world.FakeExplosionBehavior;
 import net.minecraft.entity.EntityType;
@@ -26,7 +26,7 @@ public class AggroSphereEntity extends AggroProjectileEntity {
         }
         LivingEntity target = this.getEntityWorld().getClosestEntity(LivingEntity.class, TargetPredicate.DEFAULT, null, this.getX(), this.getY(), this.getZ(), new Box(this.getPos().add(1, 1, 1), this.getPos().subtract(1, 1, 1)));
         if (target != null) {
-            target.damage(DamageUtil.build(this.ownerOrSelf(), SowDamageTypes.AGGROSPHERE), this.transformDamage(SowConfig.INSTANCE.aggressium.aggrosphereDamage.getValue().floatValue()));
+            target.damage(DamageUtil.build(this.ownerOrSelf(), SowDamageTypes.AGGROSPHERE), this.transformDamage(SowCommonConfig.INSTANCE.aggressium.aggrosphereDamage.getValue().floatValue()));
             this.remove(RemovalReason.DISCARDED);
         }
         this.getEntityWorld().addParticle(ParticleTypes.FLAME,

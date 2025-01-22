@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.item;
 
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.power.PowerCategory;
 import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.SowItemGroups;
@@ -51,7 +51,7 @@ public class AdjustedSongStoneItem extends Item {
                 ChunkPos pos = entity.getChunkPos();
                 NbtCompound compound = stack.getOrCreateNbt();
                 if (SongChunkManager.isSongChunk(serverWorld, this.category, pos)) compound.putFloat(NEAR_KEY, 1);
-                else if (SongChunkManager.hasSongChunk(serverWorld, this.category, pos, SowConfig.INSTANCE.common.songChunkDetectRange.getValue()))
+                else if (SongChunkManager.hasSongChunk(serverWorld, this.category, pos, SowCommonConfig.INSTANCE.common.songChunkDetectRange.getValue()))
                     compound.putFloat(NEAR_KEY, 0.5F);
                 else compound.remove(NEAR_KEY);
             }

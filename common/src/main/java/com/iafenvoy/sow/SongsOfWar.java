@@ -2,7 +2,7 @@ package com.iafenvoy.sow;
 
 import com.iafenvoy.jupiter.ConfigManager;
 import com.iafenvoy.jupiter.ServerConfigManager;
-import com.iafenvoy.sow.config.SowConfig;
+import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.data.BeaconData;
 import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.network.ServerNetworkHelper;
@@ -21,8 +21,8 @@ public final class SongsOfWar {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {
-        ConfigManager.getInstance().registerConfigHandler(SowConfig.INSTANCE);
-        ConfigManager.getInstance().registerServerConfig(SowConfig.INSTANCE, ServerConfigManager.PermissionChecker.IS_OPERATOR);
+        ConfigManager.getInstance().registerConfigHandler(SowCommonConfig.INSTANCE);
+        ConfigManager.getInstance().registerServerConfig(SowCommonConfig.INSTANCE, ServerConfigManager.PermissionChecker.IS_OPERATOR);
 
         SowBlocks.REGISTRY.register();
         SowBlocks.ITEM_REGISTRY.register();

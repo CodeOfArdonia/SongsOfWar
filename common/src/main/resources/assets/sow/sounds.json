@@ -2,7 +2,7 @@
   "aggressium": {
     "sounds": [
       {
-        "name": "sow:aggressium",
+        "name": "sow:power/aggressium",
         "stream": false
       }
     ]
@@ -10,7 +10,7 @@
   "aggrobeam": {
     "sounds": [
       {
-        "name": "sow:aggrobeam",
+        "name": "sow:power/aggrobeam",
         "stream": false
       }
     ]
@@ -18,7 +18,7 @@
   "aggroblast": {
     "sounds": [
       {
-        "name": "sow:aggroblast",
+        "name": "sow:power/aggroblast",
         "stream": false
       }
     ]
@@ -26,7 +26,7 @@
   "aggrodetonate": {
     "sounds": [
       {
-        "name": "sow:aggrodetonate",
+        "name": "sow:power/aggrodetonate",
         "stream": false
       }
     ]
@@ -34,7 +34,7 @@
   "aggroquake": {
     "sounds": [
       {
-        "name": "sow:aggroquake",
+        "name": "sow:power/aggroquake",
         "stream": false
       }
     ]
@@ -42,7 +42,7 @@
   "aggroshard": {
     "sounds": [
       {
-        "name": "sow:aggroshard",
+        "name": "sow:power/aggroshard",
         "stream": false
       }
     ]
@@ -50,7 +50,7 @@
   "aggrosphere": {
     "sounds": [
       {
-        "name": "sow:aggrosphere",
+        "name": "sow:power/aggrosphere",
         "stream": false
       }
     ]
@@ -58,7 +58,7 @@
   "aggrostorm": {
     "sounds": [
       {
-        "name": "sow:aggrostorm",
+        "name": "sow:power/aggrostorm",
         "stream": false
       }
     ]
@@ -66,7 +66,7 @@
   "mobilibounce": {
     "sounds": [
       {
-        "name": "sow:mobilibounce",
+        "name": "sow:power/mobilibounce",
         "stream": false
       }
     ]
@@ -74,7 +74,7 @@
   "mobiliburst": {
     "sounds": [
       {
-        "name": "sow:mobiliburst",
+        "name": "sow:power/mobiliburst",
         "stream": false
       }
     ]
@@ -82,7 +82,7 @@
   "mobiliflash": {
     "sounds": [
       {
-        "name": "sow:mobiliflash",
+        "name": "sow:power/mobiliflash",
         "stream": false
       }
     ]
@@ -90,7 +90,7 @@
   "mobiliglide": {
     "sounds": [
       {
-        "name": "sow:mobiliglide",
+        "name": "sow:power/mobiliglide",
         "stream": false
       }
     ]
@@ -98,7 +98,7 @@
   "mobilileap": {
     "sounds": [
       {
-        "name": "sow:mobilileap",
+        "name": "sow:power/mobilileap",
         "stream": false
       }
     ]
@@ -106,7 +106,7 @@
   "mobilium": {
     "sounds": [
       {
-        "name": "sow:mobilium",
+        "name": "sow:power/mobilium",
         "stream": false
       }
     ]
@@ -114,7 +114,7 @@
   "mobiliwings": {
     "sounds": [
       {
-        "name": "sow:mobiliwings",
+        "name": "sow:power/mobiliwings",
         "stream": false
       }
     ]
@@ -122,7 +122,7 @@
   "protearmor": {
     "sounds": [
       {
-        "name": "sow:protearmor",
+        "name": "sow:power/protearmor",
         "stream": false
       }
     ]
@@ -130,7 +130,7 @@
   "protearmor_unapply": {
     "sounds": [
       {
-        "name": "sow:protearmor_unapply",
+        "name": "sow:power/protearmor_unapply",
         "stream": false
       }
     ]
@@ -138,7 +138,7 @@
   "protebarrier": {
     "sounds": [
       {
-        "name": "sow:protebarrier",
+        "name": "sow:power/protebarrier",
         "stream": false
       }
     ]
@@ -146,7 +146,7 @@
   "proteclone": {
     "sounds": [
       {
-        "name": "sow:proteclone",
+        "name": "sow:power/proteclone",
         "stream": false
       }
     ]
@@ -154,7 +154,7 @@
   "proteheal": {
     "sounds": [
       {
-        "name": "sow:proteheal",
+        "name": "sow:power/proteheal",
         "stream": false
       }
     ]
@@ -162,7 +162,7 @@
   "protepoint": {
     "sounds": [
       {
-        "name": "sow:protepoint",
+        "name": "sow:power/protepoint",
         "stream": false
       }
     ]
@@ -170,7 +170,7 @@
   "protesphere": {
     "sounds": [
       {
-        "name": "sow:protesphere",
+        "name": "sow:power/protesphere",
         "stream": false
       }
     ]
@@ -178,7 +178,7 @@
   "protesphere_unapply": {
     "sounds": [
       {
-        "name": "sow:protesphere_unapply",
+        "name": "sow:power/protesphere_unapply",
         "stream": false
       }
     ]
@@ -186,7 +186,7 @@
   "protisium": {
     "sounds": [
       {
-        "name": "sow:protisium",
+        "name": "sow:power/protisium",
         "stream": false
       }
     ]
@@ -194,7 +194,7 @@
   "supportium": {
     "sounds": [
       {
-        "name": "sow:supportium",
+        "name": "sow:power/supportium",
         "stream": false
       }
     ]
@@ -202,7 +202,7 @@
   "supporekesis": {
     "sounds": [
       {
-        "name": "sow:supporekesis",
+        "name": "sow:power/supporekesis",
         "stream": false
       }
     ]
@@ -210,7 +210,7 @@
   "supporoform": {
     "sounds": [
       {
-        "name": "sow:supporoform",
+        "name": "sow:power/supporoform",
         "stream": false
       }
     ]
@@ -218,7 +218,7 @@
   "supporolift": {
     "sounds": [
       {
-        "name": "sow:supporolift",
+        "name": "sow:power/supporolift",
         "stream": false
       }
     ]
@@ -226,7 +226,15 @@
   "supporospike": {
     "sounds": [
       {
-        "name": "sow:supporospike",
+        "name": "sow:power/supporospike",
+        "stream": false
+      }
+    ]
+  },
+  "sow_death": {
+    "sounds": [
+      {
+        "name": "sow:sow_death",
         "stream": false
       }
     ]

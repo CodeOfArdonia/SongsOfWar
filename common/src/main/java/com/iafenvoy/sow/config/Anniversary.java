@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Anniversary {
     public static boolean shouldInvoke() {
-        if (SowConfig.INSTANCE.common.anniversary.getValue() instanceof InvokeType type) {
+        if (SowCommonConfig.INSTANCE.common.anniversary.getValue() instanceof InvokeType type) {
             if (type == InvokeType.TRUE) return true;
             if (type == InvokeType.FALSE) return false;
             return isDateInRange(LocalDate.now());

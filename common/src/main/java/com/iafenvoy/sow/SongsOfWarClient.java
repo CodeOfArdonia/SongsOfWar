@@ -1,6 +1,8 @@
 package com.iafenvoy.sow;
 
+import com.iafenvoy.jupiter.ConfigManager;
 import com.iafenvoy.sow.compat.LitematicaHelper;
+import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.data.ArdoniName;
 import com.iafenvoy.sow.network.ClientNetworkHelper;
 import com.iafenvoy.sow.registry.SowKeybindings;
@@ -17,6 +19,8 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public final class SongsOfWarClient {
     public static void init() {
+        ConfigManager.getInstance().registerConfigHandler(SowClientConfig.INSTANCE);
+
         SowKeybindings.init();
         SowRenderers.registerEntityRenderers();
         SowRenderers.registerParticleRenderer();
