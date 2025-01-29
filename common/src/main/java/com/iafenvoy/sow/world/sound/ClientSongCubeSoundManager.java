@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.LocalRandom;
@@ -46,8 +47,8 @@ public enum ClientSongCubeSoundManager implements SongCubeSoundManager {
     }
 
     public static boolean farEnough(BlockPos pos) {
-        assert MinecraftClient.getInstance().player != null;
-        return MinecraftClient.getInstance().player.getBlockPos().getSquaredDistance(pos) > MAX_DISTANCE * MAX_DISTANCE;
+        PlayerEntity player = MinecraftClient.getInstance().player;
+        return player == null || player.getBlockPos().getSquaredDistance(pos) > MAX_DISTANCE * MAX_DISTANCE;
     }
 
     private static class SongCubeSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -85,7 +86,7 @@ public enum ClientSongCubeSoundManager implements SongCubeSoundManager {
         @Override
         public void tick() {
             ClientPlayerEntity player = client.get().player;
-            assert player != null;
+            if (player == null) return;
             double distance = Math.sqrt(player.squaredDistanceTo(this.x, this.y, this.z));
             if (distance > MAX_DISTANCE) this.stop();
             else this.volume = (float) (1 - 0.9 * distance / MAX_DISTANCE);
