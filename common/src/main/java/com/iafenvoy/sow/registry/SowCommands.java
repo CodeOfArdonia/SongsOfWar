@@ -1,8 +1,9 @@
 package com.iafenvoy.sow.registry;
 
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
-import com.iafenvoy.sow.power.SongPowerData;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import com.iafenvoy.sow.world.song.SongChunkData;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -48,7 +49,7 @@ public final class SowCommands {
         ItemStack stack = source.getPlayerOrThrow().getMainHandStack();
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCube) {
             for (ServerPlayerEntity player : players)
-                SongPowerData.byPlayer(player).get(songCube.getCategory()).setHoldItem(stack);
+                PowerData.byPlayer(player).get(songCube.getCategory()).setActivePower(songCube.getPower(stack));
             source.sendFeedback(() -> Text.translatable("command." + SongsOfWar.MOD_ID + ".use_song.success"), false);
             return 1;
         }
@@ -58,14 +59,14 @@ public final class SowCommands {
 
     public static int enableSong(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "players");
-        for (ServerPlayerEntity player : players) SongPowerData.byPlayer(player).enable();
+        for (ServerPlayerEntity player : players) PowerData.byPlayer(player).enable(SowPowerCategories.ALL);
         context.getSource().sendFeedback(() -> Text.literal("Success!"), true);
         return 1;
     }
 
     public static int disableSong(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "players");
-        for (ServerPlayerEntity player : players) SongPowerData.byPlayer(player).disable();
+        for (ServerPlayerEntity player : players) PowerData.byPlayer(player).disable(SowPowerCategories.ALL);
         context.getSource().sendFeedback(() -> Text.literal("Success!"), true);
         return 1;
     }

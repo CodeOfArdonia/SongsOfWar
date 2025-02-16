@@ -1,23 +1,25 @@
 package com.iafenvoy.sow.power.component;
 
-import com.iafenvoy.sow.power.SongPowerData;
+import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.util.Serializable;
+import com.iafenvoy.neptune.util.Tickable;
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
-import com.iafenvoy.sow.util.Serializable;
 import com.iafenvoy.sow.util.SowMath;
-import com.iafenvoy.sow.util.Tickable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
 public class MobiliBurstComponent implements Serializable, Tickable {
-    public static final String ID = "mobiliburst";
+    public static final Identifier ID = Identifier.of(SongsOfWar.MOD_ID, "mobiliburst");
     private final PlayerEntity player;
     private boolean activate;
     private int tick = -1;
@@ -68,7 +70,7 @@ public class MobiliBurstComponent implements Serializable, Tickable {
         }
         if (this.tick == 0) {
             this.activate = false;
-            SongPowerData.byPlayer(this.player).removeComponent(ID);
+            PowerData.byPlayer(this.player).removeComponent(ID);
             MobiliumPowers.MOBILIBURST.sendApplyMessage(this.player, false);
         }
         this.tick--;

@@ -1,6 +1,7 @@
 package com.iafenvoy.sow.world.sound;
 
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -56,7 +57,7 @@ public enum ClientSongCubeSoundManager implements SongCubeSoundManager {
         private boolean playing;
 
         public SongCubeSoundInstance(BlockPos pos, PowerCategory category) {
-            super(category.getSound(), SoundCategory.BLOCKS, new LocalRandom(0));
+            super(SowPowerCategories.EXTRA_DATA.get(category).second().get(), SoundCategory.BLOCKS, new LocalRandom(0));
             this.repeat = true;
             this.x = pos.getX();
             this.y = pos.getY();

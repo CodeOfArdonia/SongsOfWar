@@ -1,5 +1,6 @@
 package com.iafenvoy.sow.item;
 
+import com.iafenvoy.neptune.power.type.AbstractPower;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +21,7 @@ public class SongCubeItem extends BlockItem {
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player) {
         super.onCraft(stack, world, player);
-        this.block.getCategory().randomOne().appendNbt(stack);
+        AbstractPower<?> power = this.block.getCategory().randomOne();
+        AbstractSongCubeBlock.appendNbt(power, stack);
     }
 }

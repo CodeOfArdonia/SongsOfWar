@@ -1,6 +1,7 @@
 package com.iafenvoy.sow.registry.power;
 
-import com.iafenvoy.sow.power.type.AbstractSongPower;
+import com.iafenvoy.neptune.power.type.AbstractPower;
+import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import dev.architectury.registry.CreativeTabRegistry;
 
@@ -10,9 +11,7 @@ public final class SowPowers {
         MobiliumPowers.init();
         ProtisiumPowers.init();
         SupportiumPowers.init();
-        for (AbstractSongPower<?> power : AbstractSongPower.POWERS) {
-            power.init();
-            CreativeTabRegistry.appendStack(SowItemGroups.POWER, power::getStack);
-        }
+        for (AbstractPower<?> power : AbstractPower.POWERS)
+            CreativeTabRegistry.appendStack(SowItemGroups.POWER, () -> AbstractSongCubeBlock.getStack(power));
     }
 }

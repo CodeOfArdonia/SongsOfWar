@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.world.song;
 
+import com.iafenvoy.neptune.util.Serializable;
 import com.iafenvoy.sow.impl.ComponentManager;
-import com.iafenvoy.sow.util.Serializable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.chunk.WorldChunk;
 

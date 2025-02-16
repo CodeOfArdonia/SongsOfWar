@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power.feature;
 
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -31,7 +31,7 @@ public class MobiliWingsFeatureRenderer<T extends PlayerEntity, M extends Player
 
     @Override
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l) {
-        if (SongPowerData.byPlayer(entity).powerEnabled(MobiliumPowers.MOBILIWINGS)) {
+        if (PowerData.byPlayer(entity).powerEnabled(MobiliumPowers.MOBILIWINGS)) {
             matrixStack.push();
             matrixStack.translate(0.0F, 0.0F, 0.125F);
             this.getContextModel().copyStateTo(this.elytra);

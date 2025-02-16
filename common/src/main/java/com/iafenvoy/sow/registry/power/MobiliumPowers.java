@@ -1,15 +1,15 @@
 package com.iafenvoy.sow.registry.power;
 
+import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.power.type.DelayPower;
+import com.iafenvoy.neptune.power.type.InstantPower;
+import com.iafenvoy.neptune.power.type.PersistPower;
 import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.item.block.TemporaryTransparentBlock;
-import com.iafenvoy.sow.power.PowerCategory;
-import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.power.component.MobiliBurstComponent;
 import com.iafenvoy.sow.power.component.MobiliWingsComponent;
-import com.iafenvoy.sow.power.type.DelaySongPower;
-import com.iafenvoy.sow.power.type.InstantSongPower;
-import com.iafenvoy.sow.power.type.PersistSongPower;
 import com.iafenvoy.sow.registry.SowBlocks;
 import com.iafenvoy.sow.registry.SowSounds;
 import com.iafenvoy.sow.util.SowMath;
@@ -18,6 +18,7 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -25,7 +26,7 @@ import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public final class MobiliumPowers {
-    public static final InstantSongPower MOBILIBOUNCE = new InstantSongPower("mobilibounce", PowerCategory.MOBILIUM)
+    public static final InstantPower MOBILIBOUNCE = new InstantPower(Identifier.of(SongsOfWar.MOD_ID, "mobilibounce"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIBOUNCE)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibouncePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibounceSecondaryCooldown.getValue())
@@ -40,7 +41,7 @@ public final class MobiliumPowers {
                 player.setVelocity(0, 0, 0);
                 player.velocityModified = true;
             });
-    public static final DelaySongPower MOBILIBURST = new DelaySongPower("mobiliburst", PowerCategory.MOBILIUM)
+    public static final DelayPower MOBILIBURST = new DelayPower(Identifier.of(SongsOfWar.MOD_ID, "mobiliburst"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIBURST)
             .setDelay(28)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue())
@@ -55,9 +56,9 @@ public final class MobiliumPowers {
                 MobiliBurstComponent component = new MobiliBurstComponent(player);
                 component.setActivate(true);
                 component.setMaxTick(SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue() + 20);
-                SongPowerData.byPlayer(player).addComponent(MobiliBurstComponent.ID, component);
+                PowerData.byPlayer(player).addComponent(MobiliBurstComponent.ID, component);
             });
-    public static final DelaySongPower MOBILIFLASH = new DelaySongPower("mobiliflash", PowerCategory.MOBILIUM)
+    public static final DelayPower MOBILIFLASH = new DelayPower(Identifier.of(SongsOfWar.MOD_ID, "mobiliflash"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIFLASH)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliflashPrimaryCooldown.getValue())
@@ -70,7 +71,7 @@ public final class MobiliumPowers {
                 player.setVelocity(dir.multiply(SowCommonConfig.INSTANCE.mobilium.mobiliflashSpeed.getValue()));
                 player.velocityModified = true;
             });
-    public static final PersistSongPower MOBILIGLIDE = new PersistSongPower("mobiliglide", PowerCategory.MOBILIUM)
+    public static final PersistPower MOBILIGLIDE = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "mobiliglide"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIGLIDE)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliglideExhaustion.getValue())
             .onApply(holder -> {//GRAVITY attribute not available before 1.20.5
@@ -85,22 +86,22 @@ public final class MobiliumPowers {
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
                 if (instance != null) instance.removeModifier(Constants.MOBILIGLIDE_UUID);
             });
-    public static final PersistSongPower MOBILILEAP = new PersistSongPower("mobilileap", PowerCategory.MOBILIUM)
+    public static final PersistPower MOBILILEAP = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "mobilileap"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILILEAP)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobilileapExhaustion.getValue());
-    public static final PersistSongPower MOBILIWINGS = new PersistSongPower("mobiliwings", PowerCategory.MOBILIUM)
+    public static final PersistPower MOBILIWINGS = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "mobiliwings"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIWINGS)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliwingsExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 player.startFallFlying();
-                SongPowerData.byPlayer(player).addComponent(MobiliWingsComponent.ID, new MobiliWingsComponent(player));
+                PowerData.byPlayer(player).addComponent(MobiliWingsComponent.ID, new MobiliWingsComponent(player));
             })
             .onTick(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 if (player.isOnGround() || player.getAbilities().flying) holder.cancel();
             })
-            .onUnapply(holder -> SongPowerData.byPlayer(holder.getPlayer()).removeComponent(MobiliWingsComponent.ID));
+            .onUnapply(holder -> PowerData.byPlayer(holder.getPlayer()).removeComponent(MobiliWingsComponent.ID));
 
     public static void init() {
     }

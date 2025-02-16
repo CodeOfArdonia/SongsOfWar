@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.render.power;
 
-import com.iafenvoy.sow.power.ClientPowerEvents;
+import com.iafenvoy.neptune.power.ClientPowerEvents;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

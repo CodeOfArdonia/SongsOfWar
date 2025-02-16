@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.item;
 
+import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.config.SowCommonConfig;
-import com.iafenvoy.sow.power.PowerCategory;
-import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import com.iafenvoy.sow.world.song.SongChunkManager;
 import net.minecraft.client.item.TooltipContext;
@@ -45,7 +45,7 @@ public class AdjustedSongStoneItem extends Item {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
         if (world instanceof ServerWorld serverWorld) {
-            if (!(entity instanceof PlayerEntity player) || !SongPowerData.byPlayer(player).isEnabled())
+            if (!(entity instanceof PlayerEntity player) || !PowerData.byPlayer(player).isEnabled())
                 stack.getOrCreateNbt().remove(NEAR_KEY);
             else {
                 ChunkPos pos = entity.getChunkPos();

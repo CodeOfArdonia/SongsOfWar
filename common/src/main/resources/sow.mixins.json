@@ -14,13 +14,11 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "StructureTemplateAccessor",
-    "WorldAccessor",
-    "integration.ModPacketsC2SMixin"
+    "WorldAccessor"
   ],
   "client": [
     "BufferBuilderStorageMixin",
     "MinecraftClientMixin",
-    "InGameHudMixin",
     "ItemRendererMixin",
     "PlayerEntityRendererMixin"
   ],

@@ -1,5 +1,6 @@
 package com.iafenvoy.sow.registry;
 
+import com.iafenvoy.neptune.power.PowerCategory;
 import com.iafenvoy.neptune.render.CommonPlayerLikeEntityRenderer;
 import com.iafenvoy.neptune.render.CommonPlayerLikeWithMarkerEntityRenderer;
 import com.iafenvoy.neptune.render.SkullRenderRegistry;
@@ -19,7 +20,7 @@ import com.iafenvoy.sow.item.SongStoneItem;
 import com.iafenvoy.sow.particle.AggroblastParticle;
 import com.iafenvoy.sow.particle.LaserParticle;
 import com.iafenvoy.sow.particle.SongEffectParticle;
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
@@ -37,6 +38,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public final class SowRenderers {
@@ -223,7 +226,7 @@ public final class SowRenderers {
     }
 
     public static void registerModelPredicate() {
-        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? PowerCategory.byId(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY)).map(Enum::ordinal).orElse(-1) + 1.0F : 0.0F) / PowerCategory.values().length);
+        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? PowerCategory.byId(Identifier.tryParse(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY))).map(x-> List.of(SowPowerCategories.ALL).indexOf(x)).orElse(-1) + 1.0F : 0.0F) / SowPowerCategories.ALL.length);
         ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, AdjustedSongStoneItem.NEAR_KEY), (stack, world, entity, seed) -> stack.hasNbt() ? stack.getOrCreateNbt().getFloat(AdjustedSongStoneItem.NEAR_KEY) : 0);
     }
 }

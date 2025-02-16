@@ -1,7 +1,8 @@
 package com.iafenvoy.sow.world.song;
 
+import com.iafenvoy.neptune.power.PowerCategory;
 import com.iafenvoy.sow.config.SowCommonConfig;
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.WorldChunk;
@@ -16,7 +17,7 @@ public class SongChunkManager {
 
     public static boolean isSongChunk(StructureWorldAccess serverWorld, PowerCategory category, ChunkPos pos) {
         WorldChunk chunk = serverWorld.getChunkManager().getWorldChunk(pos.x, pos.z);
-        return !SongChunkData.byChunk(chunk).isEmpty() && new Random(serverWorld.getSeed() + category.getRandomOffset() + pos.x * 24523L + pos.z * 89L).nextInt(SowCommonConfig.INSTANCE.common.songChunkRarity.getValue()) == 0;
+        return !SongChunkData.byChunk(chunk).isEmpty() && new Random(serverWorld.getSeed() + SowPowerCategories.EXTRA_DATA.get(category).firstInt() + pos.x * 24523L + pos.z * 89L).nextInt(SowCommonConfig.INSTANCE.common.songChunkRarity.getValue()) == 0;
     }
 
     @Nullable

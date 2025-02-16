@@ -1,9 +1,11 @@
 package com.iafenvoy.sow.item.block;
 
+import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.power.type.AbstractPower;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.item.block.entity.AbstractSongCubeBlockEntity;
-import com.iafenvoy.sow.power.PowerCategory;
-import com.iafenvoy.sow.power.type.AbstractSongPower;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
@@ -16,7 +18,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -42,16 +46,18 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         super.afterBreak(world, player, pos, state, blockEntity, tool);
-        if (blockEntity instanceof AbstractSongCubeBlockEntity songCubeBlockEntity)
-            dropStack(world, pos, songCubeBlockEntity.getPower().getStack());
+        if (blockEntity instanceof AbstractSongCubeBlockEntity songCubeBlockEntity) {
+            AbstractPower<?> power = songCubeBlockEntity.getPower();
+            dropStack(world, pos, getStack(power));
+        }
     }
 
     public PowerCategory getCategory() {
         return this.category;
     }
 
-    public AbstractSongPower<?> getPower(ItemStack stack) {
-        return this.category.getPowerById(stack.getOrCreateNbt().getString(POWER_TYPE_KEY));
+    public AbstractPower<?> getPower(ItemStack stack) {
+        return this.category.getPowerById(Identifier.tryParse(stack.getOrCreateNbt().getString(POWER_TYPE_KEY)));
     }
 
     @Override
@@ -67,7 +73,7 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         super.appendTooltip(stack, world, tooltip, options);
-        AbstractSongPower<?> power = this.getPower(stack);
+        AbstractPower<?> power = this.getPower(stack);
         tooltip.add(this.category.appendColor(Text.translatable(power.getTranslateKey())));
         if (power.isExperimental())
             tooltip.add(Text.translatable("item.sow.song.experimental"));
@@ -83,8 +89,10 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         ItemStack stack = super.getPickStack(world, pos, state);
-        if (world.getBlockEntity(pos) instanceof AbstractSongCubeBlockEntity blockEntity)
-            blockEntity.getPower().appendNbt(stack);
+        if (world.getBlockEntity(pos) instanceof AbstractSongCubeBlockEntity blockEntity) {
+            AbstractPower<?> power = blockEntity.getPower();
+            appendNbt(power, stack);
+        }
         return stack;
     }
 
@@ -94,5 +102,21 @@ public abstract class AbstractSongCubeBlock extends BlockWithEntity {
             if (blockEntity instanceof AbstractSongCubeBlockEntity songCubeBlockEntity)
                 Proxies.songCubeSoundManager.startPlaying(songCubeBlockEntity.getPos(), songCubeBlockEntity.getCategory());
         };
+    }
+
+    public static ItemStack appendNbt(AbstractPower<?> power, ItemStack stack) {
+        stack.getOrCreateNbt().putString(AbstractSongCubeBlock.POWER_TYPE_KEY, power.getId().toString());
+        return stack;
+    }
+
+    public static ItemStack getStack(AbstractPower<?> power) {
+        return appendNbt(power, new ItemStack(AbstractSongCubeBlock.SONGS.getOrDefault(power.getCategory(), Items.AIR)));
+    }
+
+    public static void dropAll(PlayerEntity player) {
+        PowerData data = PowerData.byPlayer(player);
+        for (PowerCategory category : SowPowerCategories.ALL) {
+            dropStack(player.getWorld(), player.getBlockPos(), getStack(data.get(category).getActivePower()));
+        }
     }
 }

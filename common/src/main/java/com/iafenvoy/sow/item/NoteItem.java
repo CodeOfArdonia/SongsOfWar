@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.item;
 
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerCategory;
 import com.iafenvoy.sow.registry.SowItemGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;

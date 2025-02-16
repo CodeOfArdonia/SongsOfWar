@@ -1,17 +1,18 @@
 package com.iafenvoy.sow.item.block.entity;
 
+import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.neptune.power.type.AbstractPower;
+import com.iafenvoy.neptune.power.type.DummyPower;
 import com.iafenvoy.sow.Proxies;
-import com.iafenvoy.sow.power.PowerCategory;
-import com.iafenvoy.sow.power.type.AbstractSongPower;
-import com.iafenvoy.sow.power.type.DummySongPower;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
-    private AbstractSongPower<?> power = DummySongPower.EMPTY;
+    private AbstractPower<?> power = DummyPower.EMPTY;
 
     public AbstractSongCubeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -20,20 +21,20 @@ public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.power = AbstractSongPower.byId(nbt.getString("songPower"));
+        this.power = AbstractPower.byId(Identifier.tryParse(nbt.getString("songPower")));
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        if (this.power != null) nbt.putString("songPower", this.power.getId());
+        if (this.power != null) nbt.putString("songPower", this.power.getId().toString());
     }
 
-    public void setPower(AbstractSongPower<?> power) {
+    public void setPower(AbstractPower<?> power) {
         this.power = power;
     }
 
-    public AbstractSongPower<?> getPower() {
+    public AbstractPower<?> getPower() {
         return this.power;
     }
 

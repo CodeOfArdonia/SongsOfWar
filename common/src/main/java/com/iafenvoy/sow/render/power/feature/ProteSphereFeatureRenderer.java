@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power.feature;
 
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
 import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
@@ -29,7 +29,7 @@ public class ProteSphereFeatureRenderer<T extends PlayerEntity, M extends Player
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (SongPowerData.byPlayer(entity).powerEnabled(ProtisiumPowers.PROTESPHERE)) {
+        if (PowerData.byPlayer(entity).powerEnabled(ProtisiumPowers.PROTESPHERE)) {
             matrices.push();
             matrices.scale(2.5f, 2.5f, 2.5f);
             matrices.translate(0, -1.3, 0);

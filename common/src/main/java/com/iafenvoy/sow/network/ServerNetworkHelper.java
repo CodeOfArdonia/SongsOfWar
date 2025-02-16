@@ -1,9 +1,8 @@
 package com.iafenvoy.sow.network;
 
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.power.PowerCategory;
-import com.iafenvoy.sow.power.SongPowerData;
 import com.iafenvoy.sow.power.component.MobiliWingsComponent;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import dev.architectury.networking.NetworkManager;
@@ -24,19 +23,12 @@ public class ServerNetworkHelper {
                 player.requestTeleport(newPos.getX(), newPos.getY(), newPos.getZ());
             });
         });
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, Constants.POWER_KEYBINDING_SYNC, (buf, context) -> {
-            PlayerEntity player = context.getPlayer();
-            PowerCategory type = buf.readEnumConstant(PowerCategory.class);
-            SongPowerData data = SongPowerData.byPlayer(player);
-            if (!player.isSpectator() && data.isEnabled())
-                context.queue(() -> data.get(type).keyPress());
-        });
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, Constants.JUMP_PRESS, (buf, context) -> {
             PlayerEntity player = context.getPlayer();
-            SongPowerData data = SongPowerData.byPlayer(player);
+            PowerData data = PowerData.byPlayer(player);
             if (data.powerEnabled(MobiliumPowers.MOBILIWINGS))
                 context.queue(() -> {
-                    if (SongPowerData.byPlayer(player).getComponent(MobiliWingsComponent.ID) instanceof MobiliWingsComponent component)
+                    if (PowerData.byPlayer(player).getComponent(MobiliWingsComponent.ID) instanceof MobiliWingsComponent component)
                         component.speedUp();
                 });
         });

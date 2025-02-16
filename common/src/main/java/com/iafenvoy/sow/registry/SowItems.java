@@ -3,7 +3,7 @@ package com.iafenvoy.sow.registry;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.*;
 import com.iafenvoy.sow.item.impl.ProtepointShieldItem;
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import com.iafenvoy.sow.render.glint.GlintManager;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -34,14 +34,14 @@ public final class SowItems {
     public static final RegistrySupplier<Item> ENDER_KNIGHT_BOOTS = REGISTRY.register("ender_knight_boots", () -> new EnderKnightArmorItem(ArmorItem.Type.BOOTS));
 
     public static final RegistrySupplier<Item> SONG_STONE = REGISTRY.register("song_stone", SongStoneItem::new);
-    public static final RegistrySupplier<Item> AGGRESSIUM_SONG_STONE = REGISTRY.register("aggressium_song_stone", () -> new AdjustedSongStoneItem(PowerCategory.AGGRESSIUM));
-    public static final RegistrySupplier<Item> MOBILIUM_SONG_STONE = REGISTRY.register("mobilium_song_stone", () -> new AdjustedSongStoneItem(PowerCategory.MOBILIUM));
-    public static final RegistrySupplier<Item> PROTISIUM_SONG_STONE = REGISTRY.register("protisium_song_stone", () -> new AdjustedSongStoneItem(PowerCategory.PROTISIUM));
-    public static final RegistrySupplier<Item> SUPPORTIUM_SONG_STONE = REGISTRY.register("supportium_song_stone", () -> new AdjustedSongStoneItem(PowerCategory.SUPPORTIUM));
-    public static final RegistrySupplier<Item> RED_NOTE = REGISTRY.register("red_note", () -> new NoteItem(PowerCategory.AGGRESSIUM));
-    public static final RegistrySupplier<Item> YELLOW_NOTE = REGISTRY.register("yellow_note", () -> new NoteItem(PowerCategory.MOBILIUM));
-    public static final RegistrySupplier<Item> BLUE_NOTE = REGISTRY.register("blue_note", () -> new NoteItem(PowerCategory.PROTISIUM));
-    public static final RegistrySupplier<Item> GREEN_NOTE = REGISTRY.register("green_note", () -> new NoteItem(PowerCategory.SUPPORTIUM));
+    public static final RegistrySupplier<Item> AGGRESSIUM_SONG_STONE = REGISTRY.register("aggressium_song_stone", () -> new AdjustedSongStoneItem(SowPowerCategories.AGGRESSIUM));
+    public static final RegistrySupplier<Item> MOBILIUM_SONG_STONE = REGISTRY.register("mobilium_song_stone", () -> new AdjustedSongStoneItem(SowPowerCategories.MOBILIUM));
+    public static final RegistrySupplier<Item> PROTISIUM_SONG_STONE = REGISTRY.register("protisium_song_stone", () -> new AdjustedSongStoneItem(SowPowerCategories.PROTISIUM));
+    public static final RegistrySupplier<Item> SUPPORTIUM_SONG_STONE = REGISTRY.register("supportium_song_stone", () -> new AdjustedSongStoneItem(SowPowerCategories.SUPPORTIUM));
+    public static final RegistrySupplier<Item> RED_NOTE = REGISTRY.register("red_note", () -> new NoteItem(SowPowerCategories.AGGRESSIUM));
+    public static final RegistrySupplier<Item> YELLOW_NOTE = REGISTRY.register("yellow_note", () -> new NoteItem(SowPowerCategories.MOBILIUM));
+    public static final RegistrySupplier<Item> BLUE_NOTE = REGISTRY.register("blue_note", () -> new NoteItem(SowPowerCategories.PROTISIUM));
+    public static final RegistrySupplier<Item> GREEN_NOTE = REGISTRY.register("green_note", () -> new NoteItem(SowPowerCategories.SUPPORTIUM));
 
     public static final RegistrySupplier<ShrineDebugItem> SHRINE_DEBUG = REGISTRY.register("shrine_debug", ShrineDebugItem::new);
     public static final RegistrySupplier<WallsOfTimeEditItem> WALLS_OF_TIME_EDIT = REGISTRY.register("walls_of_time_edit", WallsOfTimeEditItem::new);

@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.world.sound;
 
-import com.iafenvoy.sow.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerCategory;
 import net.minecraft.util.math.BlockPos;
 
 public interface SongCubeSoundManager {

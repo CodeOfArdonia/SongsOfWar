@@ -34,7 +34,6 @@
   },
   "custom": {
     "cardinal-components": [
-      "sow:song_power",
       "sow:song_chunk_data"
     ]
   },
@@ -42,9 +41,8 @@
     "sow.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.20.1",
-    "neptune": ">=1.1",
+    "minecraft": "1.20.1",
+    "neptune": ">=2",
     "architectury": "*"
   }
 }

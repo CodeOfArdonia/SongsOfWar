@@ -1,11 +1,14 @@
 package com.iafenvoy.sow.power;
 
 import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.power.type.AbstractPower;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.item.block.entity.AbstractSongCubeBlockEntity;
-import com.iafenvoy.sow.power.type.AbstractSongPower;
 import com.iafenvoy.sow.registry.SowParticles;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import com.iafenvoy.sow.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.entity.Entity;
@@ -29,7 +32,7 @@ import java.util.Map;
 public class PowerMergeHelper {
     private static final Map<PlayerEntity, MergeData> DATA = new HashMap<>();
 
-    public static void run(SongPowerData songPowerData, PlayerEntity player, ServerWorld serverWorld) {
+    public static void run(PowerData songPowerData, PlayerEntity player, ServerWorld serverWorld) {
         if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
         MergeData mergeData = DATA.get(player);
         if (player.isSneaking()) {
@@ -50,8 +53,8 @@ public class PowerMergeHelper {
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.spawnParticles(SowParticles.SONG_EFFECT.get(), center.getX(), center.getY() - 0.25, center.getZ(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
-                            SongPowerData.SinglePowerData d = songPowerData.get(category);
-                            AbstractSongPower<?> newPower = holder.getPower();
+                            PowerData.SinglePowerData d = songPowerData.get(category);
+                            AbstractPower<?> newPower = holder.getPower();
                             if (d.hasPower()) holder.setPower(d.getActivePower());
                             else holder.destroy();
                             d.setActivePower(newPower);
@@ -108,7 +111,7 @@ public class PowerMergeHelper {
             return this.blockEntity != null || this.itemEntity != null;
         }
 
-        public AbstractSongPower<?> getPower() {
+        public AbstractPower<?> getPower() {
             if (this.blockEntity != null) return this.blockEntity.getPower();
             if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
                 return songCubeBlock.getPower(this.itemEntity.getStack());
@@ -119,12 +122,12 @@ public class PowerMergeHelper {
             if (this.blockEntity != null) return this.blockEntity.getCategory();
             if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
                 return songCubeBlock.getCategory();
-            return PowerCategory.AGGRESSIUM;
+            return SowPowerCategories.AGGRESSIUM;
         }
 
-        public void setPower(AbstractSongPower<?> power) {
+        public void setPower(AbstractPower<?> power) {
             if (this.blockEntity != null) this.blockEntity.setPower(power);
-            if (this.itemEntity != null) this.itemEntity.setStack(power.getStack());
+            if (this.itemEntity != null) this.itemEntity.setStack(AbstractSongCubeBlock.getStack(power));
         }
 
         public void destroy() {

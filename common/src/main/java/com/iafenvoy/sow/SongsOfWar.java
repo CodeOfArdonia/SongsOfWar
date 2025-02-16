@@ -2,18 +2,23 @@ package com.iafenvoy.sow;
 
 import com.iafenvoy.jupiter.ConfigManager;
 import com.iafenvoy.jupiter.ServerConfigManager;
+import com.iafenvoy.neptune.event.OriginsEvents;
+import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.data.BeaconData;
 import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.network.ServerNetworkHelper;
 import com.iafenvoy.sow.registry.*;
+import com.iafenvoy.sow.registry.power.SowPowerCategories;
 import com.iafenvoy.sow.registry.power.SowPowers;
 import com.mojang.logging.LogUtils;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
+import io.github.apace100.origins.Origins;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
 public final class SongsOfWar {
@@ -55,5 +60,14 @@ public final class SongsOfWar {
             return EventResult.pass();
         });
         ServerNetworkHelper.init();
+        OriginsEvents.ON_CONFIRM.register(((player, layer, origin) -> {
+            if (player.getServer() != null && layer.equals(Identifier.of(Origins.MODID, "origin")))
+                player.getServer().execute(() -> {
+                    PowerData data = PowerData.byPlayer(player);
+                    if (origin.equals(Identifier.of(SongsOfWar.MOD_ID, "ardoni")))
+                        data.enable(SowPowerCategories.ALL);
+                    else data.disable(SowPowerCategories.ALL);
+                });
+        }));
     }
 }

@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.sow.power.SongPowerData;
+import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,6 +22,6 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void onPlayerDeath(DamageSource damageSource, CallbackInfo ci) {
         if (!this.getEntityWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY))
-            SongPowerData.byPlayer(this).dropAll();
+            AbstractSongCubeBlock.dropAll(this);
     }
 }
