@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power.entity;
 
+import com.iafenvoy.neptune.render.RenderConstants;
 import com.iafenvoy.sow.entity.power.ProteCloneEntity;
-import com.iafenvoy.sow.render.RenderConstants;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;

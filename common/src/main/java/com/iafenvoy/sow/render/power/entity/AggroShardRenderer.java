@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.render.power.entity;
 
+import com.iafenvoy.neptune.render.model.ShardModel;
 import com.iafenvoy.sow.entity.power.AggroShardEntity;
-import com.iafenvoy.sow.render.power.model.ShardModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

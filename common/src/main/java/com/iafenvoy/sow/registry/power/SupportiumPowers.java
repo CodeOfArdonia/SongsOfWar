@@ -3,6 +3,7 @@ package com.iafenvoy.sow.registry.power;
 import com.iafenvoy.neptune.power.type.DelayPower;
 import com.iafenvoy.neptune.power.type.InstantPower;
 import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.world.RaycastHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.entity.power.SupporekesisControllable;
@@ -11,7 +12,6 @@ import com.iafenvoy.sow.registry.SowEntities;
 import com.iafenvoy.sow.registry.SowItems;
 import com.iafenvoy.sow.registry.SowSounds;
 import com.iafenvoy.sow.util.RecipeUtils;
-import com.iafenvoy.sow.world.WorldUtil;
 import it.unimi.dsi.fastutil.doubles.Double2FloatFunction;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -85,7 +85,8 @@ public final class SupportiumPowers {
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
-                EntityHitResult result = WorldUtil.raycastNearest(player, SowCommonConfig.INSTANCE.supportium.supporoliftRange.getValue());
+                double maxDistance = SowCommonConfig.INSTANCE.supportium.supporoliftRange.getValue();
+                EntityHitResult result = RaycastHelper.raycastNearest(player, maxDistance);
                 if (result != null && result.getEntity() instanceof LivingEntity living) {
                     Vec3d dir = player.getPos().subtract(living.getPos()).multiply(0.2);
                     living.setVelocity(dir.add(0, 0.3, 0));
@@ -100,7 +101,8 @@ public final class SupportiumPowers {
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
                 World world = holder.getWorld();
-                EntityHitResult result = WorldUtil.raycastNearest(player, SowCommonConfig.INSTANCE.supportium.supporospikeRange.getValue());
+                double maxDistance = SowCommonConfig.INSTANCE.supportium.supporospikeRange.getValue();
+                EntityHitResult result = RaycastHelper.raycastNearest(player, maxDistance);
                 if (result != null && result.getEntity() instanceof LivingEntity living) {
                     Vec3d[] vecs = new Vec3d[]{
                             new Vec3d(-0.5, -0.5, -0.5),

@@ -17,9 +17,7 @@
     "WorldAccessor"
   ],
   "client": [
-    "BufferBuilderStorageMixin",
     "MinecraftClientMixin",
-    "ItemRendererMixin",
     "PlayerEntityRendererMixin"
   ],
   "injectors": {

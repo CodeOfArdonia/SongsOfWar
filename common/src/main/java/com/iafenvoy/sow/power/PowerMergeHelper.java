@@ -5,11 +5,11 @@ import com.iafenvoy.neptune.power.PowerCategory;
 import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.neptune.power.type.AbstractPower;
 import com.iafenvoy.neptune.util.Color4i;
+import com.iafenvoy.neptune.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.item.block.entity.AbstractSongCubeBlockEntity;
 import com.iafenvoy.sow.registry.SowParticles;
 import com.iafenvoy.sow.registry.power.SowPowerCategories;
-import com.iafenvoy.sow.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -32,7 +32,8 @@ import java.util.Map;
 public class PowerMergeHelper {
     private static final Map<PlayerEntity, MergeData> DATA = new HashMap<>();
 
-    public static void run(PowerData songPowerData, PlayerEntity player, ServerWorld serverWorld) {
+    public static void run(PowerData data, PlayerEntity player, ServerWorld serverWorld) {
+        if (!data.isEnabled(SowPowerCategories.ALL)) return;
         if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
         MergeData mergeData = DATA.get(player);
         if (player.isSneaking()) {
@@ -53,7 +54,7 @@ public class PowerMergeHelper {
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.spawnParticles(SowParticles.SONG_EFFECT.get(), center.getX(), center.getY() - 0.25, center.getZ(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
-                            PowerData.SinglePowerData d = songPowerData.get(category);
+                            PowerData.SinglePowerData d = data.get(category);
                             AbstractPower<?> newPower = holder.getPower();
                             if (d.hasPower()) holder.setPower(d.getActivePower());
                             else holder.destroy();

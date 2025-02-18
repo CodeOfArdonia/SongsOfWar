@@ -4,7 +4,7 @@ import com.iafenvoy.neptune.power.PowerData;
 import com.iafenvoy.neptune.power.type.DelayPower;
 import com.iafenvoy.neptune.power.type.InstantPower;
 import com.iafenvoy.neptune.power.type.PersistPower;
-import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SowConstants;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.item.block.TemporaryTransparentBlock;
@@ -77,14 +77,14 @@ public final class MobiliumPowers {
             .onApply(holder -> {//GRAVITY attribute not available before 1.20.5
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
                 if (instance != null)
-                    instance.addTemporaryModifier(new EntityAttributeModifier(Constants.MOBILIGLIDE_UUID, "mobiliglide", 1, EntityAttributeModifier.Operation.ADDITION));
+                    instance.addTemporaryModifier(new EntityAttributeModifier(SowConstants.MOBILIGLIDE_UUID, "mobiliglide", 1, EntityAttributeModifier.Operation.ADDITION));
             })
             .onTick(holder -> {
                 if (holder.getPlayer().isOnGround() || holder.getPlayer().getAbilities().flying) holder.cancel();
             })
             .onUnapply(holder -> {
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-                if (instance != null) instance.removeModifier(Constants.MOBILIGLIDE_UUID);
+                if (instance != null) instance.removeModifier(SowConstants.MOBILIGLIDE_UUID);
             });
     public static final PersistPower MOBILILEAP = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "mobilileap"), SowPowerCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILILEAP)

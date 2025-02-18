@@ -2,9 +2,9 @@ package com.iafenvoy.sow.entity.power;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.registry.SowDamageTypes;
-import com.iafenvoy.sow.world.FakeExplosionBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;

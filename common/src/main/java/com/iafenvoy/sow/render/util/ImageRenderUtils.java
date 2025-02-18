@@ -2,7 +2,7 @@ package com.iafenvoy.sow.render.util;
 
 import com.iafenvoy.neptune.render.SimpleTexture;
 import com.iafenvoy.neptune.util.Color4i;
-import com.iafenvoy.sow.util.lambda.Int2BooleanBiFunction;
+import com.iafenvoy.neptune.util.function.Int2BooleanBiFunction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

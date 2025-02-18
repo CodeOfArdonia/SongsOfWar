@@ -1,9 +1,9 @@
 package com.iafenvoy.sow.render.power.feature;
 
 import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.render.model.SphereModel;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
-import com.iafenvoy.sow.render.power.model.SphereModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

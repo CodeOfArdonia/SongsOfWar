@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.render.power.feature;
 
-import com.iafenvoy.sow.render.RenderConstants;
+import com.iafenvoy.neptune.render.RenderConstants;
+import com.iafenvoy.neptune.render.model.CircleShieldModel;
 import com.iafenvoy.sow.render.power.PowerAnimationManager;
-import com.iafenvoy.sow.render.power.test.MobiliBurstModel;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -13,12 +13,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class MobiliBurstFeatureRenderer<T extends PlayerEntity, M extends PlayerEntityModel<T>> extends FeatureRenderer<T, M> {
-    private final MobiliBurstModel<T> model;
+    private final CircleShieldModel<T> model;
     private float alpha = 0;
 
     public MobiliBurstFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
-        this.model = new MobiliBurstModel<>(MobiliBurstModel.getTexturedModelData().createModel());
+        this.model = new CircleShieldModel<>(CircleShieldModel.getTexturedModelData().createModel());
     }
 
     @Override

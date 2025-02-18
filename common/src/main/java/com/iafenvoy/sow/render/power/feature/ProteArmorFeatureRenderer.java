@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.render.power.feature;
 
 import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.render.RenderConstants;
 import com.iafenvoy.sow.registry.power.ProtisiumPowers;
-import com.iafenvoy.sow.render.RenderConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

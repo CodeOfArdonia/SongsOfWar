@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.render.power.entity;
 
+import com.iafenvoy.neptune.render.RenderConstants;
+import com.iafenvoy.neptune.render.model.DetonateModel;
 import com.iafenvoy.sow.entity.power.AggroDetonateEntity;
-import com.iafenvoy.sow.render.RenderConstants;
-import com.iafenvoy.sow.render.power.model.DetonateModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

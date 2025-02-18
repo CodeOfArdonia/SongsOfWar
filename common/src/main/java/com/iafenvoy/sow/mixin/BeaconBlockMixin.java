@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.mixin;
 
 import com.iafenvoy.neptune.network.PacketBufferUtils;
-import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SowConstants;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.data.BeaconData;
 import dev.architectury.networking.NetworkManager;
@@ -42,7 +42,7 @@ public class BeaconBlockMixin {
                 PacketByteBuf buf = PacketBufferUtils.create();
                 buf.writeBlockPos(pos);
                 buf.writeNbt(beaconData.writeNbt(new NbtCompound()));
-                NetworkManager.sendToPlayer(serverPlayer, Constants.BEACON_TELEPORT, buf);
+                NetworkManager.sendToPlayer(serverPlayer, SowConstants.BEACON_TELEPORT, buf);
                 cir.setReturnValue(ActionResult.CONSUME);
             }
         }

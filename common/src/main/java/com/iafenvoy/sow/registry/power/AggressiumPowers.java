@@ -7,6 +7,7 @@ import com.iafenvoy.neptune.power.type.InstantPower;
 import com.iafenvoy.neptune.power.type.PersistPower;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
+import com.iafenvoy.neptune.world.RaycastHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.entity.power.AggroDetonateEntity;
@@ -18,7 +19,6 @@ import com.iafenvoy.sow.registry.SowEntities;
 import com.iafenvoy.sow.registry.SowParticles;
 import com.iafenvoy.sow.registry.SowSounds;
 import com.iafenvoy.sow.util.SowMath;
-import com.iafenvoy.sow.world.WorldUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +53,7 @@ public final class AggressiumPowers {
                     Vec3d p = pos.add(rotation.multiply(OFFSET));
                     serverWorld.spawnParticles(new LaserParticleBuilder(player.getUuid(), 0, 0, result.getType() == HitResult.Type.BLOCK ? d : maxDistance, OFFSET, 0.1F), p.getX(), p.getY(), p.getZ(), 0, 1, 0, 0, 1);
                 }
-                List<EntityHitResult> results = WorldUtil.raycastAll(player, pos, end, new Box(pos, end), entity -> entity instanceof LivingEntity, d * d);
+                List<EntityHitResult> results = RaycastHelper.raycastAll(player, pos, end, new Box(pos, end), entity -> entity instanceof LivingEntity, d * d);
                 DamageSource source = DamageUtil.build(player, SowDamageTypes.AGGROBEAM);
                 for (EntityHitResult r : results)
                     r.getEntity().damage(source, holder.processDamage(SowCommonConfig.INSTANCE.aggressium.aggrobeamDamage.getValue().floatValue()));
@@ -66,7 +66,8 @@ public final class AggressiumPowers {
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggroblastExhaustion.getValue())
             .onApply(holder -> {
                 PlayerEntity player = holder.getPlayer();
-                EntityHitResult result = WorldUtil.raycastNearest(player, SowCommonConfig.INSTANCE.aggressium.aggroblastRange.getValue());
+                double maxDistance = SowCommonConfig.INSTANCE.aggressium.aggroblastRange.getValue();
+                EntityHitResult result = RaycastHelper.raycastNearest(player, maxDistance);
                 if (result != null && result.getEntity() instanceof LivingEntity living) {
                     double speed = SowCommonConfig.INSTANCE.aggressium.aggroblastSpeed.getValue();
                     Vec3d dir = living.getPos().subtract(player.getPos()).multiply(speed);

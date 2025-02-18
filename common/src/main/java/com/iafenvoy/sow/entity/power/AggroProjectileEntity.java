@@ -2,7 +2,7 @@ package com.iafenvoy.sow.entity.power;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.power.PowerDataHolder;
-import com.iafenvoy.sow.world.FakeExplosionBehavior;
+import com.iafenvoy.neptune.world.FakeExplosionBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageTypes;

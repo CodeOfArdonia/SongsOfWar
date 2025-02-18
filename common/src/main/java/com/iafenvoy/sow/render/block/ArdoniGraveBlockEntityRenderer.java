@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.render.block;
 
+import com.iafenvoy.neptune.render.RenderConstants;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
-import com.iafenvoy.sow.render.RenderConstants;
 import com.iafenvoy.sow.render.generator.ArdoniMarkerGenerator;
 import com.mojang.blaze3d.platform.TextureUtil;
 import net.minecraft.client.MinecraftClient;

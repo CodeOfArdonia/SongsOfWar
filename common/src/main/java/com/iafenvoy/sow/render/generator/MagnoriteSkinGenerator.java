@@ -1,9 +1,9 @@
 package com.iafenvoy.sow.render.generator;
 
 import com.iafenvoy.neptune.util.Color4i;
+import com.iafenvoy.neptune.util.PerlinNoise;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.render.util.ImageRenderUtils;
-import com.iafenvoy.sow.util.PerlinNoise;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.util.Identifier;
