@@ -92,6 +92,7 @@
   "config.sow.common.songChunkDetectRange": "歌之区块检测范围（使用校准过的歌之石）",
   "config.sow.common.songChunkRarity": "歌之区块生成率",
   "config.sow.common.songChunkRegen": "歌之区块重生",
+  "config.sow.common.specialFishChance": "钓鱼特殊物品概率",
   "config.sow.config.server.title": "战争之歌服务端设置",
   "config.sow.config.title": "战争之歌设置",
   "config.sow.power.aggrobeam.damage": "激光伤害",

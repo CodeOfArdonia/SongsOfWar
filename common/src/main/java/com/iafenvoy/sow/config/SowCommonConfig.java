@@ -25,6 +25,7 @@ public class SowCommonConfig extends AutoInitConfigContainer {
         public final IConfigEntry<Integer> songChunkDetectRange = new IntegerEntry("config.sow.common.songChunkDetectRange", 2, 0, 10).json("songChunkDetectRange");
         public final IConfigEntry<Boolean> songChunkRegen = new BooleanEntry("config.sow.common.songChunkRegen", true).json("songChunkRegen");
         public final IConfigEntry<IConfigEnumEntry> anniversary = new EnumEntry("???", Anniversary.InvokeType.NORMAL).json("anniversary");
+        public final IConfigEntry<Double> specialFishChance = new DoubleEntry("config.sow.common.specialFishChance", 0.001, 0, 1).json("specialFishChance");
 
         public CommonConfig() {
             super("common", "config.sow.category.common");

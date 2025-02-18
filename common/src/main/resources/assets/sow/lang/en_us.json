@@ -92,6 +92,7 @@
   "config.sow.common.songChunkDetectRange": "Song Chunk Detect Range (Use Adjusted)",
   "config.sow.common.songChunkRarity": "Song Chunk Generate Rarity",
   "config.sow.common.songChunkRegen": "Song Chunk Regeneration",
+  "config.sow.common.specialFishChance": "Special Fish Chance",
   "config.sow.config.server.title": "Songs of War Server Settings",
   "config.sow.config.title": "Songs of War Settings",
   "config.sow.power.aggrobeam.damage": "Aggrobeam Damage",
