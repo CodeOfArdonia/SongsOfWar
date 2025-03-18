@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.registry.power;
 
-import com.iafenvoy.neptune.power.type.DelayPower;
-import com.iafenvoy.neptune.power.type.InstantPower;
+import com.iafenvoy.neptune.ability.type.DelayAbility;
+import com.iafenvoy.neptune.ability.type.InstantAbility;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.world.RaycastHelper;
 import com.iafenvoy.sow.SongsOfWar;
@@ -33,7 +33,7 @@ import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class SupportiumPowers {
-    public static final DelayPower SUPPOREKESIS = new DelayPower(Identifier.of(SongsOfWar.MOD_ID, "supporekesis"), SowPowerCategories.SUPPORTIUM)
+    public static final DelayAbility SUPPOREKESIS = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "supporekesis"), SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOREKESIS)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporekesisPrimaryCooldown.getValue())
@@ -51,7 +51,7 @@ public final class SupportiumPowers {
                         controllable.setDisappearCd(70, true);
                 }
             });
-    public static final DelayPower SUPPOROFORM = new DelayPower(Identifier.of(SongsOfWar.MOD_ID, "supporoform"), SowPowerCategories.SUPPORTIUM)
+    public static final DelayAbility SUPPOROFORM = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "supporoform"), SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROFORM)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoformPrimaryCooldown.getValue())
@@ -78,7 +78,7 @@ public final class SupportiumPowers {
                     if (!stack1.isEmpty()) player.getInventory().setStack(i, stack1);
                 }
             });
-    public static final InstantPower SUPPOROLIFT = new InstantPower(Identifier.of(SongsOfWar.MOD_ID, "supporolift"), SowPowerCategories.SUPPORTIUM)
+    public static final InstantAbility SUPPOROLIFT = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "supporolift"), SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROLIFT)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftSecondaryCooldown.getValue())
@@ -93,7 +93,7 @@ public final class SupportiumPowers {
                     living.velocityModified = true;
                 } else holder.cancel();
             });
-    public static final InstantPower SUPPOROSPIKE = new InstantPower(Identifier.of(SongsOfWar.MOD_ID, "supporospike"), SowPowerCategories.SUPPORTIUM)
+    public static final InstantAbility SUPPOROSPIKE = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "supporospike"), SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROSPIKE)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikeSecondaryCooldown.getValue())

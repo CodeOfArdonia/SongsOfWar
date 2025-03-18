@@ -19,8 +19,8 @@ public class ValEntity extends AbstractArdoniEntity {
 
     public ValEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND,new ItemStack(SowWeapons.ARM_BLADE.get()));
-        this.setStackInHand(Hand.OFF_HAND,new ItemStack(SowWeapons.ARM_BLADE.get()));
+        this.setStackInHand(Hand.MAIN_HAND, new ItemStack(SowWeapons.ARM_BLADE.get()));
+        this.setStackInHand(Hand.OFF_HAND, new ItemStack(SowWeapons.ARM_BLADE.get()));
     }
 
     @Override

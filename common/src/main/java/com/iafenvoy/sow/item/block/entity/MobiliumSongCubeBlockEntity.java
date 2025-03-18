@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.item.block.entity;
 
-import com.iafenvoy.neptune.power.PowerCategory;
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.sow.registry.SowBlockEntities;
-import com.iafenvoy.sow.registry.power.SowPowerCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
@@ -12,7 +12,7 @@ public class MobiliumSongCubeBlockEntity extends AbstractSongCubeBlockEntity {
     }
 
     @Override
-    public PowerCategory getCategory() {
-        return SowPowerCategories.MOBILIUM;
+    public AbilityCategory getCategory() {
+        return SowAbilityCategories.MOBILIUM;
     }
 }

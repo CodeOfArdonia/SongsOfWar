@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.world.sound;
 
-import com.iafenvoy.neptune.power.PowerCategory;
-import com.iafenvoy.sow.registry.power.SowPowerCategories;
+import com.iafenvoy.neptune.ability.AbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -24,7 +24,7 @@ public enum ClientSongCubeSoundManager implements SongCubeSoundManager {
     private static final int MAX_DISTANCE = 10;
 
     @Override
-    public void startPlaying(BlockPos pos, PowerCategory category) {
+    public void startPlaying(BlockPos pos, AbilityCategory category) {
         if (category == null) return;
         if (farEnough(pos)) {
             this.destroy(pos);
@@ -56,8 +56,8 @@ public enum ClientSongCubeSoundManager implements SongCubeSoundManager {
         private static final Supplier<MinecraftClient> client = MinecraftClient::getInstance;
         private boolean playing;
 
-        public SongCubeSoundInstance(BlockPos pos, PowerCategory category) {
-            super(SowPowerCategories.EXTRA_DATA.get(category).second().get(), SoundCategory.BLOCKS, new LocalRandom(0));
+        public SongCubeSoundInstance(BlockPos pos, AbilityCategory category) {
+            super(SowAbilityCategories.EXTRA_DATA.get(category).second().get(), SoundCategory.BLOCKS, new LocalRandom(0));
             this.repeat = true;
             this.x = pos.getX();
             this.y = pos.getY();

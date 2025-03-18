@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity {
     private void handleFallFlyingCheck(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         if (!entity.getWorld().isClient && entity instanceof PlayerEntity player && !player.isOnGround() && !player.hasVehicle() && !player.hasStatusEffect(StatusEffects.LEVITATION))
-            if (PowerData.byPlayer(player).powerEnabled(MobiliumPowers.MOBILIWINGS)) {
+            if (AbilityData.byPlayer(player).abilityEnabled(MobiliumPowers.MOBILIWINGS)) {
                 this.setFlag(7, true);
                 ci.cancel();
             }
@@ -34,7 +34,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "tick", at = @At("RETURN"))
     private void endTick(CallbackInfo ci) {
         if (this.isRemoved() || this.hasNoGravity()) return;
-        if ((Object) this instanceof PlayerEntity player && PowerData.byPlayer(player).powerEnabled(MobiliumPowers.MOBILIGLIDE)) {
+        if ((Object) this instanceof PlayerEntity player && AbilityData.byPlayer(player).abilityEnabled(MobiliumPowers.MOBILIGLIDE)) {
             Vec3d velocity = this.getVelocity();
             this.setVelocity(velocity.x, 0.01 / 4.0, velocity.z);
             this.fallDistance = 0;

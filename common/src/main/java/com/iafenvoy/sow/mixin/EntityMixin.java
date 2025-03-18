@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +14,7 @@ public class EntityMixin {
     @Inject(method = "getJumpVelocityMultiplier", at = @At("RETURN"), cancellable = true)
     private void modifyJumpHeight(CallbackInfoReturnable<Float> cir) {
         Entity self = (Entity) (Object) this;
-        if (self instanceof PlayerEntity player && PowerData.byPlayer(player).powerEnabled(MobiliumPowers.MOBILILEAP))
+        if (self instanceof PlayerEntity player && AbilityData.byPlayer(player).abilityEnabled(MobiliumPowers.MOBILILEAP))
             cir.setReturnValue(cir.getReturnValue() * 5);
     }
 }

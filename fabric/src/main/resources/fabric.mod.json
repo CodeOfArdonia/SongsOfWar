@@ -42,7 +42,7 @@
   ],
   "depends": {
     "minecraft": "1.20.1",
-    "neptune": ">=2.2",
+    "neptune": ">=3",
     "architectury": "*"
   }
 }

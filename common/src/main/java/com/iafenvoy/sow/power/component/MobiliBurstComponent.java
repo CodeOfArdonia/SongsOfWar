@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.power.component;
 
-import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.util.Serializable;
 import com.iafenvoy.neptune.util.Tickable;
 import com.iafenvoy.sow.SongsOfWar;
@@ -70,7 +70,7 @@ public class MobiliBurstComponent implements Serializable, Tickable {
         }
         if (this.tick == 0) {
             this.activate = false;
-            PowerData.byPlayer(this.player).removeComponent(ID);
+            AbilityData.byPlayer(this.player).removeComponent(ID);
             MobiliumPowers.MOBILIBURST.sendApplyMessage(this.player, false);
         }
         this.tick--;

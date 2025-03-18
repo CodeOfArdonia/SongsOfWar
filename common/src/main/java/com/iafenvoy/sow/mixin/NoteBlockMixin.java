@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.neptune.power.PowerCategory;
-import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.ability.AbilityCategory;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.item.NoteItem;
 import com.iafenvoy.sow.world.song.SongChunkManager;
 import net.minecraft.block.BlockState;
@@ -27,9 +27,9 @@ public class NoteBlockMixin {
     private void dropNote(@Nullable Entity entity, BlockState state, World world, BlockPos pos, CallbackInfo ci) {
         if (entity == null) return;
         if (!(world instanceof ServerWorld serverWorld) || !(entity instanceof PlayerEntity player)) return;
-        if (!PowerData.byPlayer(player).isEnabled()) return;
+        if (!AbilityData.byPlayer(player).isEnabled()) return;
         ChunkPos chunkPos = new ChunkPos(pos);
-        PowerCategory category = SongChunkManager.find(serverWorld, chunkPos);
+        AbilityCategory category = SongChunkManager.find(serverWorld, chunkPos);
         if (category == null) return;
         BlockPos above = pos.up();
         if (serverWorld.getBlockState(above).isSolidBlock(serverWorld, above)) return;

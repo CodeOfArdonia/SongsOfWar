@@ -26,7 +26,7 @@ side = "BOTH"
 [[dependencies.sow]]
 modId = "neptune"
 mandatory = true
-versionRange = "[2.2,)"
+versionRange = "[3,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.sow]]

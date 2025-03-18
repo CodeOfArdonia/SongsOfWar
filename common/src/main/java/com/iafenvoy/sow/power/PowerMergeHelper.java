@@ -1,15 +1,15 @@
 package com.iafenvoy.sow.power;
 
+import com.iafenvoy.neptune.ability.AbilityCategory;
+import com.iafenvoy.neptune.ability.AbilityData;
+import com.iafenvoy.neptune.ability.type.AbstractAbility;
 import com.iafenvoy.neptune.object.DamageUtil;
-import com.iafenvoy.neptune.power.PowerCategory;
-import com.iafenvoy.neptune.power.PowerData;
-import com.iafenvoy.neptune.power.type.AbstractPower;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
 import com.iafenvoy.sow.item.block.entity.AbstractSongCubeBlockEntity;
 import com.iafenvoy.sow.registry.SowParticles;
-import com.iafenvoy.sow.registry.power.SowPowerCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -32,8 +32,8 @@ import java.util.Map;
 public class PowerMergeHelper {
     private static final Map<PlayerEntity, MergeData> DATA = new HashMap<>();
 
-    public static void run(PowerData data, PlayerEntity player, ServerWorld serverWorld) {
-        if (!data.isEnabled(SowPowerCategories.ALL)) return;
+    public static void run(AbilityData data, PlayerEntity player, ServerWorld serverWorld) {
+        if (!data.isEnabled(SowAbilityCategories.ALL)) return;
         if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
         MergeData mergeData = DATA.get(player);
         if (player.isSneaking()) {
@@ -49,16 +49,16 @@ public class PowerMergeHelper {
                     InteractHolder holder = InteractHolder.of(serverWorld, songPos);
                     if (holder.isPresent() && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
                         Vec3d center = songPos.toCenterPos();
-                        PowerCategory category = holder.getCategory();
+                        AbilityCategory category = holder.getCategory();
                         Color4i color = category.getColor();
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.spawnParticles(SowParticles.SONG_EFFECT.get(), center.getX(), center.getY() - 0.25, center.getZ(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
-                            PowerData.SinglePowerData d = data.get(category);
-                            AbstractPower<?> newPower = holder.getPower();
-                            if (d.hasPower()) holder.setPower(d.getActivePower());
+                            AbilityData.SingleAbilityData d = data.get(category);
+                            AbstractAbility<?> newPower = holder.getPower();
+                            if (d.hasAbility()) holder.setPower(d.getActiveAbility());
                             else holder.destroy();
-                            d.setActivePower(newPower);
+                            d.setActiveAbility(newPower);
                             serverWorld.createExplosion(player, DamageUtil.build(player, DamageTypes.EXPLOSION), new FakeExplosionBehavior(), center, 1, false, World.ExplosionSourceType.NONE);
                             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 20));
                             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 18 * 20));
@@ -112,21 +112,21 @@ public class PowerMergeHelper {
             return this.blockEntity != null || this.itemEntity != null;
         }
 
-        public AbstractPower<?> getPower() {
+        public AbstractAbility<?> getPower() {
             if (this.blockEntity != null) return this.blockEntity.getPower();
             if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
                 return songCubeBlock.getPower(this.itemEntity.getStack());
             return null;
         }
 
-        public PowerCategory getCategory() {
+        public AbilityCategory getCategory() {
             if (this.blockEntity != null) return this.blockEntity.getCategory();
             if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
                 return songCubeBlock.getCategory();
-            return SowPowerCategories.AGGRESSIUM;
+            return SowAbilityCategories.AGGRESSIUM;
         }
 
-        public void setPower(AbstractPower<?> power) {
+        public void setPower(AbstractAbility<?> power) {
             if (this.blockEntity != null) this.blockEntity.setPower(power);
             if (this.itemEntity != null) this.itemEntity.setStack(AbstractSongCubeBlock.getStack(power));
         }

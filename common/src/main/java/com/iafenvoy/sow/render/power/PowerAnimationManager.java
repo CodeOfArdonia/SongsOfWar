@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.render.power;
 
-import com.iafenvoy.neptune.power.ClientPowerEvents;
+import com.iafenvoy.neptune.ability.ClientAbilityEvents;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,11 +19,11 @@ public class PowerAnimationManager {
     }
 
     static {
-        ClientPowerEvents.POWER_ENABLE.register((player, songPower) -> {
+        ClientAbilityEvents.ABILITY_ENABLE.register((player, songPower) -> {
             if (songPower == MobiliumPowers.MOBILIBURST)
                 MOBILIBURST_RENDER.add(player.getUuid());
         });
-        ClientPowerEvents.POWER_DISABLE.register((player, songPower) -> {
+        ClientAbilityEvents.ABILITY_DISABLE.register((player, songPower) -> {
             if (songPower == MobiliumPowers.MOBILIBURST)
                 MOBILIBURST_RENDER.remove(player.getUuid());
         });

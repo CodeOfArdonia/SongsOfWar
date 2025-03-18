@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.item.block.entity;
 
-import com.iafenvoy.neptune.power.PowerCategory;
-import com.iafenvoy.neptune.power.type.AbstractPower;
-import com.iafenvoy.neptune.power.type.DummyPower;
+import com.iafenvoy.neptune.ability.AbilityCategory;
+import com.iafenvoy.neptune.ability.type.AbstractAbility;
+import com.iafenvoy.neptune.ability.type.DummyAbility;
 import com.iafenvoy.sow.Proxies;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
-    private AbstractPower<?> power = DummyPower.EMPTY;
+    private AbstractAbility<?> power = DummyAbility.EMPTY;
 
     public AbstractSongCubeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -21,7 +21,7 @@ public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.power = AbstractPower.byId(Identifier.tryParse(nbt.getString("songPower")));
+        this.power = AbstractAbility.byId(Identifier.tryParse(nbt.getString("songPower")));
     }
 
     @Override
@@ -30,11 +30,11 @@ public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
         if (this.power != null) nbt.putString("songPower", this.power.getId().toString());
     }
 
-    public void setPower(AbstractPower<?> power) {
+    public void setPower(AbstractAbility<?> power) {
         this.power = power;
     }
 
-    public AbstractPower<?> getPower() {
+    public AbstractAbility<?> getPower() {
         return this.power;
     }
 
@@ -44,5 +44,5 @@ public abstract class AbstractSongCubeBlockEntity extends BlockEntity {
         Proxies.songCubeSoundManager.destroy(this.pos);
     }
 
-    public abstract PowerCategory getCategory();
+    public abstract AbilityCategory getCategory();
 }

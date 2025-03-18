@@ -14,7 +14,7 @@ public class JalkarEntity extends AbstractHumanEntity {
 
     public JalkarEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND,new ItemStack(SowWeapons.SWORD_IRON.get()));
+        this.setStackInHand(Hand.MAIN_HAND, new ItemStack(SowWeapons.SWORD_IRON.get()));
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.iafenvoy.sow.registry.power;
 
+import com.iafenvoy.neptune.ability.AbilityData;
+import com.iafenvoy.neptune.ability.type.DelayAbility;
+import com.iafenvoy.neptune.ability.type.InstantAbility;
+import com.iafenvoy.neptune.ability.type.IntervalAbility;
+import com.iafenvoy.neptune.ability.type.PersistAbility;
 import com.iafenvoy.neptune.event.LivingEntityEvents;
-import com.iafenvoy.neptune.power.PowerData;
-import com.iafenvoy.neptune.power.type.DelayPower;
-import com.iafenvoy.neptune.power.type.InstantPower;
-import com.iafenvoy.neptune.power.type.IntervalPower;
-import com.iafenvoy.neptune.power.type.PersistPower;
-import com.iafenvoy.sow.SowConstants;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.SowConstants;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.entity.power.ProteCloneEntity;
 import com.iafenvoy.sow.item.block.TemporaryTransparentBlock;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public final class ProtisiumPowers {
-    public static final PersistPower PROTEARMOR = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "protearmor"), SowPowerCategories.PROTISIUM)
+    public static final PersistAbility PROTEARMOR = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "protearmor"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEARMOR)
             .setUnapplySound(SowSounds.PROTEARMOR_UNAPPLY)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protearmorPrimaryCooldown.getValue())
@@ -37,15 +37,15 @@ public final class ProtisiumPowers {
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.protisium.protearmorExhaustion.getValue())
             .onInit(self -> LivingEntityEvents.DAMAGE.register((entity, source, amount) -> {
                 if (entity instanceof PlayerEntity player) {
-                    PowerData data = PowerData.byPlayer(player);
-                    if (data.powerEnabled(self)) {
-                        data.get(SowPowerCategories.PROTISIUM).disable();
+                    AbilityData data = AbilityData.byPlayer(player);
+                    if (data.abilityEnabled(self)) {
+                        data.get(SowAbilityCategories.PROTISIUM).disable();
                         return Math.max(amount - SowCommonConfig.INSTANCE.protisium.protearmorMaxReduceDamage.getValue().floatValue(), 0);
                     }
                 }
                 return amount;
             }));
-    public static final InstantPower PROTEBARRIER = new InstantPower(Identifier.of(SongsOfWar.MOD_ID, "protebarrier"), SowPowerCategories.PROTISIUM)
+    public static final InstantAbility PROTEBARRIER = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "protebarrier"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEBARRIER)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protebarrierPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protebarrierSecondaryCooldown.getValue())
@@ -63,7 +63,7 @@ public final class ProtisiumPowers {
                             TemporaryTransparentBlock.place(world, pos, SowBlocks.PROTE_BARRIER.get().getDefaultState(), 20 * SowCommonConfig.INSTANCE.protisium.protebarrierExistTime.getValue());
                     }
             });
-    public static final DelayPower PROTECLONE = new DelayPower(Identifier.of(SongsOfWar.MOD_ID, "proteclone"), SowPowerCategories.PROTISIUM)
+    public static final DelayAbility PROTECLONE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "proteclone"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTECLONE)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.proteclonePrimaryCooldown.getValue())
@@ -79,7 +79,7 @@ public final class ProtisiumPowers {
                     world.spawnEntity(proteClone);
                 }
             });
-    public static final IntervalPower PROTEHEAL = new IntervalPower(Identifier.of(SongsOfWar.MOD_ID, "proteheal"), SowPowerCategories.PROTISIUM)
+    public static final IntervalAbility PROTEHEAL = new IntervalAbility(Identifier.of(SongsOfWar.MOD_ID, "proteheal"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEHEAL)
             .setInterval(10)
             .setTimes(10)
@@ -94,7 +94,7 @@ public final class ProtisiumPowers {
                 }
                 player.heal(1);
             });
-    public static final PersistPower PROTEPOINT = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "protepoint"), SowPowerCategories.PROTISIUM)
+    public static final PersistAbility PROTEPOINT = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "protepoint"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEPOINT)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.protisium.protepointExhaustion.getValue())
             .onApply(holder -> {
@@ -106,7 +106,7 @@ public final class ProtisiumPowers {
                 if (holder.getPlayer().getOffHandStack().isOf(SowItems.PROTEPOINT_SHIELD.get()))
                     holder.getPlayer().setStackInHand(Hand.OFF_HAND, ItemStack.EMPTY.copy());
             });
-    public static final PersistPower PROTESPHERE = new PersistPower(Identifier.of(SongsOfWar.MOD_ID, "protesphere"), SowPowerCategories.PROTISIUM)
+    public static final PersistAbility PROTESPHERE = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "protesphere"), SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTESPHERE)
             .setUnapplySound(SowSounds.PROTESPHERE_UNAPPLY)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.protisium.protesphereExhaustion.getValue())

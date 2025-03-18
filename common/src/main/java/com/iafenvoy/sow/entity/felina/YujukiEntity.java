@@ -14,7 +14,7 @@ public class YujukiEntity extends AbstractFelinaEntity {
 
     public YujukiEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND,new ItemStack(SowWeapons.SPEAR_IRON_1.get()));
+        this.setStackInHand(Hand.MAIN_HAND, new ItemStack(SowWeapons.SPEAR_IRON_1.get()));
     }
 
     @Override

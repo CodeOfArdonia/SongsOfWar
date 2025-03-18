@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.network;
 
-import com.iafenvoy.neptune.power.PowerData;
-import com.iafenvoy.sow.SowConstants;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.SowConstants;
 import com.iafenvoy.sow.power.component.MobiliWingsComponent;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import dev.architectury.networking.NetworkManager;
@@ -25,10 +25,10 @@ public class ServerNetworkHelper {
         });
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, SowConstants.JUMP_PRESS, (buf, context) -> {
             PlayerEntity player = context.getPlayer();
-            PowerData data = PowerData.byPlayer(player);
-            if (data.powerEnabled(MobiliumPowers.MOBILIWINGS))
+            AbilityData data = AbilityData.byPlayer(player);
+            if (data.abilityEnabled(MobiliumPowers.MOBILIWINGS))
                 context.queue(() -> {
-                    if (PowerData.byPlayer(player).getComponent(MobiliWingsComponent.ID) instanceof MobiliWingsComponent component)
+                    if (AbilityData.byPlayer(player).getComponent(MobiliWingsComponent.ID) instanceof MobiliWingsComponent component)
                         component.speedUp();
                 });
         });

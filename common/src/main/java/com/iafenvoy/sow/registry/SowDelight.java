@@ -37,7 +37,7 @@ public final class SowDelight {
     public static final RegistrySupplier<Block> PEAS_BURGER = BLOCK_REGISTRY.register("peas_burger", () -> new SimplePickableFoodBlock(AbstractBlock.Settings.copy(Blocks.CAKE), VoxelShapes.cuboid(0, 0, 0, 1, 0.875, 1)));
     public static final RegistrySupplier<Item> PEAS_BURGER_ITEM = ITEM_REGISTRY.register("peas_burger", () -> new BlockItem(PEAS_BURGER.get(), new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(1).build()).arch$tab(SowItemGroups.PEAS_DELIGHT)));
 
-    public static final RegistrySupplier<Block> PEAS_CAKE = BLOCK_REGISTRY.register("peas_cake", () -> new SimplePickableFoodBlock(AbstractBlock.Settings.copy(Blocks.CAKE),VoxelShapes.cuboid(0.125, 0, 0.125, 0.875, 0.125, 0.875)));
+    public static final RegistrySupplier<Block> PEAS_CAKE = BLOCK_REGISTRY.register("peas_cake", () -> new SimplePickableFoodBlock(AbstractBlock.Settings.copy(Blocks.CAKE), VoxelShapes.cuboid(0.125, 0, 0.125, 0.875, 0.125, 0.875)));
     public static final RegistrySupplier<Item> PEAS_CAKE_ITEM = ITEM_REGISTRY.register("peas_cake", () -> new BlockItem(PEAS_CAKE.get(), new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.75f).build()).arch$tab(SowItemGroups.PEAS_DELIGHT)));
 
     public static final RegistrySupplier<Block> BAMBOO_FOOD_PLATE = BLOCK_REGISTRY.register("bamboo_food_plate", BambooFoodPlateBlock::new);

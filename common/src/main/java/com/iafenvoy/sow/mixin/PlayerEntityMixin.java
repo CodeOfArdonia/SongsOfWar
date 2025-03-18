@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.neptune.power.PowerData;
+import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.power.PowerMergeHelper;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import net.minecraft.entity.EntityType;
@@ -23,10 +23,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "tick", at = @At("RETURN"))
     private void handleFallDistance(CallbackInfo ci) {
         PlayerEntity self = (PlayerEntity) (Object) this;
-        PowerData data = PowerData.byPlayer((PlayerEntity) (Object) this);
+        AbilityData data = AbilityData.byPlayer((PlayerEntity) (Object) this);
         if (this.getWorld() instanceof ServerWorld serverWorld)
             PowerMergeHelper.run(data, self, serverWorld);
-        if (PowerData.byPlayer((PlayerEntity) (Object) this).powerEnabled(MobiliumPowers.MOBILILEAP))
+        if (AbilityData.byPlayer((PlayerEntity) (Object) this).abilityEnabled(MobiliumPowers.MOBILILEAP))
             this.fallDistance = 0;
     }
 }
