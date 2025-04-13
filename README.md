@@ -188,8 +188,9 @@ These mods are not mandatory to install, but they are recommended to gain better
 All official textures from SQM (weapons&entities&sounds) are freely to use since they are already in public. **But all
 other stuff are All Right Reserved**.
 
-You can freely use this mod in your modpack if you credit us somewhere.
+You can freely use this mod in your modpack if you credit us somewhere. Distributing outside cf&mr need extra
+permission.
 
-## Any Questions?
+## Questions & Official Server?
 
 Join our Discord: https://discord.gg/NDzz2upqAk
