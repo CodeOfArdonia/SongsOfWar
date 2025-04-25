@@ -28,10 +28,6 @@ public class MobiliBurstComponent implements Serializable, Tickable {
         this.player = player;
     }
 
-    public boolean isActivate() {
-        return this.activate;
-    }
-
     public void setActivate(boolean activate) {
         this.activate = activate;
     }

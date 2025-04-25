@@ -38,7 +38,7 @@ public class AdjustedSongStoneItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(this.category.appendColor(Text.translatable(String.format("block.sow.%s_song", this.category.getId()))));
+        tooltip.add(this.category.appendColor(Text.translatable(String.format("block.%s_song", this.category.getId().toTranslationKey()))));
     }
 
     @SuppressWarnings("all")

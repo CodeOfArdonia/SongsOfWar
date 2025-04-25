@@ -8,10 +8,6 @@ This is a mod to add elements from [Songs of War Animation](https://youtu.be/Uc7
 
 ~~Put me into the washing machine like the logo if you meet any bugs.~~
 
-## Credit
-
-**Squared Media (Black Plasma Studio)**: Animation author and assets.
-
 ## Features
 
 ### Various Weapons
@@ -191,6 +187,6 @@ other stuff are All Right Reserved**.
 You can freely use this mod in your modpack if you credit us somewhere. Distributing outside cf&mr need extra
 permission.
 
-## Questions & Official Server?
+## Questions & Official Game Server?
 
 Join our Discord: https://discord.gg/NDzz2upqAk
