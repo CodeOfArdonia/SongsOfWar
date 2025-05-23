@@ -2,14 +2,14 @@
   "credit": "Made with Blockbench",
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "sow:item/staff_tide_singer"
+    "layer0": "sow:item/staff_achillean"
   },
   "overrides": [
     {
       "predicate": {
         "neptune:active": 1.0
       },
-      "model": "sow:item/staff_tide_singer_active"
+      "model": "sow:item/staff_achillean_active"
     }
   ],
   "display": {

@@ -20,8 +20,8 @@ public final class SowSpawnEggs {
     public static final RegistrySupplier<Item> MENDORIS_ARDONI_SPAWN_EGG = REGISTRY.register("mendoris_ardoni_spawn_egg", () -> ArdoniType.MENDORIS.createSpawnEgg(SowEntities.MENDORIS_ARDONI));
     public static final RegistrySupplier<Item> GRIM_SPAWN_EGG = REGISTRY.register("grim_spawn_egg", SowSpawnEggItem.create(SowEntities.GRIM, 0xFF444444, 0xFF00FFFF));
     //Ardoni
-    public static final RegistrySupplier<Item> TIDE_SINGER_SPAWN_EGG = REGISTRY.register("tide_singer_spawn_egg", SowSpawnEggItem.create(SowEntities.TIDE_SINGER, 0xFF888888, 0xFFFFFF00));
-    public static final RegistrySupplier<Item> DEATH_SINGER_SPAWN_EGG = REGISTRY.register("death_singer_spawn_egg", SowSpawnEggItem.create(SowEntities.DEATH_SINGER, 0xFF444444, 0xFFF05C4F));
+    public static final RegistrySupplier<Item> ACHILLEAN_SPAWN_EGG = REGISTRY.register("achillean_spawn_egg", SowSpawnEggItem.create(SowEntities.ACHILLEAN, 0xFF888888, 0xFFFFFF00));
+    public static final RegistrySupplier<Item> INGRESSSUS_SPAWN_EGG = REGISTRY.register("ingresssus_spawn_egg", SowSpawnEggItem.create(SowEntities.INGRESSSUS, 0xFF444444, 0xFFF05C4F));
     public static final RegistrySupplier<Item> AEGUS_SPAWN_EGG = REGISTRY.register("aegus_spawn_egg", SowSpawnEggItem.create(SowEntities.AEGUS, 0xFF444444, 0xFFFEE575));
     public static final RegistrySupplier<Item> KALTARIS_MASTER_SPAWN_EGG = REGISTRY.register("kaltaris_master_spawn_egg", SowSpawnEggItem.create(SowEntities.KALTARIS_MASTER, 0xFF444444, 0xFF65CD6B));
     public static final RegistrySupplier<Item> MENDORIS_MASTER_SPAWN_EGG = REGISTRY.register("mendoris_master_spawn_egg", SowSpawnEggItem.create(SowEntities.MENDORIS_MASTER, 0xFF444444, 0xFF7EEFFF));

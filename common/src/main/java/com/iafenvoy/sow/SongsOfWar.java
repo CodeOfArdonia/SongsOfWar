@@ -14,7 +14,6 @@ import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.mojang.logging.LogUtils;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
-import io.github.apace100.origins.Origins;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -61,7 +60,7 @@ public final class SongsOfWar {
         });
         ServerNetworkHelper.init();
         OriginsEvents.ON_CONFIRM.register(((player, layer, origin) -> {
-            if (player.getServer() != null && layer.equals(Identifier.of(Origins.MODID, "origin")))
+            if (player.getServer() != null && layer.equals(Identifier.of("origin", "origin")))
                 player.getServer().execute(() -> {
                     AbilityData data = AbilityData.byPlayer(player);
                     if (origin.equals(Identifier.of(SongsOfWar.MOD_ID, "ardoni")))

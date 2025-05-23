@@ -22,7 +22,7 @@ public class ThalleousEntity extends AbstractArdoniEntity {
 
     public ThalleousEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.BLUE.apply(new ItemStack(SowWeapons.SWORD_HALLEOUS.get()), true));
+        this.setStackInHand(Hand.MAIN_HAND, GlintManager.BLUE.apply(new ItemStack(SowWeapons.SWORD_THALLEOUS.get()), true));
         if (Anniversary.shouldInvoke())
             this.setStackInHand(Hand.OFF_HAND, new ItemStack(SowDelight.PEAS_CAN.get()));
     }

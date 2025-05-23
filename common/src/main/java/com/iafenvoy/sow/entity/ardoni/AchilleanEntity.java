@@ -14,14 +14,13 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class DeathSingerEntity extends AbstractArdoniEntity {
-    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/death_singer.png");
-    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/death_singer_marker.png");
+public class AchilleanEntity extends AbstractArdoniEntity {
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/achillean.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/achillean_marker.png");
 
-    public DeathSingerEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public AchilleanEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.RED.apply(new ItemStack(SowWeapons.SWORD_DEATH_SINGER.get()), true));
-        this.setStackInHand(Hand.OFF_HAND, new ItemStack(SowWeapons.VOLTAR.get()));
+        this.setStackInHand(Hand.MAIN_HAND, GlintManager.YELLOW.apply(new ItemStack(SowWeapons.STAFF_ACHILLEAN.get()), true));
     }
 
     @Override
@@ -36,11 +35,11 @@ public class DeathSingerEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(240, 92, 79, 255);
+        return new Color4i(255, 255, 0, 255);
     }
 
     @Override
     public ArdoniType getArdoniType() {
-        return ArdoniType.VOLTARIS;
+        return ArdoniType.NESTORIS;
     }
 }

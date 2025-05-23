@@ -57,8 +57,8 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.KALTARIS_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.GRIM, CommonPlayerLikeEntityRenderer::new);
 
-        EntityRendererRegistry.register(SowEntities.TIDE_SINGER, ArdoniEntityRenderer::new);
-        EntityRendererRegistry.register(SowEntities.DEATH_SINGER, ArdoniEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.ACHILLEAN, ArdoniEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.INGRESSSUS, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.AEGUS, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.KALTARIS_MASTER, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.MENDORIS_MASTER, ArdoniEntityRenderer::new);
@@ -164,7 +164,7 @@ public final class SowRenderers {
         SkullRenderRegistry.register(SowSkulls.SkullType.AURELIUS, AureliusEntity.TEXTURE, SowSkulls.AURELIUS_HEAD.get(), SowSkulls.AURELIUS_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.CHRONOS, ChronosEntity.TEXTURE, SowSkulls.CHRONOS_HEAD.get(), SowSkulls.CHRONOS_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.DARLENE, DarleneEntity.TEXTURE, SowSkulls.DARLENE_HEAD.get(), SowSkulls.DARLENE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SowSkulls.SkullType.DEATH_SINGER, DeathSingerEntity.TEXTURE, SowSkulls.DEATH_SINGER_HEAD.get(), SowSkulls.DEATH_SINGER_WALL_HEAD.get());
+        SkullRenderRegistry.register(SowSkulls.SkullType.INGRESSSUS, IngresssusEntity.TEXTURE, SowSkulls.INGRESSSUS_HEAD.get(), SowSkulls.INGRESSSUS_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.DENNY, DennyEntity.TEXTURE, SowSkulls.DENNY_HEAD.get(), SowSkulls.DENNY_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.EDDY, EddyEntity.TEXTURE, SowSkulls.EDDY_HEAD.get(), SowSkulls.EDDY_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.GALLEOUS, GalleousEntity.TEXTURE, SowSkulls.GALLEOUS_HEAD.get(), SowSkulls.GALLEOUS_WALL_HEAD.get());
@@ -192,7 +192,7 @@ public final class SowRenderers {
         SkullRenderRegistry.register(SowSkulls.SkullType.SIDERIAN, SiderianEntity.TEXTURE, SowSkulls.SIDERIAN_HEAD.get(), SowSkulls.SIDERIAN_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.SULLIMAN, SullimanEntity.TEXTURE, SowSkulls.SULLIMAN_HEAD.get(), SowSkulls.SULLIMAN_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.THALLEOUS, ThalleousEntity.TEXTURE, SowSkulls.THALLEOUS_HEAD.get(), SowSkulls.THALLEOUS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SowSkulls.SkullType.TIDE_SINGER, TideSingerEntity.TEXTURE, SowSkulls.TIDE_SINGER_HEAD.get(), SowSkulls.TIDE_SINGER_WALL_HEAD.get());
+        SkullRenderRegistry.register(SowSkulls.SkullType.ACHILLEAN, AchilleanEntity.TEXTURE, SowSkulls.ACHILLEAN_HEAD.get(), SowSkulls.ACHILLEAN_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.TREVOR, TrevorEntity.TEXTURE, SowSkulls.TREVOR_HEAD.get(), SowSkulls.TREVOR_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.TYGREN, TygrenEntity.TEXTURE, SowSkulls.TYGREN_HEAD.get(), SowSkulls.TYGREN_WALL_HEAD.get());
         SkullRenderRegistry.register(SowSkulls.SkullType.VAL, ValEntity.TEXTURE, SowSkulls.VAL_HEAD.get(), SowSkulls.VAL_WALL_HEAD.get());

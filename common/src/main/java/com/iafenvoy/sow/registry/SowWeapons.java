@@ -114,7 +114,7 @@ public final class SowWeapons {
             new SowSwordItem(ToolMaterials.DIAMOND, -1, -0.5f, s -> s));
     public static final RegistrySupplier<SowSwordItem> STAFF_HONOR_GUARD_DIAMOND = register("staff_honor_guard_diamond", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, -1, -0.5f, s -> s));
-    public static final RegistrySupplier<SowSwordItem> SWORD_DEATH_SINGER = register("sword_death_singer", () ->
+    public static final RegistrySupplier<SowSwordItem> SWORD_INGRESSSUS = register("sword_ingresssus", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, 6, -0.5f, s -> s));
     public static final RegistrySupplier<SowSwordItem> SWORD_DIAMOND_13 = register("sword_diamond_13", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, 1, -0.5f, s -> s));
@@ -122,9 +122,9 @@ public final class SowWeapons {
             new SowSwordItem(ToolMaterials.DIAMOND, 1, -0.5f, s -> s));
     public static final RegistrySupplier<SowSwordItem> SWORD_DIAMOND_15 = register("sword_diamond_15", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, 1, -0.5f, s -> s));
-    public static final RegistrySupplier<SowSwordItem> SWORD_HALLEOUS = register("sword_halleous", () ->
+    public static final RegistrySupplier<SowSwordItem> SWORD_THALLEOUS = register("sword_thalleous", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, 4, -0.5f, s -> s));
-    public static final RegistrySupplier<SowCanActiveSwordItem> STAFF_TIDE_SINGER = register("staff_tide_singer", () ->
+    public static final RegistrySupplier<SowCanActiveSwordItem> STAFF_ACHILLEAN = register("staff_achillean", () ->
             new SowCanActiveSwordItem(ToolMaterials.DIAMOND, 6, -0.5f, s -> s));
     public static final RegistrySupplier<SowSwordItem> STAFF_ARDONI_HONOR_DIAMOND = register("staff_ardoni_honor_diamond", () ->
             new SowSwordItem(ToolMaterials.DIAMOND, -1, -0.5f, s -> s));

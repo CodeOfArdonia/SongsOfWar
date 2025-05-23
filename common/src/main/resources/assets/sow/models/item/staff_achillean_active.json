@@ -2,7 +2,7 @@
   "credit": "Made with Blockbench",
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "sow:item/sword_halleous"
+    "layer0": "sow:item/staff_achillean_active"
   },
   "display": {
     "thirdperson_righthand": {
@@ -13,12 +13,12 @@
       ],
       "translation": [
         0,
-        8,
-        0.5
+        -2.5,
+        1.5
       ],
       "scale": [
-        1.5,
-        1.5,
+        2,
+        2,
         1
       ]
     },
@@ -30,12 +30,12 @@
       ],
       "translation": [
         0,
-        8,
-        0.5
+        -2.5,
+        1.5
       ],
       "scale": [
-        1.5,
-        1.5,
+        2,
+        2,
         1
       ]
     },

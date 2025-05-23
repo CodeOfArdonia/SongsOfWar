@@ -4,7 +4,7 @@
 ![fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg)
 ![quilt](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/unsupported/quilt_vector.svg)
 
-This is a mod to add elements from [Songs of War Animation](https://youtu.be/Uc7YMW3AKpg).
+This is a mod to add elements from Songs of War Animation.
 
 ~~Put me into the washing machine like the logo if you meet any bugs.~~
 
@@ -24,7 +24,7 @@ Most weapon are wearable on back and belt. (Thanks for `Curios` and `Trinkets`)
 
 ### Upgrading Stone
 
-Song Stone forging system allow you to upgrade your weapon and will receive colorful glint.
+Song Stone forging system allow you to upgrade your weapon and will receive colorful glint. (Require `Reforge Stone` Mod)
 
 <div align=center><img src="https://raw.githubusercontent.com/CodeOfArdonia/SongsOfWar/refs/heads/master/img/3.webp" style="width:400px;text-align:center;" alt=""></img></div>
 
@@ -177,6 +177,7 @@ These mods are not mandatory to install, but they are recommended to gain better
 - `Litematica`: SoW Mod provide shrine schematic for it.
 - `Max Health Fix`: Fix Ardoni Origin health problem.
 - `Origins`: SoW Mod provide new origins for it.
+- `Reforge Stone`: SoW Mod add reforge stones depend on this.
 - `Tips`: SoW Mod provide quotes for it.
 
 ## License

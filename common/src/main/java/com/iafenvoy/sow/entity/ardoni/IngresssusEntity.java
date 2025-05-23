@@ -14,13 +14,14 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class TideSingerEntity extends AbstractArdoniEntity {
-    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer.png");
-    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tide_singer_marker.png");
+public class IngresssusEntity extends AbstractArdoniEntity {
+    public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ingresssus.png");
+    public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ingresssus_marker.png");
 
-    public TideSingerEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public IngresssusEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.YELLOW.apply(new ItemStack(SowWeapons.STAFF_TIDE_SINGER.get()), true));
+        this.setStackInHand(Hand.MAIN_HAND, GlintManager.RED.apply(new ItemStack(SowWeapons.SWORD_INGRESSSUS.get()), true));
+        this.setStackInHand(Hand.OFF_HAND, new ItemStack(SowWeapons.VOLTAR.get()));
     }
 
     @Override
@@ -35,11 +36,11 @@ public class TideSingerEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(255, 255, 0, 255);
+        return new Color4i(240, 92, 79, 255);
     }
 
     @Override
     public ArdoniType getArdoniType() {
-        return ArdoniType.NESTORIS;
+        return ArdoniType.VOLTARIS;
     }
 }

@@ -8,7 +8,6 @@ import dev.emi.emi.api.EmiRegistry;
 public class SowRecipePlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
-        SongStoneRecipeHelper.register(registry);
         SongRecipeHelper.register(registry);
     }
 }

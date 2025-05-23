@@ -1,14 +1,14 @@
 package com.iafenvoy.sow.mixin;
 
 import com.iafenvoy.sow.config.SowCommonConfig;
-import com.iafenvoy.sow.entity.ardoni.DeathSingerEntity;
+import com.iafenvoy.sow.entity.ardoni.IngresssusEntity;
 import com.iafenvoy.sow.registry.SowEntities;
 import com.iafenvoy.sow.registry.SowSkulls;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -21,25 +21,25 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FishingBobberEntity.class)
-public abstract class FishingBobberEntityMixin extends ProjectileEntity {
+public abstract class FishingBobberEntityMixin extends Entity {
     @Shadow
     @Final
     private Random velocityRandom;
+
+    public FishingBobberEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
     @Shadow
     @Nullable
     public abstract PlayerEntity getPlayerOwner();
 
-    public FishingBobberEntityMixin(EntityType<? extends ProjectileEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z"), cancellable = true)
     private void onGenerateLoot(ItemStack usedItem, CallbackInfoReturnable<Integer> cir) {
         PlayerEntity player = this.getPlayerOwner();
         if (player == null) return;
-        if (this.velocityRandom.nextDouble() < SowCommonConfig.INSTANCE.common.specialFishChance.getValue() || player.getEquippedStack(EquipmentSlot.HEAD).isOf(SowSkulls.TIDE_SINGER_HEAD_ITEM.get())) {
-            DeathSingerEntity entity = SowEntities.DEATH_SINGER.get().create(this.getWorld());
+        if (this.velocityRandom.nextDouble() < SowCommonConfig.INSTANCE.common.specialFishChance.getValue() || player.getEquippedStack(EquipmentSlot.HEAD).isOf(SowSkulls.ACHILLEAN_HEAD_ITEM.get())) {
+            IngresssusEntity entity = SowEntities.INGRESSSUS.get().create(this.getWorld());
             if (entity == null) return;
             double d0 = player.getX() - this.getX();
             double d1 = player.getY() - this.getY();

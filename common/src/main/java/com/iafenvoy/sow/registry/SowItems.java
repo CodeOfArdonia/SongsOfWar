@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.registry;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.*;
 import com.iafenvoy.sow.item.impl.ProtepointShieldItem;
@@ -16,15 +15,15 @@ import net.minecraft.util.Rarity;
 public final class SowItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(SongsOfWar.MOD_ID, RegistryKeys.ITEM);
 
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_RED = REGISTRY.register("enchantment_fragment_red", () -> new EnchantmentFragmentItem(GlintManager.RED));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_YELLOW = REGISTRY.register("enchantment_fragment_yellow", () -> new EnchantmentFragmentItem(GlintManager.YELLOW));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_BLUE = REGISTRY.register("enchantment_fragment_blue", () -> new EnchantmentFragmentItem(GlintManager.BLUE));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_ORANGE = REGISTRY.register("enchantment_fragment_orange", () -> new EnchantmentFragmentItem(GlintManager.ORANGE));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_GREEN = REGISTRY.register("enchantment_fragment_green", () -> new EnchantmentFragmentItem(GlintManager.GREEN));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_PURPLE = REGISTRY.register("enchantment_fragment_purple", () -> new EnchantmentFragmentItem(GlintManager.PURPLE));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_WHITE = REGISTRY.register("enchantment_fragment_white", () -> new EnchantmentFragmentItem(GlintManager.WHITE));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_PINK = REGISTRY.register("enchantment_fragment_pink", () -> new EnchantmentFragmentItem(GlintManager.PINK));
-    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_AQUA = REGISTRY.register("enchantment_fragment_aqua", () -> new EnchantmentFragmentItem(GlintManager.AQUA));
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_RED = REGISTRY.register("enchantment_fragment_red", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_YELLOW = REGISTRY.register("enchantment_fragment_yellow", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_BLUE = REGISTRY.register("enchantment_fragment_blue", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_ORANGE = REGISTRY.register("enchantment_fragment_orange", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_GREEN = REGISTRY.register("enchantment_fragment_green", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_PURPLE = REGISTRY.register("enchantment_fragment_purple", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_WHITE = REGISTRY.register("enchantment_fragment_white", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_PINK = REGISTRY.register("enchantment_fragment_pink", EnchantmentFragmentItem::new);
+    public static final RegistrySupplier<Item> ENCHANTMENT_FRAGMENT_AQUA = REGISTRY.register("enchantment_fragment_aqua", EnchantmentFragmentItem::new);
 
     public static final RegistrySupplier<Item> WITHER_STAFF = REGISTRY.register("wither_staff", () -> new Item(new Item.Settings().fireproof().rarity(Rarity.UNCOMMON).arch$tab(SowItemGroups.ITEMS)));
 

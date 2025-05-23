@@ -2,7 +2,7 @@
   "credit": "Made with Blockbench",
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "sow:item/staff_tide_singer_active"
+    "layer0": "sow:item/sword_thalleous"
   },
   "display": {
     "thirdperson_righthand": {
@@ -13,12 +13,12 @@
       ],
       "translation": [
         0,
-        -2.5,
-        1.5
+        8,
+        0.5
       ],
       "scale": [
-        2,
-        2,
+        1.5,
+        1.5,
         1
       ]
     },
@@ -30,12 +30,12 @@
       ],
       "translation": [
         0,
-        -2.5,
-        1.5
+        8,
+        0.5
       ],
       "scale": [
-        2,
-        2,
+        1.5,
+        1.5,
         1
       ]
     },
