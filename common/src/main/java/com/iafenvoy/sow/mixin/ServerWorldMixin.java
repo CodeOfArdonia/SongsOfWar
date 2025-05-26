@@ -20,8 +20,7 @@ public class ServerWorldMixin {
 
     @Inject(method = "tickChunk", at = @At("RETURN"))
     private void onMidnight(WorldChunk chunk, int randomTickSpeed, CallbackInfo ci) {
-        if (!SowCommonConfig.INSTANCE.common.songChunkRegen.getValue() || this.worldProperties.getTimeOfDay() % 24000 != 18000)
-            return;
-        SongChunkData.byChunk(chunk).increaseRemainNotes();
+        if (SowCommonConfig.INSTANCE.common.songChunkRegen.getValue() && this.worldProperties.getTimeOfDay() % 24000 == 18000)
+            SongChunkData.byChunk(chunk).increaseRemainNotes();
     }
 }

@@ -2,10 +2,10 @@ package com.iafenvoy.sow.registry;
 
 import com.iafenvoy.neptune.util.EntityBuildHelper;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.entity.GlacianEntity;
 import com.iafenvoy.sow.entity.GrimEntity;
 import com.iafenvoy.sow.entity.ardoni.*;
 import com.iafenvoy.sow.entity.ardoni.random.*;
-import com.iafenvoy.sow.entity.author.PixelZnimationEntity;
 import com.iafenvoy.sow.entity.felina.*;
 import com.iafenvoy.sow.entity.human.*;
 import com.iafenvoy.sow.entity.human.guard.*;
@@ -48,6 +48,7 @@ public final class SowEntities {
     public static final RegistrySupplier<EntityType<SendarisArdoniEntity>> SENDARIS_ARDONI = build("sendaris_ardoni", SendarisArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<VoltarisArdoniEntity>> VOLTARIS_ARDONI = build("voltaris_ardoni", VoltarisArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<GrimEntity>> GRIM = build("grim", GrimEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
+    public static final RegistrySupplier<EntityType<GlacianEntity>> GLACIAN = build("glacian", GlacianEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(0.8f));
     //Ardoni
     public static final RegistrySupplier<EntityType<AchilleanEntity>> ACHILLEAN = build("achillean", AchilleanEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<IngresssusEntity>> INGRESSSUS = build("ingresssus", IngresssusEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
@@ -144,8 +145,6 @@ public final class SowEntities {
     public static final RegistrySupplier<EntityType<PoorFolkEntity>> POOR_FOLK = build("poor_folk", PoorFolkEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
     public static final RegistrySupplier<EntityType<SailorFolkEntity>> SAILOR_FOLK = build("sailor_folk", SailorFolkEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
     public static final RegistrySupplier<EntityType<ScholarFolkEntity>> SCHOLAR_FOLK = build("scholar_folk", ScholarFolkEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
-    //Author
-    public static final RegistrySupplier<EntityType<PixelZnimationEntity>> PIXEL_ZNIMATION = build("pixel_znimation", PixelZnimationEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER);
 
     private static <T extends Entity> RegistrySupplier<EntityType<T>> build(String name, EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, EntityBuildHelper.Dimension dimension) {
         return REGISTRY.register(name, EntityBuildHelper.build(name, constructor, category, trackingRange, updateInterval, fireImmune, dimension));
@@ -161,6 +160,7 @@ public final class SowEntities {
         EntityAttributeRegistry.register(SENDARIS_ARDONI, SendarisArdoniEntity::createAttributes);
         EntityAttributeRegistry.register(VOLTARIS_ARDONI, VoltarisArdoniEntity::createAttributes);
         EntityAttributeRegistry.register(GRIM, GrimEntity::createAttributes);
+        EntityAttributeRegistry.register(GLACIAN, GlacianEntity::createAttributes);
 
         EntityAttributeRegistry.register(ACHILLEAN, AchilleanEntity::createAttributes);
         EntityAttributeRegistry.register(INGRESSSUS, IngresssusEntity::createAttributes);
@@ -257,7 +257,5 @@ public final class SowEntities {
         EntityAttributeRegistry.register(POOR_FOLK, PoorFolkEntity::createAttributes);
         EntityAttributeRegistry.register(SAILOR_FOLK, SailorFolkEntity::createAttributes);
         EntityAttributeRegistry.register(SCHOLAR_FOLK, ScholarFolkEntity::createAttributes);
-
-        EntityAttributeRegistry.register(PIXEL_ZNIMATION, PixelZnimationEntity::createAttributes);
     }
 }

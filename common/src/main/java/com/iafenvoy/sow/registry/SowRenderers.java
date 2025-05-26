@@ -56,6 +56,7 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.NESTORIS_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.KALTARIS_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.GRIM, CommonPlayerLikeEntityRenderer::new);
+        EntityRendererRegistry.register(SowEntities.GLACIAN, CommonPlayerLikeEntityRenderer::new);
 
         EntityRendererRegistry.register(SowEntities.ACHILLEAN, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.INGRESSSUS, ArdoniEntityRenderer::new);
@@ -152,8 +153,6 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.POOR_FOLK, CommonPlayerLikeEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.SAILOR_FOLK, CommonPlayerLikeEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.SCHOLAR_FOLK, CommonPlayerLikeEntityRenderer::new);
-
-        EntityRendererRegistry.register(SowEntities.PIXEL_ZNIMATION, CommonPlayerLikeEntityRenderer::new);
     }
 
     public static void registerSkull() {

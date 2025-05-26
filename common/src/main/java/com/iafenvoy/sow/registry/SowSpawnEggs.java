@@ -19,6 +19,7 @@ public final class SowSpawnEggs {
     public static final RegistrySupplier<Item> KALTARIS_ARDONI_SPAWN_EGG = REGISTRY.register("kaltaris_ardoni_spawn_egg", () -> ArdoniType.KALTARIS.createSpawnEgg(SowEntities.KALTARIS_ARDONI));
     public static final RegistrySupplier<Item> MENDORIS_ARDONI_SPAWN_EGG = REGISTRY.register("mendoris_ardoni_spawn_egg", () -> ArdoniType.MENDORIS.createSpawnEgg(SowEntities.MENDORIS_ARDONI));
     public static final RegistrySupplier<Item> GRIM_SPAWN_EGG = REGISTRY.register("grim_spawn_egg", SowSpawnEggItem.create(SowEntities.GRIM, 0xFF444444, 0xFF00FFFF));
+    public static final RegistrySupplier<Item> GLACIAN_SPAWN_EGG = REGISTRY.register("glacian_spawn_egg", SowSpawnEggItem.create(SowEntities.GLACIAN, 0xFF1FFFFF, 0xFFFFFFFF));
     //Ardoni
     public static final RegistrySupplier<Item> ACHILLEAN_SPAWN_EGG = REGISTRY.register("achillean_spawn_egg", SowSpawnEggItem.create(SowEntities.ACHILLEAN, 0xFF888888, 0xFFFFFF00));
     public static final RegistrySupplier<Item> INGRESSSUS_SPAWN_EGG = REGISTRY.register("ingresssus_spawn_egg", SowSpawnEggItem.create(SowEntities.INGRESSSUS, 0xFF444444, 0xFFF05C4F));

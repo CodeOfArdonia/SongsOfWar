@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.function.Function;
 
 public class PeasDelightItem extends Item {
+    private static final boolean DEPENDENCY_LOADED = Platform.isModLoaded("farmersdelight");
+
     public PeasDelightItem(Function<Settings, Settings> settings) {
         super(settings.apply(new Settings().arch$tab(SowItemGroups.PEAS_DELIGHT)));
     }
@@ -20,7 +22,7 @@ public class PeasDelightItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        if (!Platform.isModLoaded("farmersdelight"))
+        if (!DEPENDENCY_LOADED)
             tooltip.add(Text.translatable("item.sow.tooltip.require.delight"));
     }
 }
