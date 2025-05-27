@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.neptune.compat.ReforgeStoneApi;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
@@ -20,7 +20,8 @@ public class AchilleanEntity extends AbstractArdoniEntity {
 
     public AchilleanEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.YELLOW.apply(new ItemStack(SowWeapons.STAFF_ACHILLEAN.get()), true));
+        ItemStack stack = new ItemStack(SowWeapons.STAFF_ACHILLEAN.get());
+        this.setStackInHand(Hand.MAIN_HAND, ReforgeStoneApi.apply(stack, "yellow", true));
     }
 
     @Override

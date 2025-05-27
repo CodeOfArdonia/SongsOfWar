@@ -9,8 +9,8 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
 
-    modImplementation "maven.modrinth:neptune:VWW7YOV3"
-    modImplementation "maven.modrinth:jupiter:nhqjUZZy"
+    modImplementation "maven.modrinth:neptune:aA3ZdJrZ"
+    modImplementation "maven.modrinth:jupiter:IEkoxH6Y"
 
     // Optional
     // EMI

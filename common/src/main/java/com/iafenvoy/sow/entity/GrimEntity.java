@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.entity;
 
+import com.iafenvoy.neptune.compat.ReforgeStoneApi;
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.EntityTextureProvider;
-import com.iafenvoy.neptune.render.glint.GlintManager;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.SowWeapons;
 import net.minecraft.entity.EntityGroup;
@@ -23,7 +23,8 @@ public class GrimEntity extends MonsterEntityBase implements EntityTextureProvid
 
     public GrimEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.BLUE.apply(new ItemStack(SowWeapons.SCYTHE_IRON.get()), true));
+        ItemStack stack = new ItemStack(SowWeapons.SCYTHE_IRON.get());
+        this.setStackInHand(Hand.MAIN_HAND, ReforgeStoneApi.apply(stack, "blue", true));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

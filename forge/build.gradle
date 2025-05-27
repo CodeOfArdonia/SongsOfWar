@@ -33,8 +33,8 @@ dependencies {
     // Curios
     modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
 
-    modImplementation "maven.modrinth:neptune:TvKPw49Z"
-    modImplementation "maven.modrinth:jupiter:quscWB5K"
+    modImplementation "maven.modrinth:neptune:PMI2Uy5B"
+    modImplementation "maven.modrinth:jupiter:FZnUFUWk"
 
     // Optional
     // EMI

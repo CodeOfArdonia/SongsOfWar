@@ -6,7 +6,9 @@
   "targets": [
     "#minecraft:swords",
     "#minecraft:axes",
-    "#sow:reforgeable"
+    "#sow:reforgeable",
+    "minecraft:bow",
+    "minecraft:crossbow"
   ],
   "modifiers": [
     {

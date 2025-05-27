@@ -1,6 +1,6 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.render.glint.GlintManager;
+import com.iafenvoy.neptune.compat.ReforgeStoneApi;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.Anniversary;
@@ -22,7 +22,8 @@ public class ThalleousEntity extends AbstractArdoniEntity {
 
     public ThalleousEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.setStackInHand(Hand.MAIN_HAND, GlintManager.BLUE.apply(new ItemStack(SowWeapons.SWORD_THALLEOUS.get()), true));
+        ItemStack stack = new ItemStack(SowWeapons.SWORD_THALLEOUS.get());
+        this.setStackInHand(Hand.MAIN_HAND, ReforgeStoneApi.apply(stack, "blue", true));
         if (Anniversary.shouldInvoke())
             this.setStackInHand(Hand.OFF_HAND, new ItemStack(SowDelight.PEAS_CAN.get()));
     }
