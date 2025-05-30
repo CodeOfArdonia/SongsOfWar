@@ -60,7 +60,7 @@ public final class SongsOfWar {
         });
         ServerNetworkHelper.init();
         OriginsEvents.ON_CONFIRM.register(((player, layer, origin) -> {
-            if (player.getServer() != null && layer.equals(Identifier.of("origin", "origin")))
+            if (player.getServer() != null && layer.equals(Identifier.of("origins", "origin")))
                 player.getServer().execute(() -> {
                     AbilityData data = AbilityData.byPlayer(player);
                     if (origin.equals(Identifier.of(SongsOfWar.MOD_ID, "ardoni")))
