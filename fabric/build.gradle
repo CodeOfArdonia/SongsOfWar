@@ -35,6 +35,7 @@ dependencies {
     // Optional
     modImplementation "dev.emi:emi-fabric:${emi_version}"
     modApi "com.terraformersmc:modmenu:7.2.2"
+    modImplementation "maven.modrinth:tooltips-reforged:ZQeLXK5w"
 }
 
 processResources {

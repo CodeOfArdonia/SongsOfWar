@@ -37,8 +37,8 @@ dependencies {
     modImplementation "maven.modrinth:jupiter:FZnUFUWk"
 
     // Optional
-    // EMI
     modImplementation "dev.emi:emi-forge:${emi_version}"
+    modImplementation "maven.modrinth:tooltips-reforged:j0WLCchm"
 }
 
 processResources {

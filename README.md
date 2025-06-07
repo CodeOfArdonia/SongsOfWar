@@ -179,6 +179,7 @@ These mods are not mandatory to install, but they are recommended to gain better
 - `Origins`: SoW Mod provide new origins for it.
 - `Reforge Stone`: SoW Mod add reforge stones depend on this.
 - `Tips`: SoW Mod provide quotes for it.
+- `Tooltips Reforged`: Better tooltip display for song cubes.
 
 ## License
 

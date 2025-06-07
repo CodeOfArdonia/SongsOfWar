@@ -30,6 +30,9 @@
     ],
     "cardinal-components": [
       "com.iafenvoy.sow.fabric.component.ModComponentEntry"
+    ],
+    "tooltips_reforged": [
+      "com.iafenvoy.sow.compat.tooltips.SowTooltips"
     ]
   },
   "custom": {

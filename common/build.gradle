@@ -13,8 +13,8 @@ dependencies {
     modImplementation "maven.modrinth:jupiter:IEkoxH6Y"
 
     // Optional
-    // EMI
     modImplementation "dev.emi:emi-fabric:${emi_version}"
+    modImplementation "maven.modrinth:tooltips-reforged:ZQeLXK5w"
 }
 
 publishing {
