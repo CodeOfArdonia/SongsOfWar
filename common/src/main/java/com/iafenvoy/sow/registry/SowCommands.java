@@ -1,9 +1,10 @@
 package com.iafenvoy.sow.registry;
 
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.item.block.SongCubeBlock;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.song.SongChunkData;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -47,9 +48,9 @@ public final class SowCommands {
         ServerCommandSource source = context.getSource();
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "players");
         ItemStack stack = source.getPlayerOrThrow().getMainHandStack();
-        if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCube) {
+        if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCube) {
             for (ServerPlayerEntity player : players)
-                AbilityData.byPlayer(player).get(songCube.getCategory()).setActiveAbility(songCube.getPower(stack));
+                AbilityData.byPlayer(player).get(songCube.getCategory().getCategory()).setActiveAbility(songCube.getPower(stack));
             source.sendFeedback(() -> Text.translatable("command." + SongsOfWar.MOD_ID + ".use_song.success"), false);
             return 1;
         }
@@ -59,14 +60,16 @@ public final class SowCommands {
 
     public static int enableSong(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "players");
-        for (ServerPlayerEntity player : players) AbilityData.byPlayer(player).enable(SowAbilityCategories.ALL);
+        for (ServerPlayerEntity player : players)
+            AbilityData.byPlayer(player).enable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
         context.getSource().sendFeedback(() -> Text.literal("Success!"), true);
         return 1;
     }
 
     public static int disableSong(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "players");
-        for (ServerPlayerEntity player : players) AbilityData.byPlayer(player).disable(SowAbilityCategories.ALL);
+        for (ServerPlayerEntity player : players)
+            AbilityData.byPlayer(player).disable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
         context.getSource().sendFeedback(() -> Text.literal("Success!"), true);
         return 1;
     }

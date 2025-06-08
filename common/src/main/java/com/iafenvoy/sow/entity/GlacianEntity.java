@@ -2,10 +2,8 @@ package com.iafenvoy.sow.entity;
 
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.EntityTextureProvider;
-import com.iafenvoy.neptune.render.EntityWithMarkerTextureProvider;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.entity.netharan.AbstractNetheranEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -21,8 +19,6 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class GlacianEntity extends MonsterEntityBase implements EntityTextureProvider {
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(GlacianEntity.class, TrackedDataHandlerRegistry.INTEGER);

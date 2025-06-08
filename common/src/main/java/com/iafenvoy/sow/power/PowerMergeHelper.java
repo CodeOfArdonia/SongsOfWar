@@ -6,10 +6,10 @@ import com.iafenvoy.neptune.ability.type.AbstractAbility;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.world.FakeExplosionBehavior;
-import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
-import com.iafenvoy.sow.item.block.entity.AbstractSongCubeBlockEntity;
+import com.iafenvoy.sow.item.block.SongCubeBlock;
+import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.SowParticles;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -33,7 +33,8 @@ public class PowerMergeHelper {
     private static final Map<PlayerEntity, MergeData> DATA = new HashMap<>();
 
     public static void run(AbilityData data, PlayerEntity player, ServerWorld serverWorld) {
-        if (!data.isEnabled(SowAbilityCategories.ALL)) return;
+        if (!data.isEnabled(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new)))
+            return;
         if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
         MergeData mergeData = DATA.get(player);
         if (player.isSneaking()) {
@@ -49,12 +50,12 @@ public class PowerMergeHelper {
                     InteractHolder holder = InteractHolder.of(serverWorld, songPos);
                     if (holder.isPresent() && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
                         Vec3d center = songPos.toCenterPos();
-                        AbilityCategory category = holder.getCategory();
-                        Color4i color = category.getColor();
+                        SowAbilityCategory category = holder.getCategory();
+                        Color4i color = category.getCategory().getColor();
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.spawnParticles(SowParticles.SONG_EFFECT.get(), center.getX(), center.getY() - 0.25, center.getZ(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
-                            AbilityData.SingleAbilityData d = data.get(category);
+                            AbilityData.SingleAbilityData d = data.get(category.getCategory());
                             AbstractAbility<?> newPower = holder.getPower();
                             if (d.hasAbility()) holder.setPower(d.getActiveAbility());
                             else holder.destroy();
@@ -86,17 +87,17 @@ public class PowerMergeHelper {
     private static class InteractHolder {
         private final BlockPos pos;
         @Nullable
-        private final AbstractSongCubeBlockEntity blockEntity;
+        private final SongCubeBlockEntity blockEntity;
         @Nullable
         private final ItemEntity itemEntity;
 
         private static InteractHolder of(ServerWorld world, BlockPos pos) {
-            return world.getBlockState(pos).getBlock() instanceof AbstractSongCubeBlock && world.getBlockEntity(pos) instanceof AbstractSongCubeBlockEntity blockEntity ?
+            return world.getBlockState(pos).getBlock() instanceof SongCubeBlock && world.getBlockEntity(pos) instanceof SongCubeBlockEntity blockEntity ?
                     new InteractHolder(pos, blockEntity) :
-                    new InteractHolder(pos, world.getEntitiesByClass(ItemEntity.class, new Box(pos), x -> x.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock).stream().findFirst().orElse(null));
+                    new InteractHolder(pos, world.getEntitiesByClass(ItemEntity.class, new Box(pos), x -> x.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock).stream().findFirst().orElse(null));
         }
 
-        private InteractHolder(BlockPos pos, @Nullable AbstractSongCubeBlockEntity blockEntity) {
+        private InteractHolder(BlockPos pos, @Nullable SongCubeBlockEntity blockEntity) {
             this.pos = pos;
             this.blockEntity = blockEntity;
             this.itemEntity = null;
@@ -114,21 +115,21 @@ public class PowerMergeHelper {
 
         public AbstractAbility<?> getPower() {
             if (this.blockEntity != null) return this.blockEntity.getPower();
-            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
+            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCubeBlock)
                 return songCubeBlock.getPower(this.itemEntity.getStack());
             return null;
         }
 
-        public AbilityCategory getCategory() {
+        public SowAbilityCategory getCategory() {
             if (this.blockEntity != null) return this.blockEntity.getCategory();
-            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCubeBlock)
+            if (this.itemEntity != null && this.itemEntity.getStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCubeBlock)
                 return songCubeBlock.getCategory();
-            return SowAbilityCategories.AGGRESSIUM;
+            return SowAbilityCategory.AGGRESSIUM;
         }
 
         public void setPower(AbstractAbility<?> power) {
             if (this.blockEntity != null) this.blockEntity.setPower(power);
-            if (this.itemEntity != null) this.itemEntity.setStack(AbstractSongCubeBlock.getStack(power));
+            if (this.itemEntity != null) this.itemEntity.setStack(SongCubeBlock.getStack(power));
         }
 
         public void destroy() {

@@ -3,7 +3,7 @@ package com.iafenvoy.sow.item;
 import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.registry.SowItemGroups;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.song.SongChunkManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,14 +25,12 @@ public class SongStoneItem extends Item {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
         if (world instanceof ServerWorld serverWorld) {
-            if (!(entity instanceof PlayerEntity player) || !AbilityData.byPlayer(player).isEnabled(SowAbilityCategories.ALL))
-                stack.getOrCreateNbt().remove(POWER_KEY);
-            else {
-                AbilityCategory category = SongChunkManager.find(serverWorld, entity.getChunkPos());
+            if (entity instanceof PlayerEntity player && AbilityData.byPlayer(player).isEnabled(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new))) {
+                SowAbilityCategory category = SongChunkManager.find(serverWorld, entity.getChunkPos());
                 NbtCompound compound = stack.getOrCreateNbt();
-                if (category != null) compound.putString(POWER_KEY, category.getId().toString());
+                if (category != null) compound.putString(POWER_KEY, category.getCategory().getId().toString());
                 else compound.remove(POWER_KEY);
-            }
+            } else stack.getOrCreateNbt().remove(POWER_KEY);
         }
     }
 }

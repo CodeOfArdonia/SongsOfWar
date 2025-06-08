@@ -2,6 +2,7 @@ package com.iafenvoy.sow;
 
 import com.iafenvoy.jupiter.ConfigManager;
 import com.iafenvoy.jupiter.ServerConfigManager;
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.event.OriginsEvents;
 import com.iafenvoy.sow.config.SowCommonConfig;
@@ -10,7 +11,7 @@ import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.network.ServerNetworkHelper;
 import com.iafenvoy.sow.registry.*;
 import com.iafenvoy.sow.registry.power.SowAbilities;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.mojang.logging.LogUtils;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
@@ -64,8 +65,8 @@ public final class SongsOfWar {
                 player.getServer().execute(() -> {
                     AbilityData data = AbilityData.byPlayer(player);
                     if (origin.equals(Identifier.of(SongsOfWar.MOD_ID, "ardoni")))
-                        data.enable(SowAbilityCategories.ALL);
-                    else data.disable(SowAbilityCategories.ALL);
+                        data.enable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
+                    else data.disable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
                 });
         }));
     }

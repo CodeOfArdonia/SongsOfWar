@@ -4,7 +4,7 @@ import com.iafenvoy.neptune.ability.AbilityKeybindings;
 import com.iafenvoy.neptune.network.PacketBufferUtils;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.SowConstants;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.networking.NetworkManager;
 import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
@@ -29,10 +29,10 @@ public final class SowKeybindings {
         KeyMappingRegistry.register(PROTISIUM_POWER);
         KeyMappingRegistry.register(SUPPORTIUM_POWER);
 
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.AGGRESSIUM, AGGRESSIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.MOBILIUM, MOBILIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.PROTISIUM, PROTISIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.SUPPORTIUM, SUPPORTIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.AGGRESSIUM.getCategory(), AGGRESSIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.MOBILIUM.getCategory(), MOBILIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.PROTISIUM.getCategory(), PROTISIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.SUPPORTIUM.getCategory(), SUPPORTIUM_POWER);
 
         ClientTickEvent.CLIENT_POST.register(client -> JUMP.tick());
         JUMP.registerPressCallback(x -> {

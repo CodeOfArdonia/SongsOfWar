@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public final class MobiliumPowers {
-    public static final InstantAbility MOBILIBOUNCE = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "mobilibounce"), SowAbilityCategories.MOBILIUM)
+    public static final InstantAbility MOBILIBOUNCE = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "mobilibounce"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILIBOUNCE)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibouncePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibounceSecondaryCooldown.getValue())
@@ -41,7 +41,7 @@ public final class MobiliumPowers {
                 player.setVelocity(0, 0, 0);
                 player.velocityModified = true;
             });
-    public static final DelayAbility MOBILIBURST = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliburst"), SowAbilityCategories.MOBILIUM)
+    public static final DelayAbility MOBILIBURST = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliburst"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILIBURST)
             .setDelay(28)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue())
@@ -58,7 +58,7 @@ public final class MobiliumPowers {
                 component.setMaxTick(SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue() + 20);
                 AbilityData.byPlayer(player).addComponent(MobiliBurstComponent.ID, component);
             });
-    public static final DelayAbility MOBILIFLASH = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliflash"), SowAbilityCategories.MOBILIUM)
+    public static final DelayAbility MOBILIFLASH = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliflash"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILIFLASH)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliflashPrimaryCooldown.getValue())
@@ -71,7 +71,7 @@ public final class MobiliumPowers {
                 player.setVelocity(dir.multiply(SowCommonConfig.INSTANCE.mobilium.mobiliflashSpeed.getValue()));
                 player.velocityModified = true;
             });
-    public static final PersistAbility MOBILIGLIDE = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliglide"), SowAbilityCategories.MOBILIUM)
+    public static final PersistAbility MOBILIGLIDE = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliglide"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILIGLIDE)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliglideExhaustion.getValue())
             .onApply(holder -> {//GRAVITY attribute not available before 1.20.5
@@ -86,10 +86,10 @@ public final class MobiliumPowers {
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
                 if (instance != null) instance.removeModifier(SowConstants.MOBILIGLIDE_UUID);
             });
-    public static final PersistAbility MOBILILEAP = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobilileap"), SowAbilityCategories.MOBILIUM)
+    public static final PersistAbility MOBILILEAP = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobilileap"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILILEAP)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobilileapExhaustion.getValue());
-    public static final PersistAbility MOBILIWINGS = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliwings"), SowAbilityCategories.MOBILIUM)
+    public static final PersistAbility MOBILIWINGS = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "mobiliwings"), SowAbilityCategory.MOBILIUM.getCategory())
             .setApplySound(SowSounds.MOBILIWINGS)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliwingsExhaustion.getValue())
             .onApply(holder -> {

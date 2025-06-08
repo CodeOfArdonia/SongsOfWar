@@ -37,7 +37,7 @@ import java.util.Random;
 
 @SuppressWarnings("unused")
 public final class AggressiumPowers {
-    public static final PersistAbility AGGROBEAM = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrobeam"), SowAbilityCategories.AGGRESSIUM).experimental()
+    public static final PersistAbility AGGROBEAM = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrobeam"), SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
             .setApplySound(SowSounds.AGGROBEAM)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggrobeamExhaustion.getValue())
             .onTick(holder -> {
@@ -58,7 +58,7 @@ public final class AggressiumPowers {
                 for (EntityHitResult r : results)
                     r.getEntity().damage(source, holder.processDamage(SowCommonConfig.INSTANCE.aggressium.aggrobeamDamage.getValue().floatValue()));
             });
-    public static final DelayAbility AGGROBLAST = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroblast"), SowAbilityCategories.AGGRESSIUM)
+    public static final DelayAbility AGGROBLAST = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroblast"), SowAbilityCategory.AGGRESSIUM.getCategory())
             .setApplySound(SowSounds.AGGROBLAST)
             .setDelay(8)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroblastPrimaryCooldown.getValue())
@@ -81,7 +81,7 @@ public final class AggressiumPowers {
                     living.damage(DamageUtil.build(player, SowDamageTypes.AGGROBLAST), holder.processDamage(SowCommonConfig.INSTANCE.aggressium.aggroblastDamage.getValue().floatValue()));
                 } else holder.cancel();
             });
-    public static final DelayAbility AGGRODETONATE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrodetonate"), SowAbilityCategories.AGGRESSIUM)
+    public static final DelayAbility AGGRODETONATE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrodetonate"), SowAbilityCategory.AGGRESSIUM.getCategory())
             .setApplySound(SowSounds.AGGRODETONATE)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggrodetonatePrimaryCooldown.getValue())
@@ -98,7 +98,7 @@ public final class AggressiumPowers {
                     world.spawnEntity(aggroDetonate);
                 }
             });
-    public static final DelayAbility AGGROQUAKE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroquake"), SowAbilityCategories.AGGRESSIUM)
+    public static final DelayAbility AGGROQUAKE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroquake"), SowAbilityCategory.AGGRESSIUM.getCategory())
             .setApplySound(SowSounds.AGGROQUAKE)
             .setDelay(8)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroquakePrimaryCooldown.getValue())
@@ -116,7 +116,7 @@ public final class AggressiumPowers {
                     living.velocityModified = true;
                 }
             });
-    public static final DelayAbility AGGROSHARD = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroshard"), SowAbilityCategories.AGGRESSIUM)
+    public static final DelayAbility AGGROSHARD = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroshard"), SowAbilityCategory.AGGRESSIUM.getCategory())
             .setApplySound(SowSounds.AGGROSHARD)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshardPrimaryCooldown.getValue())
@@ -139,7 +139,7 @@ public final class AggressiumPowers {
                     });
                 }
             });
-    public static final InstantAbility AGGROSHOCK = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroshock"), SowAbilityCategories.AGGRESSIUM).experimental()
+    public static final InstantAbility AGGROSHOCK = new InstantAbility(Identifier.of(SongsOfWar.MOD_ID, "aggroshock"), SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockSecondaryCooldown.getValue())
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockExhaustion.getValue())
@@ -153,7 +153,7 @@ public final class AggressiumPowers {
                     EntityUtil.lightening(serverWorld, pos.x, pos.y, pos.z, false);
                 }
             });
-    public static final DelayAbility AGGROSPHERE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrosphere"), SowAbilityCategories.AGGRESSIUM)
+    public static final DelayAbility AGGROSPHERE = new DelayAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrosphere"), SowAbilityCategory.AGGRESSIUM.getCategory())
             .setApplySound(SowSounds.AGGROSPHERE)
             .setDelay(36)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggrospherePrimaryCooldown.getValue())
@@ -170,7 +170,7 @@ public final class AggressiumPowers {
                     world.spawnEntity(aggroSphere);
                 }
             });
-    public static final PersistAbility AGGROSTORM = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrostorm"), SowAbilityCategories.AGGRESSIUM).experimental()
+    public static final PersistAbility AGGROSTORM = new PersistAbility(Identifier.of(SongsOfWar.MOD_ID, "aggrostorm"), SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
             .setApplySound(SowSounds.AGGROSTORM)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggrostormExhaustion.getValue())
             .onTick(holder -> {

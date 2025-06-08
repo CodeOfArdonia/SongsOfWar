@@ -1,10 +1,10 @@
 package com.iafenvoy.sow.world.sound;
 
-import com.iafenvoy.neptune.ability.AbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.minecraft.util.math.BlockPos;
 
 public interface SongCubeSoundManager {
-    void startPlaying(BlockPos pos, AbilityCategory category);
+    void startPlaying(BlockPos pos, SowAbilityCategory category);
 
     void destroy(BlockPos pos);
 
@@ -14,7 +14,7 @@ public interface SongCubeSoundManager {
         INSTANCE;
 
         @Override
-        public void startPlaying(BlockPos pos, AbilityCategory category) {
+        public void startPlaying(BlockPos pos, SowAbilityCategory category) {
         }
 
         @Override

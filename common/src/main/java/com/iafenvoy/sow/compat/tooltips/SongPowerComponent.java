@@ -1,9 +1,9 @@
 package com.iafenvoy.sow.compat.tooltips;
 
-import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.type.AbstractAbility;
 import com.iafenvoy.neptune.ability.type.DummyAbility;
-import com.iafenvoy.sow.item.block.AbstractSongCubeBlock;
+import com.iafenvoy.sow.item.block.SongCubeBlock;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
@@ -18,11 +18,11 @@ import org.jetbrains.annotations.Nullable;
 @Environment(EnvType.CLIENT)
 public class SongPowerComponent implements TooltipComponent {
     @Nullable
-    private final AbilityCategory category;
+    private final SowAbilityCategory category;
     private final AbstractAbility<?> ability;
 
     public SongPowerComponent(ItemStack stack) {
-        if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSongCubeBlock songCube) {
+        if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCube) {
             this.category = songCube.getCategory();
             this.ability = songCube.getPower(stack);
         } else {
@@ -45,7 +45,7 @@ public class SongPowerComponent implements TooltipComponent {
     public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext context) {
         int lineY = y - textRenderer.fontHeight - 1;
         MutableText mutableText = Text.translatable(this.ability.getTranslateKey());
-        if (this.category != null) mutableText = this.category.appendColor(mutableText);
+        if (this.category != null) mutableText = this.category.getCategory().appendColor(mutableText);
         lineY += textRenderer.fontHeight + 1;
         context.drawTexture(this.ability.getIconTexture(), x, lineY, 10, 10, 0, 0, 16, 16, 16, 16);
         context.drawText(textRenderer, mutableText, x + 12, lineY, -1, true);

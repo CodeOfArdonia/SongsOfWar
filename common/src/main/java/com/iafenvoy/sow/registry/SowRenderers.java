@@ -20,7 +20,7 @@ import com.iafenvoy.sow.item.SongStoneItem;
 import com.iafenvoy.sow.particle.AggroblastParticle;
 import com.iafenvoy.sow.particle.LaserParticle;
 import com.iafenvoy.sow.particle.SongEffectParticle;
-import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
@@ -37,8 +37,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
-
-import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public final class SowRenderers {
@@ -211,10 +209,7 @@ public final class SowRenderers {
     public static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(SowBlockEntities.ARDONI_GRAVE.get(), ctx -> new ArdoniGraveBlockEntityRenderer());
         BlockEntityRendererRegistry.register(SowBlockEntities.WALLS_OF_TIME.get(), WallsOfTimeBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(SowBlockEntities.AGGRESSIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.AggressiumSongCubeBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(SowBlockEntities.MOBILIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.MobiliumSongCubeBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(SowBlockEntities.PROTISIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.ProtisiumSongCubeBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(SowBlockEntities.SUPPORTIUM_SONG_TYPE.get(), SongCubeBlockEntityRenderer.SupportiumSongCubeBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(SowBlockEntities.SONG_CUBE.get(), SongCubeBlockEntityRenderer::new);
     }
 
     public static void registerRenderType() {
@@ -223,7 +218,7 @@ public final class SowRenderers {
     }
 
     public static void registerModelPredicate() {
-        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? AbilityCategory.byId(Identifier.tryParse(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY))).map(x -> List.of(SowAbilityCategories.ALL).indexOf(x)).orElse(-1) + 1.0F : 0.0F) / SowAbilityCategories.ALL.length);
+        ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> (stack.hasNbt() && stack.getOrCreateNbt().contains(SongStoneItem.POWER_KEY, NbtElement.STRING_TYPE) ? AbilityCategory.byId(Identifier.tryParse(stack.getOrCreateNbt().getString(SongStoneItem.POWER_KEY))).map(x -> SowAbilityCategory.ALL.get().indexOf(x)).orElse(-1) + 1.0F : 0.0F) / SowAbilityCategory.values().length);
         ItemPropertiesRegistry.registerGeneric(Identifier.of(SongsOfWar.MOD_ID, AdjustedSongStoneItem.NEAR_KEY), (stack, world, entity, seed) -> stack.hasNbt() ? stack.getOrCreateNbt().getFloat(AdjustedSongStoneItem.NEAR_KEY) : 0);
     }
 }
