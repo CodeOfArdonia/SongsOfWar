@@ -3,17 +3,14 @@ package com.iafenvoy.sow.item.block.entity;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.block.ArdoniGraveBlock;
 import com.iafenvoy.sow.registry.SowBlockEntities;
-import com.iafenvoy.sow.registry.SowBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
@@ -85,26 +82,6 @@ public class ArdoniGraveBlockEntity extends BlockEntity {
         return -this.getCachedState().get(ArdoniGraveBlock.FACING).asRotation() + 180;
     }
 
-    public static ItemStack buildGrave(long seed, ArdoniType type) {
-        NbtCompound nbt = new NbtCompound();
-        nbt.putLong("seed", seed);
-        nbt.putBoolean("fixed", false);
-        nbt.putString("type", type.id());
-        ItemStack stack = new ItemStack(SowBlocks.ARDONI_GRAVE.get());
-        stack.setSubNbt("BlockEntityTag", nbt);
-        return stack;
-    }
-
-    public static ItemStack buildGrave(Identifier texture) {
-        NbtCompound nbt = new NbtCompound();
-        nbt.putBoolean("fixed", true);
-        nbt.putString("texturePath", texture.toString());
-        ItemStack stack = new ItemStack(SowBlocks.ARDONI_GRAVE.get());
-        stack.setSubNbt("BlockEntityTag", nbt);
-        return stack;
-    }
-
-    @Nullable
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);

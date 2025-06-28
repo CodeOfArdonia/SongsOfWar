@@ -160,9 +160,6 @@ public final class SowSkulls {
         return ITEM_REGISTRY.register(name + "_head", () -> new SkullItem(head.get(), wallHead.get(), new Item.Settings().arch$tab(SowItemGroups.MOBS)));
     }
 
-    public static void init() {
-    }
-
     public enum SkullType implements SkullBlock.SkullType {
         ABBIGAIL, ACHILLEAN, AEGUS, ALEC, ALLISTER, AURELIUS, CHRONOS, DARLENE, DENNY, EDDY, GALLEOUS, GRIM, HADION,
         HAWKEN, HUBRIS, IGNEOUS, INGRESSSUS, JALKAR, KIYOSHI, LUCAN, LUCIDIUS, MARCUS, MARSHALL, MASANI, MRFINCH, NECROLORD, NIIKA,

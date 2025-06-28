@@ -1,4 +1,4 @@
-package com.iafenvoy.sow.render.entity.feature;
+package com.iafenvoy.sow.render.entity.feature.ardoni;
 
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;

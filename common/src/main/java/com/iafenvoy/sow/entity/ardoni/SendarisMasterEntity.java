@@ -16,6 +16,7 @@ import java.util.Optional;
 public class SendarisMasterEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/sendaris_master.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/sendaris_master_marker.png");
+    public static final Color4i COLOR = new Color4i(126, 239, 255, 255);
 
     public SendarisMasterEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -34,7 +35,7 @@ public class SendarisMasterEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(126, 239, 255, 255);
+        return COLOR;
     }
 
     @Override

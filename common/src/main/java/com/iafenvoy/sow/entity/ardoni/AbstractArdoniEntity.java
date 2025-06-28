@@ -4,7 +4,7 @@ import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.EntityWithMarkerTextureProvider;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.data.ArdoniType;
-import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
+import com.iafenvoy.sow.item.ArdoniGraveItem;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -68,7 +68,7 @@ public abstract class AbstractArdoniEntity extends MonsterEntityBase implements 
     public abstract ArdoniType getArdoniType();
 
     public ItemStack toGrave() {
-        return this.getMarkerTextureId().map(ArdoniGraveBlockEntity::buildGrave).orElse(ItemStack.EMPTY);
+        return this.getMarkerTextureId().map(id -> ArdoniGraveItem.buildGrave(id, this.getColor())).orElse(ItemStack.EMPTY);
     }
 
     public boolean isFemale() {
@@ -79,5 +79,4 @@ public abstract class AbstractArdoniEntity extends MonsterEntityBase implements 
     public boolean canImmediatelyDespawn(double distanceSquared) {
         return false;
     }
-
 }

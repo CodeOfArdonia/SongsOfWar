@@ -1,4 +1,4 @@
-package com.iafenvoy.sow.render.entity.feature;
+package com.iafenvoy.sow.render.entity.feature.ardoni;
 
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.SongsOfWar;
@@ -27,18 +27,14 @@ public class ArdoniSkinFeatureRenderer extends FeatureRenderer<AbstractArdoniEnt
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractArdoniEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        double darkness = entity instanceof ArdoniEntity ardoni ? getDarkness(ardoni) : 1;
+        double darkness = entity instanceof ArdoniEntity ardoni ? getDarkness(ardoni.getArdoniType().dark(), ardoni.getMarkerSeed()) : 1;
         PlayerEntityModel<AbstractArdoniEntity> model = this.getContextModel();
         model.render(matrices, vertexConsumers.getBuffer(model.getLayer(entity.getTextureId())), light, LivingEntityRenderer.getOverlay(entity, 0), (float) darkness, (float) darkness, (float) darkness, 1);
         if (entity instanceof ArdoniEntity ardoni && ardoni.getAge() >= 4)
             model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(ARDONI_SHADOW)), light, LivingEntityRenderer.getOverlay(entity, 0), (float) darkness, (float) darkness, (float) darkness, 1);
     }
 
-    public static double getDarkness(ArdoniEntity ardoni) {
-        double darkness;
-        if (ardoni.getArdoniType().dark())
-            darkness = RandomHelper.nextDouble(new Random(ardoni.getMarkerSeed()), 0.45, 0.65);
-        else darkness = RandomHelper.nextDouble(new Random(ardoni.getMarkerSeed()), 0.8, 1);
-        return darkness;
+    public static double getDarkness(boolean dark, long seed) {
+        return dark ? RandomHelper.nextDouble(new Random(seed), 0.45, 0.65) : RandomHelper.nextDouble(new Random(seed), 0.8, 1);
     }
 }

@@ -16,6 +16,7 @@ import java.util.Optional;
 public class AegusEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/aegus.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/aegus_marker.png");
+    public static final Color4i COLOR = new Color4i(254, 229, 117, 255);
 
     public AegusEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -34,7 +35,7 @@ public class AegusEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(254, 229, 117, 255);
+        return COLOR;
     }
 
     @Override

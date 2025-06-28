@@ -5,7 +5,7 @@ import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
-import com.iafenvoy.sow.item.block.entity.ArdoniGraveBlockEntity;
+import com.iafenvoy.sow.item.ArdoniGraveItem;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -127,6 +127,6 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
 
     @Override
     public ItemStack toGrave() {
-        return ArdoniGraveBlockEntity.buildGrave(this.getMarkerSeed(), this.getArdoniType());
+        return ArdoniGraveItem.buildGrave(this.getMarkerSeed(), this.getArdoniType(), this.getAge(), this.isFemale());
     }
 }

@@ -1,6 +1,7 @@
 package com.iafenvoy.sow.registry;
 
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.item.ArdoniGraveItem;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.TemporaryBlockItem;
 import com.iafenvoy.sow.item.block.*;
@@ -21,7 +22,7 @@ public final class SowBlocks {
     public static final DeferredRegister<Item> ITEM_REGISTRY = DeferredRegister.create(SongsOfWar.MOD_ID, RegistryKeys.ITEM);
 
     public static final RegistrySupplier<PeasBlock> PEAS = register("peas", PeasBlock::new, block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.PEAS_DELIGHT)));
-    public static final RegistrySupplier<ArdoniGraveBlock> ARDONI_GRAVE = register("ardoni_grave", ArdoniGraveBlock::new, block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.ITEMS)));
+    public static final RegistrySupplier<ArdoniGraveBlock> ARDONI_GRAVE = register("ardoni_grave", ArdoniGraveBlock::new, ArdoniGraveItem::new);
     public static final RegistrySupplier<WallsOfTimeBlock> WALLS_OF_TIME = register("walls_of_time", () -> new WallsOfTimeBlock(AbstractBlock.Settings.create()), block -> new BlockItem(block, new Item.Settings().arch$tab(SowItemGroups.ITEMS)));
 
     public static final RegistrySupplier<SongCubeBlock> AGGRESSIUM_SONG = register("aggressium_song", () -> new SongCubeBlock(SowAbilityCategory.AGGRESSIUM), SongCubeItem::new);

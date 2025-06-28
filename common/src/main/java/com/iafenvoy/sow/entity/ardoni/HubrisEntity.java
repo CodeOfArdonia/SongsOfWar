@@ -13,6 +13,7 @@ import java.util.Optional;
 public class HubrisEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/hubris.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/hubris_marker.png");
+    public static final Color4i COLOR = new Color4i(255, 255, 0, 255);
 
     public HubrisEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -30,7 +31,7 @@ public class HubrisEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(255, 255, 0, 255);
+        return COLOR;
     }
 
     @Override

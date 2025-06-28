@@ -21,6 +21,7 @@ import java.util.Optional;
 public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren_marker.png");
+    public static final Color4i COLOR = new Color4i(255, 0, 0, 255);
     private static final TrackedData<Boolean> FLAT = DataTracker.registerData(TygrenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public TygrenEntity(EntityType<? extends HostileEntity> entityType, World world) {
@@ -46,7 +47,7 @@ public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(255, 0, 0, 255);
+        return COLOR;
     }
 
     @Override

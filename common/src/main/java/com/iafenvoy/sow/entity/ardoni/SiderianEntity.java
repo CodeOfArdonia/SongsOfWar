@@ -13,6 +13,7 @@ import java.util.Optional;
 public class SiderianEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/siderian.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/siderian_marker.png");
+    public static final Color4i COLOR = new Color4i(207, 111, 204, 255);
 
     public SiderianEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -30,7 +31,7 @@ public class SiderianEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(207, 111, 204, 255);
+        return COLOR;
     }
 
     @Override

@@ -17,6 +17,7 @@ import java.util.Optional;
 public class IngresssusEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ingresssus.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ingresssus_marker.png");
+    public static final Color4i COLOR = new Color4i(240, 92, 79, 255);
 
     public IngresssusEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -37,7 +38,7 @@ public class IngresssusEntity extends AbstractArdoniEntity {
 
     @Override
     public Color4i getColor() {
-        return new Color4i(240, 92, 79, 255);
+        return COLOR;
     }
 
     @Override
