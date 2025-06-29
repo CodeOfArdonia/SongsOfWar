@@ -3,7 +3,7 @@ package com.iafenvoy.sow.registry;
 import com.iafenvoy.neptune.ability.AbilityKeybindings;
 import com.iafenvoy.neptune.network.PacketBufferUtils;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.SowConstants;
+import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.networking.NetworkManager;
@@ -36,7 +36,7 @@ public final class SowKeybindings {
 
         ClientTickEvent.CLIENT_POST.register(client -> JUMP.tick());
         JUMP.registerPressCallback(x -> {
-            if (x) NetworkManager.sendToServer(SowConstants.JUMP_PRESS, PacketBufferUtils.create());
+            if (x) NetworkManager.sendToServer(Constants.JUMP_PRESS, PacketBufferUtils.create());
         });
     }
 }

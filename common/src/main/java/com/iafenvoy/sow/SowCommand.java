@@ -1,8 +1,7 @@
-package com.iafenvoy.sow.registry;
+package com.iafenvoy.sow;
 
 import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
-import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.song.SongChunkData;
@@ -13,28 +12,27 @@ import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
 import java.util.Collection;
 
-public final class SowCommands {
+import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
+
+public final class SowCommand {
     public static void init() {
         CommandRegistrationEvent.EVENT.register((dispatcher, registry, selection) -> dispatcher
-                .register(CommandManager.literal("sow")
-                        .then(CommandManager.literal("power")
-                                .requires(ServerCommandSource::isExecutedByPlayer)
-                                .requires(source -> source.hasPermissionLevel(source.getServer().isDedicated() ? 4 : 0))
-                                .then(CommandManager.argument("players", EntityArgumentType.players())
-                                        .then(CommandManager.literal("use").executes(SowCommands::useSong))
-                                        .then(CommandManager.literal("enable").executes(SowCommands::enableSong))
-                                        .then(CommandManager.literal("disable").executes(SowCommands::disableSong))
+                .register(literal("sow")
+                        .requires(source -> source.isExecutedByPlayer() && source.hasPermissionLevel(source.getServer().isDedicated() ? 4 : 0))
+                        .then(literal("power")
+                                .then(argument("players", EntityArgumentType.players())
+                                        .then(literal("use").executes(SowCommand::useSong))
+                                        .then(literal("enable").executes(SowCommand::enableSong))
+                                        .then(literal("disable").executes(SowCommand::disableSong))
                                 ))
-                        .then(CommandManager.literal("chunk")
-                                .requires(ServerCommandSource::isExecutedByPlayer)
-                                .requires(source -> source.hasPermissionLevel(source.getServer().isDedicated() ? 4 : 0))
+                        .then(literal("chunk")
                                 .executes(ctx -> {
                                     ServerCommandSource source = ctx.getSource();
                                     PlayerEntity player = source.getPlayerOrThrow();

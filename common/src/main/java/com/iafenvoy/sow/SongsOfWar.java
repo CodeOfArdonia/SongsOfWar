@@ -43,7 +43,7 @@ public final class SongsOfWar {
         SowSkulls.ITEM_REGISTRY.register();
         SowSounds.REGISTRY.register();
         SowWeapons.REGISTRY.register();
-        SowCommands.init();
+        SowCommand.init();
         SowEntities.init();
     }
 

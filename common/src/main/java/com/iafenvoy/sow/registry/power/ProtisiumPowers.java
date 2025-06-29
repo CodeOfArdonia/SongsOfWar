@@ -7,7 +7,7 @@ import com.iafenvoy.neptune.ability.type.IntervalAbility;
 import com.iafenvoy.neptune.ability.type.PersistAbility;
 import com.iafenvoy.neptune.event.LivingEntityEvents;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.SowConstants;
+import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.entity.power.ProteCloneEntity;
 import com.iafenvoy.sow.item.block.TemporaryTransparentBlock;
@@ -113,11 +113,11 @@ public final class ProtisiumPowers {
             .onApply(holder -> {
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_ARMOR);
                 if (instance != null)
-                    instance.addTemporaryModifier(new EntityAttributeModifier(SowConstants.PROTESPHERE_UUID, "protesphere", 50, EntityAttributeModifier.Operation.ADDITION));
+                    instance.addTemporaryModifier(new EntityAttributeModifier(Constants.PROTESPHERE_UUID, "protesphere", 50, EntityAttributeModifier.Operation.ADDITION));
             })
             .onUnapply(holder -> {
                 EntityAttributeInstance instance = holder.getPlayer().getAttributes().getCustomInstance(EntityAttributes.GENERIC_ARMOR);
-                if (instance != null) instance.removeModifier(SowConstants.PROTESPHERE_UUID);
+                if (instance != null) instance.removeModifier(Constants.PROTESPHERE_UUID);
             });
 
     public static void init() {

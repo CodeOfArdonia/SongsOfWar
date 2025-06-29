@@ -2,8 +2,8 @@ package com.iafenvoy.sow.item.block;
 
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.ability.type.AbstractAbility;
-import com.iafenvoy.sow.Cache;
 import com.iafenvoy.sow.Proxies;
+import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.minecraft.block.BlockState;
@@ -75,7 +75,7 @@ public class SongCubeBlock extends BlockWithEntity {
         super.appendTooltip(stack, world, tooltip, options);
         AbstractAbility<?> power = this.getPower(stack);
         tooltip.add(this.category.getCategory().appendColor(Text.translatable(power.getTranslateKey())));
-        Cache.lastSongPowerTooltip = power.getTranslateKey();
+        Constants.LAST_SONG_POWER_TOOLTIP = power.getTranslateKey();
         if (power.isExperimental()) tooltip.add(Text.translatable("item.sow.song.experimental"));
     }
 
