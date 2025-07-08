@@ -2,8 +2,8 @@ package com.iafenvoy.sow.registry;
 
 import com.iafenvoy.neptune.ability.AbilityKeybindings;
 import com.iafenvoy.neptune.network.PacketBufferUtils;
-import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.networking.NetworkManager;

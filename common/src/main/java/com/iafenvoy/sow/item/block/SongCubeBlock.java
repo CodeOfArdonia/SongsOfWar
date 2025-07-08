@@ -2,8 +2,8 @@ package com.iafenvoy.sow.item.block;
 
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.ability.type.AbstractAbility;
-import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.minecraft.block.BlockState;

@@ -2,6 +2,7 @@ package com.iafenvoy.sow.render.entity.feature.player;
 
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
 import com.iafenvoy.sow.render.entity.feature.ArdoniSkinHelper;
 import net.fabricmc.api.EnvType;
@@ -29,7 +30,7 @@ public class PlayerArdoniHairFeatureRenderer<T extends PlayerEntity, M extends P
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         matrices.push();
-        matrices.scale(1.0025f, 1.0025f, 1.0025f);
+        SowClientConfig.processEmissiveStack(matrices);
         PlayerEntityModel<T> model = new PlayerEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.PLAYER), false);
         this.getContextModel().copyBipedStateTo(model);
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(entity);

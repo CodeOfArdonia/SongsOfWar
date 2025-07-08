@@ -16,7 +16,7 @@ import java.util.Optional;
 public class HadionEntity extends AbstractArdoniEntity {
     public static final Identifier TEXTURE = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/hadion.png");
     public static final Identifier TEXTURE_MARKER = Identifier.of(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/hadion_marker.png");
-    public static final Color4i COLOR =new Color4i(231, 148, 255, 255);
+    public static final Color4i COLOR = new Color4i(231, 148, 255, 255);
 
     public HadionEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

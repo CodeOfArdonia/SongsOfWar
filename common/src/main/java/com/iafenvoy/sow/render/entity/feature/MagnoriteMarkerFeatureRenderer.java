@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature;
 
-import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
 import com.iafenvoy.sow.entity.magnorite.AbstractMagnoriteEntity;
 import com.iafenvoy.sow.entity.magnorite.MagnoriteEntity;
 import com.iafenvoy.sow.render.generator.MagnoriteSkinGenerator;

@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.network;
 
 import com.iafenvoy.neptune.ability.AbilityData;
-import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.Constants;
+import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.power.component.MobiliWingsComponent;
 import com.iafenvoy.sow.registry.power.MobiliumPowers;
 import dev.architectury.networking.NetworkManager;

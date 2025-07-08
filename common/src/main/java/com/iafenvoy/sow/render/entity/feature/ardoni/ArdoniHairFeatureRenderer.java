@@ -2,6 +2,7 @@ package com.iafenvoy.sow.render.entity.feature.ardoni;
 
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
+import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
 import com.iafenvoy.sow.entity.ardoni.random.ArdoniEntity;
 import net.fabricmc.api.EnvType;
@@ -28,7 +29,7 @@ public class ArdoniHairFeatureRenderer extends FeatureRenderer<AbstractArdoniEnt
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractArdoniEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         matrices.push();
-        matrices.scale(1.0025f, 1.0025f, 1.0025f);
+        SowClientConfig.processEmissiveStack(matrices);
         PlayerEntityModel<AbstractArdoniEntity> model = new PlayerEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.PLAYER), false);
         this.getContextModel().copyBipedStateTo(model);
         Color4i color = entity.getColor();
