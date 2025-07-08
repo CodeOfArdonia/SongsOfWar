@@ -6,11 +6,13 @@ import com.iafenvoy.sow.entity.ardoni.random.ArdoniEntity;
 import com.iafenvoy.sow.render.generator.ArdoniMarkerGenerator;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
@@ -25,8 +27,11 @@ public class ArdoniMarkerFeatureRenderer extends FeatureRenderer<AbstractArdoniE
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractArdoniEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        matrices.push();
+        matrices.scale(1.0025f, 1.0025f, 1.0025f);
         Optional<Identifier> marker = entity.getMarkerTextureId();
-        PlayerEntityModel<AbstractArdoniEntity> model = this.getContextModel();
+        PlayerEntityModel<AbstractArdoniEntity> model = new PlayerEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.PLAYER), false);
+        this.getContextModel().copyBipedStateTo(model);
         if (marker.isPresent())
             model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(marker.get())), light, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1);
         else if (entity instanceof ArdoniEntity ardoni) {
@@ -34,5 +39,6 @@ public class ArdoniMarkerFeatureRenderer extends FeatureRenderer<AbstractArdoniE
             Color4i color = entity.getColor();
             model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(generator.getForSkin())), light, OverlayTexture.DEFAULT_UV, color.getR(), color.getG(), color.getB(), 1);
         }
+        matrices.pop();
     }
 }

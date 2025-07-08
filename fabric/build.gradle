@@ -25,7 +25,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
     modImplementation "dev.emi:trinkets:${trinkets_version}"
-    modImplementation "maven.modrinth:neptune:OpbrplQ5"
+    modImplementation "maven.modrinth:neptune:weLtxaHp"
     modImplementation "maven.modrinth:jupiter:IEkoxH6Y"
 
     modApi(include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"))

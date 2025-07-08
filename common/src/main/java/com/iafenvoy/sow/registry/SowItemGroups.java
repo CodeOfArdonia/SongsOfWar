@@ -18,7 +18,7 @@ public final class SowItemGroups {
         ItemStack stack = new ItemStack(SowWeapons.SWORD_INGRESSSUS.get());
         return ReforgeStoneApi.apply(stack, "red", true);
     }));
-    public static final RegistrySupplier<ItemGroup> MOBS = REGISTRY.register("mobs", () -> CreativeTabRegistry.create(Text.translatable("itemGroup." + SongsOfWar.MOD_ID + ".mobs"), () -> new ItemStack(SowSpawnEggs.NONE_TYPE_ARDONI_SPAWN_EGG.get())));
+    public static final RegistrySupplier<ItemGroup> MOBS = REGISTRY.register("mobs", () -> CreativeTabRegistry.create(Text.translatable("itemGroup." + SongsOfWar.MOD_ID + ".mobs"), () -> new ItemStack(SowSkulls.INGRESSSUS_HEAD.get())));
     public static final RegistrySupplier<ItemGroup> POWER = REGISTRY.register("power", () -> CreativeTabRegistry.create(Text.translatable("itemGroup." + SongsOfWar.MOD_ID + ".power"), () -> new ItemStack(SowBlocks.AGGRESSIUM_SONG.get())));
     public static final RegistrySupplier<ItemGroup> PEAS_DELIGHT = REGISTRY.register("peas_delight", () -> CreativeTabRegistry.create(Text.translatable("itemGroup." + SongsOfWar.MOD_ID + ".peas_delight"), () -> new ItemStack(SowBlocks.PEAS.get())));
 }

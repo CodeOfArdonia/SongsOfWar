@@ -16,7 +16,6 @@ public class MagnoriteEntityRenderer extends BipedEntityRenderer<AbstractMagnori
     public MagnoriteEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new PlayerEntityModel<>(ctx.getPart(EntityModelLayers.PLAYER), false), 0.5F);
         this.addFeature(new MagnoriteMarkerFeatureRenderer(this));
-        this.model.setVisible(true);
     }
 
     @Override
