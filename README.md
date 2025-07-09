@@ -24,15 +24,19 @@ Most weapon are wearable on back and belt. (Thanks for `Curios` and `Trinkets`)
 
 ### Upgrading Stone
 
-Song Stone forging system allow you to upgrade your weapon and will receive colorful glint. (Require `Reforge Stone` Mod)
+Song Stone forging system allow you to upgrade your weapon and will receive colorful glint. (Require `Reforge Stone`
+Mod)
 
 <div align=center><img src="https://raw.githubusercontent.com/CodeOfArdonia/SongsOfWar/refs/heads/master/img/3.webp" style="width:400px;text-align:center;" alt=""></img></div>
 
 ### Various Entities
 
-Add almost all characters in animation. Also, every ardoni have their own class and markers.
+Add almost all characters in animation. Also, every ardoni have their own class and markers. You can also wear skulls
+and graves to change to their skins.
 
 <div align=center><img src="https://raw.githubusercontent.com/CodeOfArdonia/SongsOfWar/refs/heads/master/img/4.webp" style="width:400px;text-align:center;" alt=""></img></div>
+
+**Known issue: A bit conflict with some EMF resource packs such as `Detailed Animations`.**
 
 ### Song Power System
 
