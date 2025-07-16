@@ -139,20 +139,9 @@ If everything is correct, the song cube will start spawning particles. After an 
 
 ### Origins Support
 
-Add some origins related to the animation.
-
-<details>
-<summary>Added Origins</summary>
-
-| Origin    | Impact | Advantages                                                                                   | Disadvantages                                                                          |
-|:----------|:-------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| Ardoni    | High   | +10 Health **(Recommend Max Health Fix)** <br> Use song ability <br> Invulnerable to potions | Cannot use redstone <br> Cannot wear armor greater than leather <br> Cannot use elytra |
-| Felina    | Medium | Can climb <br> Speed and jump boost <br> Invulnerable to fall                                | Afraid of water <br> Cannot wear armor greater than iron <br> Can only eat meat        |
-| Magnorite | High   | Invulnerable to fire, lava and fall <br> Faster in lava <br> +10 Defense                     | Very afraid of water&cold <br> Cannot use elytra                                       |
-| Netharan  | Low    | Invulnerable to fire                                                                         | Afraid of water&cold <br> Cannot use elytra                                            |
-| Glacian   | Medium | Invulnerable to powder snow <br> +5 Defense                                                  | Afraid of hot                                                                          |
-
-</details>
+**This has been moved to Songs of Origins
+[CurseForge](https://www.curseforge.com/minecraft/mc-mods/songs-of-origins) |
+[Modrinth](https://modrinth.com/mod/songs-of-origins)**
 
 ### Farmer's Delight Support
 
@@ -180,7 +169,6 @@ These mods are not mandatory to install, but they are recommended to gain better
 - `Farmer's Delight (Refabricated)`: Enable crafting recipe for Peas Delight items.
 - `Litematica`: SoW Mod provide shrine schematic for it.
 - `Max Health Fix`: Fix Ardoni Origin health problem.
-- `Origins`: SoW Mod provide new origins for it.
 - `Reforge Stone`: SoW Mod add reforge stones depend on this.
 - `Tips`: SoW Mod provide quotes for it.
 - `Tooltips Reforged`: Better tooltip display for song cubes.

@@ -2,23 +2,18 @@ package com.iafenvoy.sow;
 
 import com.iafenvoy.jupiter.ConfigManager;
 import com.iafenvoy.jupiter.ServerConfigManager;
-import com.iafenvoy.neptune.ability.AbilityCategory;
-import com.iafenvoy.neptune.ability.AbilityData;
-import com.iafenvoy.neptune.event.OriginsEvents;
 import com.iafenvoy.sow.config.SowCommonConfig;
 import com.iafenvoy.sow.data.BeaconData;
 import com.iafenvoy.sow.item.block.entity.WallsOfTimeBlockEntity;
 import com.iafenvoy.sow.network.ServerNetworkHelper;
 import com.iafenvoy.sow.registry.*;
 import com.iafenvoy.sow.registry.power.SowAbilities;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.mojang.logging.LogUtils;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
 public final class SongsOfWar {
@@ -60,14 +55,5 @@ public final class SongsOfWar {
             return EventResult.pass();
         });
         ServerNetworkHelper.init();
-        OriginsEvents.ON_CONFIRM.register(((player, layer, origin) -> {
-            if (player.getServer() != null && layer.equals(Identifier.of("origins", "origin")))
-                player.getServer().execute(() -> {
-                    AbilityData data = AbilityData.byPlayer(player);
-                    if (origin.equals(Identifier.of(SongsOfWar.MOD_ID, "ardoni")))
-                        data.enable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
-                    else data.disable(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
-                });
-        }));
     }
 }
