@@ -1,10 +1,7 @@
 package com.iafenvoy.sow.registry;
 
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.item.SowAxeItem;
-import com.iafenvoy.sow.item.SowCanActiveSwordItem;
-import com.iafenvoy.sow.item.SowSwordItem;
-import com.iafenvoy.sow.item.SowWeapon;
+import com.iafenvoy.sow.item.*;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.item.Item;

@@ -4,6 +4,7 @@ import com.iafenvoy.neptune.util.EntityBuildHelper;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.entity.GlacianEntity;
 import com.iafenvoy.sow.entity.GrimEntity;
+import com.iafenvoy.sow.entity.ThrownWeaponEntity;
 import com.iafenvoy.sow.entity.ardoni.*;
 import com.iafenvoy.sow.entity.ardoni.random.*;
 import com.iafenvoy.sow.entity.felina.*;
@@ -40,6 +41,7 @@ public final class SowEntities {
     public static final RegistrySupplier<EntityType<AggroShardEntity>> AGGRO_SHARD = build("aggro_shard", AggroShardEntity::new, SpawnGroup.MISC, 64, 1, false, new EntityBuildHelper.Dimension(0.2F, 0.2F));
     public static final RegistrySupplier<EntityType<ProteCloneEntity>> PROTE_CLONE = build("prote_clone", ProteCloneEntity::new, SpawnGroup.MISC, 64, 1, false, EntityBuildHelper.PLAYER);
     public static final RegistrySupplier<EntityType<SupporoSpikeEntity>> SUPPORO_SPIKE = build("supporo_spike", SupporoSpikeEntity::new, SpawnGroup.MISC, 64, 1, false, new EntityBuildHelper.Dimension(1, 1));
+    public static final RegistrySupplier<EntityType<ThrownWeaponEntity>> THROWN_WEAPON = build("thrown_weapon", ThrownWeaponEntity::new, SpawnGroup.MISC, 64, 1, false, new EntityBuildHelper.Dimension(0.5F, 0.5F));
     //Misc
     public static final RegistrySupplier<EntityType<NoneTypeArdoniEntity>> NONE_TYPE_ARDONI = build("none_type_ardoni", NoneTypeArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
     public static final RegistrySupplier<EntityType<KaltarisArdoniEntity>> KALTARIS_ARDONI = build("kaltaris_ardoni", KaltarisArdoniEntity::new, SpawnGroup.CREATURE, 64, 3, false, EntityBuildHelper.PLAYER.scale(1.1f));
