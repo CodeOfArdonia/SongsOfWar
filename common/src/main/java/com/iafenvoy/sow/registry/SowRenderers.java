@@ -6,7 +6,6 @@ import com.iafenvoy.neptune.render.CommonPlayerLikeWithMarkerEntityRenderer;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.SkullManager;
 import com.iafenvoy.sow.entity.GrimEntity;
-import com.iafenvoy.sow.entity.ThrownWeaponEntity;
 import com.iafenvoy.sow.entity.ardoni.*;
 import com.iafenvoy.sow.entity.felina.*;
 import com.iafenvoy.sow.entity.human.*;
@@ -27,7 +26,6 @@ import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
 import com.iafenvoy.sow.render.entity.ArdoniEntityRenderer;
 import com.iafenvoy.sow.render.entity.MagnoriteEntityRenderer;
-import com.iafenvoy.sow.render.entity.ThrownWeaponEntityRenderer;
 import com.iafenvoy.sow.render.power.entity.*;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
@@ -48,7 +46,6 @@ public final class SowRenderers {
         EntityRendererRegistry.register(SowEntities.AGGRO_SHARD, AggroShardRenderer::new);
         EntityRendererRegistry.register(SowEntities.PROTE_CLONE, ProteCloneRenderer::new);
         EntityRendererRegistry.register(SowEntities.SUPPORO_SPIKE, SupporoSpikeRenderer::new);
-        EntityRendererRegistry.register(SowEntities.THROWN_WEAPON, ThrownWeaponEntityRenderer::new);
 
         EntityRendererRegistry.register(SowEntities.NONE_TYPE_ARDONI, ArdoniEntityRenderer::new);
         EntityRendererRegistry.register(SowEntities.VOLTARIS_ARDONI, ArdoniEntityRenderer::new);
