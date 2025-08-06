@@ -171,6 +171,7 @@ These mods are not mandatory to install, but they are recommended to gain better
 - `Max Health Fix`: Fix Ardoni Origin health problem.
 - `Reforge Stone`: SoW Mod add reforge stones depend on this.
 - `Tips`: SoW Mod provide quotes for it.
+- `Throwable`: Throw weapons.
 - `Tooltips Reforged`: Better tooltip display for song cubes.
 
 ## License
