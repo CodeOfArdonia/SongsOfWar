@@ -33,7 +33,7 @@ public class TemporaryTransparentBlock extends TransparentBlock implements Entit
 
     public static void place(Level world, BlockPos pos, BlockState state, int tick) {
         BlockState s = world.getBlockState(pos);
-        world.setBlock(pos, state, 2, 0);
+        world.setBlockAndUpdate(pos, state);
         if (world.getBlockEntity(pos) instanceof TemporaryTransparentBlockEntity blockEntity) {
             blockEntity.setTick(tick);
             blockEntity.setState(s);
@@ -42,8 +42,6 @@ public class TemporaryTransparentBlock extends TransparentBlock implements Entit
 
     @Override
     public void fallOn(@NotNull Level world, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, float fallDistance) {
-        if (this.getJumpFactor() > 2)
-            entity.causeFallDamage(fallDistance, 0, world.damageSources().fall());
-        else super.fallOn(world, state, pos, entity, fallDistance);
+        if (this.getJumpFactor() <= 2) super.fallOn(world, state, pos, entity, fallDistance);
     }
 }

@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:blade_iron"
+    "id": "sow:blade_iron"
   }
 }

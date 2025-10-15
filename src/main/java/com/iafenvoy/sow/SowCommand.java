@@ -2,6 +2,7 @@ package com.iafenvoy.sow;
 
 import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.song.SongChunkData;
@@ -51,7 +52,7 @@ public final class SowCommand {
         ItemStack stack = source.getPlayerOrException().getMainHandItem();
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCube) {
             for (ServerPlayer player : players)
-                AbilityData.get(player).get(songCube.getCategory().getCategory()).setActiveAbility(player, songCube.getPower(stack));
+                AbilityData.get(player).get(songCube.getCategory().getCategory()).setActiveAbility(player, SongCubeItem.getPower(stack));
             source.sendSuccess(() -> Component.translatable("command." + SongsOfWar.MOD_ID + ".use_song.success"), false);
             return 1;
         }

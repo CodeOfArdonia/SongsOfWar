@@ -7,6 +7,7 @@ import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.block.ArdoniGraveBlock;
 import com.iafenvoy.sow.registry.SowBlocks;
 import com.iafenvoy.sow.render.generator.ArdoniMarkerGenerator;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -47,9 +48,9 @@ public class ArdoniGraveItem extends BlockItem implements SkullRenderRegistry.Sk
     }
 
     @Override
-    public Optional<ResourceLocation> getTexture(ItemStack stack) {
+    public Optional<SkullRenderRegistry.SkinInfo> getTexture(ItemStack stack) {
         ArdoniData data = resolveData(stack);
-        return Optional.ofNullable(ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_base%s.png".formatted(data != null && data.dark() ? "_dark" : "")));
+        return Optional.of(new SkullRenderRegistry.SkinInfo(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_base%s.png".formatted(data != null && data.dark() ? "_dark" : "")), PlayerSkin.Model.WIDE));
     }
 
     @Nullable

@@ -2,6 +2,7 @@ package com.iafenvoy.sow.compat.tooltips;
 
 import com.iafenvoy.neptune.ability.type.Ability;
 import com.iafenvoy.neptune.ability.type.DummyAbility;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.minecraft.client.gui.Font;
@@ -25,7 +26,7 @@ public class SongPowerComponent implements ClientTooltipComponent {
     public SongPowerComponent(ItemStack stack) {
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCube) {
             this.category = songCube.getCategory();
-            this.ability = songCube.getPower(stack);
+            this.ability = SongCubeItem.getPower(stack);
         } else {
             this.category = null;
             this.ability = DummyAbility.EMPTY;

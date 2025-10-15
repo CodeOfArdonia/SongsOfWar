@@ -46,11 +46,6 @@ public final class SongsOfWarClient {
     }
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
-        Proxies.songCubeSoundManager.tick();
-    }
-
-    @SubscribeEvent
     public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(GeneratorReloader.INSTANCE);
         event.registerReloadListener(ArdoniName.INSTANCE);

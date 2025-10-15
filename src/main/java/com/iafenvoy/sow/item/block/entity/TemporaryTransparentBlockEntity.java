@@ -24,14 +24,12 @@ public class TemporaryTransparentBlockEntity extends BlockEntity {
     public void loadAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(nbt, registries);
         this.setState(BlockState.CODEC.parse(NbtOps.INSTANCE, nbt.get("state")).resultOrPartial(SongsOfWar.LOGGER::debug).orElse(Blocks.AIR.defaultBlockState()));
-        this.setTick(nbt.getInt("tick"));
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registries) {
         super.saveAdditional(nbt, registries);
         nbt.put("state", BlockState.CODEC.encodeStart(NbtOps.INSTANCE, this.getState()).resultOrPartial(SongsOfWar.LOGGER::debug).orElse(new CompoundTag()));
-        nbt.putInt("tick", this.tick);
     }
 
     public BlockState getState() {
@@ -51,10 +49,12 @@ public class TemporaryTransparentBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level world, BlockPos pos, BlockState state, TemporaryTransparentBlockEntity blockEntity) {
+        if (world.isClientSide) return;
         int tick = blockEntity.getTick();
-        if (tick == 0) {
+        if (tick <= 0) {
             BlockState s = blockEntity.getState();
-            if (s != null) world.setBlock(pos, s, 2, 0);
-        } else if (tick > 0) blockEntity.setTick(tick - 1);
+            world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            if (s != null) world.setBlockAndUpdate(pos, s);
+        } else blockEntity.setTick(tick - 1);
     }
 }

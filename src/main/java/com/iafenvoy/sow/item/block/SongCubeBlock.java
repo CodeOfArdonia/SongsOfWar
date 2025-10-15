@@ -1,11 +1,9 @@
 package com.iafenvoy.sow.item.block;
 
-import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.ability.type.Ability;
-import com.iafenvoy.neptune.ability.type.DummyAbility;
-import com.iafenvoy.neptune.registry.NeptuneDataComponents;
 import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.Proxies;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.mojang.serialization.MapCodec;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -54,16 +51,12 @@ public class SongCubeBlock extends BaseEntityBlock {
         super.playerDestroy(world, player, pos, state, blockEntity, tool);
         if (blockEntity instanceof SongCubeBlockEntity songCubeBlockEntity) {
             Ability<?> power = songCubeBlockEntity.getPower();
-            popResource(world, pos, getStack(power));
+            popResource(world, pos, SongCubeItem.getStack(power));
         }
     }
 
     public SowAbilityCategory getCategory() {
         return this.category;
-    }
-
-    public Ability<?> getPower(ItemStack stack) {
-        return stack.getOrDefault(NeptuneDataComponents.ABILITY, DummyAbility.EMPTY);
     }
 
     @Override
@@ -79,7 +72,7 @@ public class SongCubeBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Ability<?> power = this.getPower(stack);
+        Ability<?> power = SongCubeItem.getPower(stack);
         tooltipComponents.add(this.category.getCategory().appendColor(Component.translatable(power.getTranslateKey())));
         Constants.LAST_SONG_POWER_TOOLTIP = power.getTranslateKey();
         if (power.isExperimental()) tooltipComponents.add(Component.translatable("item.sow.song.experimental"));
@@ -89,7 +82,7 @@ public class SongCubeBlock extends BaseEntityBlock {
     public void setPlacedBy(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack itemStack) {
         super.setPlacedBy(world, pos, state, placer, itemStack);
         if (world.getBlockEntity(pos) instanceof SongCubeBlockEntity blockEntity)
-            blockEntity.setPower(this.getPower(itemStack));
+            blockEntity.setPower(SongCubeItem.getPower(itemStack));
     }
 
     @Override
@@ -97,7 +90,7 @@ public class SongCubeBlock extends BaseEntityBlock {
         ItemStack stack = super.getCloneItemStack(state, target, level, pos, player);
         if (level.getBlockEntity(pos) instanceof SongCubeBlockEntity blockEntity) {
             Ability<?> power = blockEntity.getPower();
-            appendComponent(power, stack);
+            SongCubeItem.appendComponent(power, stack);
         }
         return stack;
     }
@@ -113,21 +106,6 @@ public class SongCubeBlock extends BaseEntityBlock {
             if (blockEntity instanceof SongCubeBlockEntity songCubeBlockEntity)
                 Proxies.songCubeSoundManager.startPlaying(songCubeBlockEntity.getBlockPos(), songCubeBlockEntity.getCategory());
         };
-    }
-
-    public static ItemStack appendComponent(Ability<?> power, ItemStack stack) {
-        stack.set(NeptuneDataComponents.ABILITY, power);
-        return stack;
-    }
-
-    public static ItemStack getStack(Ability<?> power) {
-        return appendComponent(power, new ItemStack(BLOCKS_MAP.getOrDefault(SowAbilityCategory.byCategory(power.getCategory()), Items.AIR)));
-    }
-
-    public static void dropAll(Player player) {
-        AbilityData data = AbilityData.get(player);
-        for (SowAbilityCategory category : SowAbilityCategory.values())
-            popResource(player.level(), player.blockPosition(), getStack(data.get(category.getCategory()).getActiveAbility()));
     }
 
     @Override

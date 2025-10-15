@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:shadow_blazer_claw"
+    "id": "sow:shadow_blazer_claw"
   }
 }

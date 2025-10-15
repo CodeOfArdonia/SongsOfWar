@@ -12,6 +12,6 @@
   ],
   "recipe_book_tab": "drinks",
   "result": {
-    "item": "sow:peas_milk_tea"
+    "id": "sow:peas_milk_tea"
   }
 }

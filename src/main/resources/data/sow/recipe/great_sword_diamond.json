@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:great_sword_diamond"
+    "id": "sow:great_sword_diamond"
   }
 }

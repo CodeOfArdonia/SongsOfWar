@@ -9,19 +9,16 @@
     "LevelAccessor",
     "LivingEntityMixin",
     "NoteBlockMixin",
-    "PlayerMixin",
-    "ServerPlayerMixin",
     "ServerLevelMixin",
     "StructureTemplateAccessor"
+  ],
+  "client": [
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-  },
-  "client": [
-    "MinecraftMixin",
-    "PlayerRendererMixin"
-  ]
+  }
 }

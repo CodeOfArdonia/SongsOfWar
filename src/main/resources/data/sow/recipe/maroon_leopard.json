@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:maroon_leopard"
+    "id": "sow:maroon_leopard"
   }
 }

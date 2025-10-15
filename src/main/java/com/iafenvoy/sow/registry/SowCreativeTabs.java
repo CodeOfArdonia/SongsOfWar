@@ -3,7 +3,7 @@ package com.iafenvoy.sow.registry;
 import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.item.block.SongCubeBlock;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -51,7 +51,7 @@ public final class SowCreativeTabs {
                     .map(DeferredHolder::get)
                     .map(AbilityCategory::getAbilities)
                     .flatMap(Collection::stream)
-                    .map(SongCubeBlock::getStack)
+                    .map(SongCubeItem::getStack)
                     .forEach(builder::accept)
             ).build());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PEAS_DELIGHT = REGISTRY.register("peas_delight", () -> CreativeModeTab

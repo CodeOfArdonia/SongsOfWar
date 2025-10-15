@@ -6,6 +6,7 @@ import com.iafenvoy.neptune.ability.type.Ability;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.world.FakeExplosionBehavior;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.SowParticles;
@@ -116,7 +117,7 @@ public class PowerMergeHelper {
         public Ability<?> getPower() {
             if (this.blockEntity != null) return this.blockEntity.getPower();
             if (this.itemEntity != null && this.itemEntity.getItem().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCubeBlock)
-                return songCubeBlock.getPower(this.itemEntity.getItem());
+                return SongCubeItem.getPower(this.itemEntity.getItem());
             return null;
         }
 
@@ -129,7 +130,7 @@ public class PowerMergeHelper {
 
         public void setPower(Ability<?> power) {
             if (this.blockEntity != null) this.blockEntity.setPower(power);
-            if (this.itemEntity != null) this.itemEntity.setItem(SongCubeBlock.getStack(power));
+            if (this.itemEntity != null) this.itemEntity.setItem(SongCubeItem.getStack(power));
         }
 
         public void destroy() {

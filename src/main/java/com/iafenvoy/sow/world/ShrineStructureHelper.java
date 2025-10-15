@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class ShrineStructureHelper {
     private static List<StructureTemplate.StructureBlockInfo> getBlocks(ServerLevel world) {
-        Optional<StructureTemplate> optional = world.getServer().getStructureManager().get(ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "shrine"));
+        Optional<StructureTemplate> optional = world.getServer().getStructureManager().get(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "shrine"));
         if (optional.isEmpty()) {
             SongsOfWar.LOGGER.error("Cannot get shrine structure file!");
             return List.of();

@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:rapier_iron"
+    "id": "sow:rapier_iron"
   }
 }

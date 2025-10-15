@@ -8,6 +8,6 @@
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "sow:soul_seeker_single"
+    "id": "sow:soul_seeker_single"
   }
 }

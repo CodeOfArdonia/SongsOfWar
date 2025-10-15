@@ -1,7 +1,7 @@
 package com.iafenvoy.sow.compat.emi;
 
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.item.block.SongCubeBlock;
+import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.registry.SowItems;
 import com.iafenvoy.sow.registry.power.SupportiumPowers;
 import dev.emi.emi.api.EmiRegistry;
@@ -21,7 +21,7 @@ import java.util.List;
 public class SongRecipeHelper {
     private static final ResourceLocation SONG_RECIPE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "song_recipe");
     private static final EmiTexture TEXTURE = new EmiTexture(ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/gui/gui_song_recipe.png"), 0, 0, 140, 44);
-    private static final EmiStack WORKSTATION = EmiStack.of(SongCubeBlock.getStack(SupportiumPowers.SUPPOROFORM.get()));
+    private static final EmiStack WORKSTATION = EmiStack.of(SongCubeItem.getStack(SupportiumPowers.SUPPOROFORM.get()));
     private static final EmiRecipeCategory CATEGORY = new EmiRecipeCategory(SONG_RECIPE, WORKSTATION, TEXTURE);
     private static final List<SongRecipe> RECIPES = List.of(
             new SongRecipe("obsidian_helmet", new ItemStack(Items.OBSIDIAN, 5), new ItemStack(SowItems.ENDER_KNIGHT_HELMET.get())),
