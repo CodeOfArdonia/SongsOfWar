@@ -1,0 +1,242 @@
+{
+  "aggressium": {
+    "sounds": [
+      {
+        "name": "sow:power/aggressium",
+        "stream": false
+      }
+    ]
+  },
+  "aggrobeam": {
+    "sounds": [
+      {
+        "name": "sow:power/aggrobeam",
+        "stream": false
+      }
+    ]
+  },
+  "aggroblast": {
+    "sounds": [
+      {
+        "name": "sow:power/aggroblast",
+        "stream": false
+      }
+    ]
+  },
+  "aggrodetonate": {
+    "sounds": [
+      {
+        "name": "sow:power/aggrodetonate",
+        "stream": false
+      }
+    ]
+  },
+  "aggroquake": {
+    "sounds": [
+      {
+        "name": "sow:power/aggroquake",
+        "stream": false
+      }
+    ]
+  },
+  "aggroshard": {
+    "sounds": [
+      {
+        "name": "sow:power/aggroshard",
+        "stream": false
+      }
+    ]
+  },
+  "aggrosphere": {
+    "sounds": [
+      {
+        "name": "sow:power/aggrosphere",
+        "stream": false
+      }
+    ]
+  },
+  "aggrostorm": {
+    "sounds": [
+      {
+        "name": "sow:power/aggrostorm",
+        "stream": false
+      }
+    ]
+  },
+  "mobilibounce": {
+    "sounds": [
+      {
+        "name": "sow:power/mobilibounce",
+        "stream": false
+      }
+    ]
+  },
+  "mobiliburst": {
+    "sounds": [
+      {
+        "name": "sow:power/mobiliburst",
+        "stream": false
+      }
+    ]
+  },
+  "mobiliflash": {
+    "sounds": [
+      {
+        "name": "sow:power/mobiliflash",
+        "stream": false
+      }
+    ]
+  },
+  "mobiliglide": {
+    "sounds": [
+      {
+        "name": "sow:power/mobiliglide",
+        "stream": false
+      }
+    ]
+  },
+  "mobilileap": {
+    "sounds": [
+      {
+        "name": "sow:power/mobilileap",
+        "stream": false
+      }
+    ]
+  },
+  "mobilium": {
+    "sounds": [
+      {
+        "name": "sow:power/mobilium",
+        "stream": false
+      }
+    ]
+  },
+  "mobiliwings": {
+    "sounds": [
+      {
+        "name": "sow:power/mobiliwings",
+        "stream": false
+      }
+    ]
+  },
+  "protearmor": {
+    "sounds": [
+      {
+        "name": "sow:power/protearmor",
+        "stream": false
+      }
+    ]
+  },
+  "protearmor_unapply": {
+    "sounds": [
+      {
+        "name": "sow:power/protearmor_unapply",
+        "stream": false
+      }
+    ]
+  },
+  "protebarrier": {
+    "sounds": [
+      {
+        "name": "sow:power/protebarrier",
+        "stream": false
+      }
+    ]
+  },
+  "proteclone": {
+    "sounds": [
+      {
+        "name": "sow:power/proteclone",
+        "stream": false
+      }
+    ]
+  },
+  "proteheal": {
+    "sounds": [
+      {
+        "name": "sow:power/proteheal",
+        "stream": false
+      }
+    ]
+  },
+  "protepoint": {
+    "sounds": [
+      {
+        "name": "sow:power/protepoint",
+        "stream": false
+      }
+    ]
+  },
+  "protesphere": {
+    "sounds": [
+      {
+        "name": "sow:power/protesphere",
+        "stream": false
+      }
+    ]
+  },
+  "protesphere_unapply": {
+    "sounds": [
+      {
+        "name": "sow:power/protesphere_unapply",
+        "stream": false
+      }
+    ]
+  },
+  "protisium": {
+    "sounds": [
+      {
+        "name": "sow:power/protisium",
+        "stream": false
+      }
+    ]
+  },
+  "supportium": {
+    "sounds": [
+      {
+        "name": "sow:power/supportium",
+        "stream": false
+      }
+    ]
+  },
+  "supporekesis": {
+    "sounds": [
+      {
+        "name": "sow:power/supporekesis",
+        "stream": false
+      }
+    ]
+  },
+  "supporoform": {
+    "sounds": [
+      {
+        "name": "sow:power/supporoform",
+        "stream": false
+      }
+    ]
+  },
+  "supporolift": {
+    "sounds": [
+      {
+        "name": "sow:power/supporolift",
+        "stream": false
+      }
+    ]
+  },
+  "supporospike": {
+    "sounds": [
+      {
+        "name": "sow:power/supporospike",
+        "stream": false
+      }
+    ]
+  },
+  "sow_death": {
+    "sounds": [
+      {
+        "name": "sow:sow_death",
+        "stream": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "package": "com.iafenvoy.sow.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BeaconBlockMixin",
+    "EntityMixin",
+    "FishingHookMixin",
+    "LevelAccessor",
+    "LivingEntityMixin",
+    "NoteBlockMixin",
+    "PlayerMixin",
+    "ServerPlayerMixin",
+    "ServerLevelMixin",
+    "StructureTemplateAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "MinecraftMixin",
+    "PlayerRendererMixin"
+  ]
+}
