@@ -5,6 +5,7 @@ import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.registry.power.SowAbilityCategories;
+import com.iafenvoy.sow.util.FakeItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,6 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unused")
 public final class SowCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SongsOfWar.MOD_ID);
 
@@ -23,7 +25,7 @@ public final class SowCreativeTabs {
             .title(Component.translatable("itemGroup." + SongsOfWar.MOD_ID + ".items"))
             .icon(() -> new ItemStack(SowItems.ENCHANTMENT_FRAGMENT_RED.get()))
             .displayItems((params, builder) -> {
-                SowItems.REGISTRY.getEntries().stream().map(DeferredHolder::get).forEach(builder::accept);
+                SowItems.REGISTRY.getEntries().stream().map(DeferredHolder::get).filter(x -> !(x instanceof FakeItem)).forEach(builder::accept);
                 SowBanners.ALL.stream().map(x -> x.apply(params.holders().lookupOrThrow(Registries.BANNER_PATTERN))).forEach(builder::accept);
             })
             .build());

@@ -1,5 +1,6 @@
 package com.iafenvoy.sow.item;
 
+import com.iafenvoy.sow.util.FakeItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -7,7 +8,7 @@ import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class ProtepointShieldItem extends ShieldItem {
+public class ProtepointShieldItem extends ShieldItem implements FakeItem {
     public ProtepointShieldItem() {
         super(new Properties().durability(10000));
     }

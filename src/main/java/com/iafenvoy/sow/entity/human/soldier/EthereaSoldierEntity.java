@@ -12,7 +12,7 @@ public class EthereaSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Etherea;
+        return KingdomType.ETHEREA;
     }
 
     @Override

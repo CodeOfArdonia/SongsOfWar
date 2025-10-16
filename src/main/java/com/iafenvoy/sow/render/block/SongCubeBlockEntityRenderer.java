@@ -25,7 +25,7 @@ public class SongCubeBlockEntityRenderer implements BlockEntityRenderer<SongCube
     public void render(SongCubeBlockEntity entity, float tickDelta, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
         matrices.pushPose();
         matrices.translate(0.5, 0.125, 0.5);
-        this.itemRenderer.renderStatic(new ItemStack(SongCubeBlock.BLOCKS_MAP.get(entity.getCategory())), ItemDisplayContext.FIXED, light, overlay, matrices, vertexConsumers, entity.getLevel(), 0);
+        this.itemRenderer.renderStatic(new ItemStack(SongCubeBlock.getBlock(entity.getCategory())), ItemDisplayContext.FIXED, light, overlay, matrices, vertexConsumers, entity.getLevel(), 0);
         matrices.popPose();
     }
 }

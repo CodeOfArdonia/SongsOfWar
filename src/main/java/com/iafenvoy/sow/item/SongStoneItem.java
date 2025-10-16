@@ -3,7 +3,7 @@ package com.iafenvoy.sow.item;
 import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.registry.NeptuneDataComponents;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.iafenvoy.sow.world.song.SongChunkManager;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -25,9 +25,9 @@ public class SongStoneItem extends Item {
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
         if (world instanceof ServerLevel serverWorld) {
-            if (entity instanceof Player player && AbilityData.get(player).isEnabled(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new))) {
-                SowAbilityCategory category = SongChunkManager.find(serverWorld, entity.chunkPosition());
-                if (category != null) stack.set(NeptuneDataComponents.ABILITY_CATEGORY, category.getCategory());
+            if (entity instanceof Player player && AbilityData.get(player).isEnabled(SowAbilityCategories.ALL.get().toArray(AbilityCategory[]::new))) {
+                AbilityCategory category = SongChunkManager.find(serverWorld, entity.chunkPosition());
+                if (category != null) stack.set(NeptuneDataComponents.ABILITY_CATEGORY, category);
                 else stack.remove(NeptuneDataComponents.ABILITY_CATEGORY);
             } else stack.remove(NeptuneDataComponents.ABILITY_CATEGORY);
         }

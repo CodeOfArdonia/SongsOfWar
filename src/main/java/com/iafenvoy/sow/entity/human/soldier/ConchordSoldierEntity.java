@@ -12,7 +12,7 @@ public class ConchordSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Conchord;
+        return KingdomType.CONCHORD;
     }
 
     @Override

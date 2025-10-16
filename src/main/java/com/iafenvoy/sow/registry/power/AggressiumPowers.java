@@ -37,7 +37,7 @@ import java.util.Random;
 public final class AggressiumPowers {
     public static final DeferredRegister<Ability<?>> REGISTRY = DeferredRegister.create(NeptuneRegistries.ABILITY, SongsOfWar.MOD_ID);
 
-    public static final DeferredHolder<Ability<?>, PersistAbility> AGGROBEAM = REGISTRY.register("aggrobeam", () -> new PersistAbility(SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
+    public static final DeferredHolder<Ability<?>, PersistAbility> AGGROBEAM = REGISTRY.register("aggrobeam", () -> new PersistAbility(SowAbilityCategories.AGGRESSIUM).experimental()
             .setApplySound(SowSounds.AGGROBEAM)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggrobeamExhaustion.getValue())
             .onTick(holder -> {
@@ -58,7 +58,7 @@ public final class AggressiumPowers {
                 for (EntityHitResult r : results)
                     r.getEntity().hurt(source, holder.processDamage(SowCommonConfig.INSTANCE.aggressium.aggrobeamDamage.getValue().floatValue()));
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROBLAST = REGISTRY.register("aggroblast", () -> new DelayAbility(SowAbilityCategory.AGGRESSIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROBLAST = REGISTRY.register("aggroblast", () -> new DelayAbility(SowAbilityCategories.AGGRESSIUM)
             .setApplySound(SowSounds.AGGROBLAST)
             .setDelay(8)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroblastPrimaryCooldown.getValue())
@@ -81,7 +81,7 @@ public final class AggressiumPowers {
                     l.hurt(DamageUtil.build(living, SowDamageTypes.AGGROBLAST), holder.processDamage(SowCommonConfig.INSTANCE.aggressium.aggroblastDamage.getValue().floatValue()));
                 } else holder.cancel();
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> AGGRODETONATE = REGISTRY.register("aggrodetonate", () -> new DelayAbility(SowAbilityCategory.AGGRESSIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> AGGRODETONATE = REGISTRY.register("aggrodetonate", () -> new DelayAbility(SowAbilityCategories.AGGRESSIUM)
             .setApplySound(SowSounds.AGGRODETONATE)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggrodetonatePrimaryCooldown.getValue())
@@ -98,7 +98,7 @@ public final class AggressiumPowers {
                     world.addFreshEntity(aggroDetonate);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROQUAKE = REGISTRY.register("aggroquake", () -> new DelayAbility(SowAbilityCategory.AGGRESSIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROQUAKE = REGISTRY.register("aggroquake", () -> new DelayAbility(SowAbilityCategories.AGGRESSIUM)
             .setApplySound(SowSounds.AGGROQUAKE)
             .setDelay(8)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroquakePrimaryCooldown.getValue())
@@ -116,7 +116,7 @@ public final class AggressiumPowers {
                     l.hurtMarked = true;
                 }
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROSHARD = REGISTRY.register("aggroshard", () -> new DelayAbility(SowAbilityCategory.AGGRESSIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROSHARD = REGISTRY.register("aggroshard", () -> new DelayAbility(SowAbilityCategories.AGGRESSIUM)
             .setApplySound(SowSounds.AGGROSHARD)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshardPrimaryCooldown.getValue())
@@ -139,7 +139,7 @@ public final class AggressiumPowers {
                     });
                 }
             }));
-    public static final DeferredHolder<Ability<?>, InstantAbility> AGGROSHOCK = REGISTRY.register("aggroshock", () -> new InstantAbility(SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
+    public static final DeferredHolder<Ability<?>, InstantAbility> AGGROSHOCK = REGISTRY.register("aggroshock", () -> new InstantAbility(SowAbilityCategories.AGGRESSIUM).experimental()
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockSecondaryCooldown.getValue())
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggroshockExhaustion.getValue())
@@ -153,7 +153,7 @@ public final class AggressiumPowers {
                     EntityUtil.lightening(serverWorld, pos.x, pos.y, pos.z, false);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROSPHERE = REGISTRY.register("aggrosphere", () -> new DelayAbility(SowAbilityCategory.AGGRESSIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> AGGROSPHERE = REGISTRY.register("aggrosphere", () -> new DelayAbility(SowAbilityCategories.AGGRESSIUM)
             .setApplySound(SowSounds.AGGROSPHERE)
             .setDelay(36)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.aggressium.aggrospherePrimaryCooldown.getValue())
@@ -170,7 +170,7 @@ public final class AggressiumPowers {
                     world.addFreshEntity(aggroSphere);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, PersistAbility> AGGROSTORM = REGISTRY.register("aggrostorm", () -> new PersistAbility(SowAbilityCategory.AGGRESSIUM.getCategory()).experimental()
+    public static final DeferredHolder<Ability<?>, PersistAbility> AGGROSTORM = REGISTRY.register("aggrostorm", () -> new PersistAbility(SowAbilityCategories.AGGRESSIUM).experimental()
             .setApplySound(SowSounds.AGGROSTORM)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.aggressium.aggrostormExhaustion.getValue())
             .onTick(holder -> {

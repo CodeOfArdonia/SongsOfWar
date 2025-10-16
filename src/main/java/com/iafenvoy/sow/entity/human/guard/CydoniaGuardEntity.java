@@ -12,7 +12,7 @@ public class CydoniaGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Cydonia;
+        return KingdomType.CYDONIA;
     }
 
     @Override

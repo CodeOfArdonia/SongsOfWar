@@ -9,6 +9,7 @@ public class LitematicaHelper {
     private static final String EXTRACT_PATH = "./schematics/songs-of-war/";
     private static final List<String> FILES = List.of("shrine.litematic");
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void extractFile() {
         new File(EXTRACT_PATH).mkdirs();
         for (String file : FILES) {

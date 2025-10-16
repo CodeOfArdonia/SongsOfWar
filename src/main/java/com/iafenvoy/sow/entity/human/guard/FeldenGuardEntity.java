@@ -12,7 +12,7 @@ public class FeldenGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Felden;
+        return KingdomType.FELDEN;
     }
 
     @Override

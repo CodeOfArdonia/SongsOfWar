@@ -2,7 +2,7 @@ package com.iafenvoy.sow.registry;
 
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.item.*;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -31,14 +31,14 @@ public final class SowItems {
     public static final DeferredItem<Item> ENDER_KNIGHT_BOOTS = REGISTRY.register("ender_knight_boots", () -> new ArmorItem(SowArmorMaterials.ENDER_KNIGHT, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
     public static final DeferredItem<Item> SONG_STONE = REGISTRY.register("song_stone", SongStoneItem::new);
-    public static final DeferredItem<Item> AGGRESSIUM_SONG_STONE = REGISTRY.register("aggressium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategory.AGGRESSIUM));
-    public static final DeferredItem<Item> MOBILIUM_SONG_STONE = REGISTRY.register("mobilium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategory.MOBILIUM));
-    public static final DeferredItem<Item> PROTISIUM_SONG_STONE = REGISTRY.register("protisium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategory.PROTISIUM));
-    public static final DeferredItem<Item> SUPPORTIUM_SONG_STONE = REGISTRY.register("supportium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategory.SUPPORTIUM));
-    public static final DeferredItem<Item> RED_NOTE = REGISTRY.register("red_note", () -> new NoteItem(SowAbilityCategory.AGGRESSIUM));
-    public static final DeferredItem<Item> YELLOW_NOTE = REGISTRY.register("yellow_note", () -> new NoteItem(SowAbilityCategory.MOBILIUM));
-    public static final DeferredItem<Item> BLUE_NOTE = REGISTRY.register("blue_note", () -> new NoteItem(SowAbilityCategory.PROTISIUM));
-    public static final DeferredItem<Item> GREEN_NOTE = REGISTRY.register("green_note", () -> new NoteItem(SowAbilityCategory.SUPPORTIUM));
+    public static final DeferredItem<Item> AGGRESSIUM_SONG_STONE = REGISTRY.register("aggressium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategories.AGGRESSIUM));
+    public static final DeferredItem<Item> MOBILIUM_SONG_STONE = REGISTRY.register("mobilium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategories.MOBILIUM));
+    public static final DeferredItem<Item> PROTISIUM_SONG_STONE = REGISTRY.register("protisium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategories.PROTISIUM));
+    public static final DeferredItem<Item> SUPPORTIUM_SONG_STONE = REGISTRY.register("supportium_song_stone", () -> new AdjustedSongStoneItem(SowAbilityCategories.SUPPORTIUM));
+    public static final DeferredItem<Item> RED_NOTE = REGISTRY.register("red_note", () -> new NoteItem(SowAbilityCategories.AGGRESSIUM));
+    public static final DeferredItem<Item> YELLOW_NOTE = REGISTRY.register("yellow_note", () -> new NoteItem(SowAbilityCategories.MOBILIUM));
+    public static final DeferredItem<Item> BLUE_NOTE = REGISTRY.register("blue_note", () -> new NoteItem(SowAbilityCategories.PROTISIUM));
+    public static final DeferredItem<Item> GREEN_NOTE = REGISTRY.register("green_note", () -> new NoteItem(SowAbilityCategories.SUPPORTIUM));
 
     public static final DeferredItem<ShrineDebugItem> SHRINE_DEBUG = REGISTRY.register("shrine_debug", ShrineDebugItem::new);
     public static final DeferredItem<WallsOfTimeEditItem> WALLS_OF_TIME_EDIT = REGISTRY.register("walls_of_time_edit", WallsOfTimeEditItem::new);

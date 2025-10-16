@@ -12,7 +12,7 @@ public class NorthwindSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Northwind;
+        return KingdomType.NORTHWIND;
     }
 
     @Override

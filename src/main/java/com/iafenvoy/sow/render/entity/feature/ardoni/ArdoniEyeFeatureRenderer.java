@@ -20,10 +20,10 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ArdoniEyeFeatureRenderer extends RenderLayer<AbstractArdoniEntity, PlayerModel<AbstractArdoniEntity>> {
-    private static final ResourceLocation EYE_MALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
-    private static final ResourceLocation EYE_FEMALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
-    private static final ResourceLocation PUPIL_MALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
-    private static final ResourceLocation PUPIL_FEMALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
+    private static final ResourceLocation EYE_MALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
+    private static final ResourceLocation EYE_FEMALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
+    private static final ResourceLocation PUPIL_MALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
+    private static final ResourceLocation PUPIL_FEMALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
 
     public ArdoniEyeFeatureRenderer(RenderLayerParent<AbstractArdoniEntity, PlayerModel<AbstractArdoniEntity>> context) {
         super(context);

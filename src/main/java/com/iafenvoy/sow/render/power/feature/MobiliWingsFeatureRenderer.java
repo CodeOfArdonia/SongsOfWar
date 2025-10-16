@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class MobiliWingsFeatureRenderer<T extends Player, M extends PlayerModel<T>> extends RenderLayer<T, M> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/elytra.png");
     private final ElytraModel<T> elytra;
 
     public MobiliWingsFeatureRenderer(RenderLayerParent<T, M> context, EntityModelSet loader) {

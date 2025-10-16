@@ -12,7 +12,7 @@ public class GeneralGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.General;
+        return KingdomType.GENERAL;
     }
 
     @Override

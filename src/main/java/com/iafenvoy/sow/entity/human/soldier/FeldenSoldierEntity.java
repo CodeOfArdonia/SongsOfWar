@@ -12,7 +12,7 @@ public class FeldenSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Felden;
+        return KingdomType.FELDEN;
     }
 
     @Override

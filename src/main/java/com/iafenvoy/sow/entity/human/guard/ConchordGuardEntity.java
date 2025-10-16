@@ -12,7 +12,7 @@ public class ConchordGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Conchord;
+        return KingdomType.CONCHORD;
     }
 
     @Override

@@ -32,7 +32,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class MobiliumPowers {
     public static final DeferredRegister<Ability<?>> REGISTRY = DeferredRegister.create(NeptuneRegistries.ABILITY, SongsOfWar.MOD_ID);
 
-    public static final DeferredHolder<Ability<?>, InstantAbility> MOBILIBOUNCE = REGISTRY.register("mobilibounce", () -> new InstantAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, InstantAbility> MOBILIBOUNCE = REGISTRY.register("mobilibounce", () -> new InstantAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIBOUNCE)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibouncePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobilibounceSecondaryCooldown.getValue())
@@ -47,7 +47,7 @@ public final class MobiliumPowers {
                 player.setDeltaMovement(0, 0, 0);
                 player.hurtMarked = true;
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> MOBILIBURST = REGISTRY.register("mobiliburst", () -> new DelayAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> MOBILIBURST = REGISTRY.register("mobiliburst", () -> new DelayAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIBURST)
             .setDelay(28)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue())
@@ -64,7 +64,7 @@ public final class MobiliumPowers {
                 component.setMaxTick(SowCommonConfig.INSTANCE.mobilium.mobiliburstPrimaryCooldown.getValue() + 20);
                 AbilityData.get(living).addComponent(MobiliBurstComponent.ID, component);
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> MOBILIFLASH = REGISTRY.register("mobiliflash", () -> new DelayAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> MOBILIFLASH = REGISTRY.register("mobiliflash", () -> new DelayAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIFLASH)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliflashPrimaryCooldown.getValue())
@@ -77,7 +77,7 @@ public final class MobiliumPowers {
                 living.setDeltaMovement(dir.scale(SowCommonConfig.INSTANCE.mobilium.mobiliflashSpeed.getValue()));
                 living.hurtMarked = true;
             }));
-    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILIGLIDE = REGISTRY.register("mobiliglide", () -> new PersistAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILIGLIDE = REGISTRY.register("mobiliglide", () -> new PersistAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIGLIDE)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliglideExhaustion.getValue())
             .onApply(holder -> {//GRAVITY attribute not available before 1.20.5
@@ -95,10 +95,10 @@ public final class MobiliumPowers {
                 if (instance != null)
                     instance.removeModifier(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "mobiliglide"));
             }));
-    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILILEAP = REGISTRY.register("mobilileap", () -> new PersistAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILILEAP = REGISTRY.register("mobilileap", () -> new PersistAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILILEAP)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobilileapExhaustion.getValue()));
-    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILIWINGS = REGISTRY.register("mobiliwings", () -> new PersistAbility(SowAbilityCategory.MOBILIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> MOBILIWINGS = REGISTRY.register("mobiliwings", () -> new PersistAbility(SowAbilityCategories.MOBILIUM)
             .setApplySound(SowSounds.MOBILIWINGS)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.mobilium.mobiliwingsExhaustion.getValue())
             .onApply(holder -> {

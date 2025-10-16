@@ -17,36 +17,29 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 public class BeaconData extends SavedData {
     private static final String ID = "beaconData";
-    public static final Codec<List<SingleBeaconData>> CODEC = RecordCodecBuilder.<SingleBeaconData>create(i1 -> i1.group(
-            BlockPos.CODEC.fieldOf("pos").forGetter(SingleBeaconData::pos),
-            ComponentSerialization.FLAT_CODEC.fieldOf("name").forGetter(SingleBeaconData::name)
-    ).apply(i1, SingleBeaconData::new)).listOf();
-    //FIXME::Direct stream codec
-    public static final StreamCodec<RegistryFriendlyByteBuf, BeaconData> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC).map(BeaconData::new, BeaconData::getBeaconPos);
+    public static final Codec<BeaconData> CODEC = RecordCodecBuilder.create(i -> i.group(
+            SingleBeaconData.CODEC.listOf().fieldOf("beaconPos").forGetter(BeaconData::getBeaconPos)
+    ).apply(i, BeaconData::new));
+    public static final StreamCodec<RegistryFriendlyByteBuf, BeaconData> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC);
     private final List<SingleBeaconData> beaconPos;
 
     private BeaconData() {
         this(new LinkedList<>());
     }
 
-    private BeaconData(CompoundTag compound, HolderLookup.Provider registries) {
-        this(new ArrayList<>(CODEC.parse(NbtOps.INSTANCE, compound.get(ID)).getOrThrow()));
-    }
-
     private BeaconData(List<SingleBeaconData> beaconPos) {
-        this.beaconPos = beaconPos;
+        this.beaconPos = new LinkedList<>(beaconPos);
     }
 
     @Override
     public @NotNull CompoundTag save(CompoundTag nbt, HolderLookup.@NotNull Provider registries) {
-        nbt.put(ID, CODEC.encodeStart(NbtOps.INSTANCE, this.beaconPos).getOrThrow());
+        nbt.put(ID, CODEC.encodeStart(NbtOps.INSTANCE, this).getOrThrow());
         return nbt;
     }
 
@@ -70,7 +63,7 @@ public class BeaconData extends SavedData {
     }
 
     public static BeaconData readNbt(CompoundTag nbt, HolderLookup.Provider registries) {
-        return new BeaconData(nbt, registries);
+        return CODEC.parse(NbtOps.INSTANCE, nbt.get(ID)).getOrThrow();
     }
 
     public static BeaconData getInstance(ServerLevel world) {
@@ -83,5 +76,9 @@ public class BeaconData extends SavedData {
     }
 
     public record SingleBeaconData(BlockPos pos, Component name) {
+        public static final Codec<SingleBeaconData> CODEC = RecordCodecBuilder.create(i -> i.group(
+                BlockPos.CODEC.fieldOf("pos").forGetter(SingleBeaconData::pos),
+                ComponentSerialization.FLAT_CODEC.fieldOf("name").forGetter(SingleBeaconData::name)
+        ).apply(i, SingleBeaconData::new));
     }
 }

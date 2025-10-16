@@ -59,6 +59,7 @@ public class AggroProjectileEntity extends AbstractArrow implements Supporekesis
         return base * this.damageMultiplier;
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     @Override
     public void tick() {
         super.tick();

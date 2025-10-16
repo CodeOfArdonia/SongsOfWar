@@ -114,7 +114,7 @@ configurations {
 }
 
 dependencies {
-    implementation "maven.modrinth:neptune:A0sNMjgK"
+    implementation "maven.modrinth:neptune:tJY9nHLT"
     implementation "maven.modrinth:jupiter:I4i9vhEW"
 
     // Optional

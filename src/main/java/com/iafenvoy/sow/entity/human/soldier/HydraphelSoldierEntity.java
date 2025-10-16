@@ -12,7 +12,7 @@ public class HydraphelSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Hydraphel;
+        return KingdomType.HYDRAPHEL;
     }
 
     @Override

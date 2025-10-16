@@ -1,8 +1,8 @@
 package com.iafenvoy.sow.mixin;
 
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.item.NoteItem;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import com.iafenvoy.sow.world.song.SongChunkManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -29,7 +29,7 @@ public class NoteBlockMixin {
         if (!(world instanceof ServerLevel serverWorld) || !(entity instanceof Player player)) return;
         if (!AbilityData.get(player).isEnabled()) return;
         ChunkPos chunkPos = new ChunkPos(pos);
-        SowAbilityCategory category = SongChunkManager.find(serverWorld, chunkPos);
+        AbilityCategory category = SongChunkManager.find(serverWorld, chunkPos);
         if (category == null) return;
         BlockPos above = pos.above();
         if (serverWorld.getBlockState(above).isRedstoneConductor(serverWorld, above)) return;

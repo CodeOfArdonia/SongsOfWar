@@ -23,10 +23,10 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class PlayerArdoniEyeFeatureRenderer<T extends Player, M extends PlayerModel<T>> extends RenderLayer<T, M> {
-    private static final ResourceLocation EYE_MALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
-    private static final ResourceLocation EYE_FEMALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
-    private static final ResourceLocation PUPIL_MALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
-    private static final ResourceLocation PUPIL_FEMALE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
+    private static final ResourceLocation EYE_MALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_male.png");
+    private static final ResourceLocation EYE_FEMALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_eye_female.png");
+    private static final ResourceLocation PUPIL_MALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_male.png");
+    private static final ResourceLocation PUPIL_FEMALE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_pupil_female.png");
 
     public PlayerArdoniEyeFeatureRenderer(RenderLayerParent<T, M> context) {
         super(context);

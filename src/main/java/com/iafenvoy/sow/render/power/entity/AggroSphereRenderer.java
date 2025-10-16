@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/sphere/aggrosphere.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/sphere/aggrosphere.png");
     private final SphereModel<AggroSphereEntity> sphereModel;
 
     public AggroSphereRenderer(EntityRendererProvider.Context ctx) {
@@ -39,7 +39,7 @@ public class AggroSphereRenderer extends EntityRenderer<AggroSphereEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(AggroSphereEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull AggroSphereEntity entity) {
         return TEXTURE;
     }
 }

@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class PlayerArdoniHairFeatureRenderer<T extends Player, M extends PlayerModel<T>> extends RenderLayer<T, M> {
-    private static final ResourceLocation FEMALE_EXTRA_HAIR = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_female_extra.png");
+    private static final ResourceLocation FEMALE_EXTRA_HAIR = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_female_extra.png");
 
     public PlayerArdoniHairFeatureRenderer(RenderLayerParent<T, M> context) {
         super(context);
@@ -38,8 +38,8 @@ public class PlayerArdoniHairFeatureRenderer<T extends Player, M extends PlayerM
         if (data != null && !data.fixed()) {
             Color4i color = data.color();
             int age = data.age();
-            ResourceLocation hair = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + ".png");
-            ResourceLocation hairMarker = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + "_marker.png");
+            ResourceLocation hair = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + ".png");
+            ResourceLocation hairMarker = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + "_marker.png");
             model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityCutout(hair)), light, OverlayTexture.NO_OVERLAY, -1);
             model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(hairMarker)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
             if (data.female())

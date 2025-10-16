@@ -21,7 +21,7 @@ import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class ArdoniSkinFeatureRenderer extends RenderLayer<AbstractArdoniEntity, PlayerModel<AbstractArdoniEntity>> {
-    private static final ResourceLocation ARDONI_SHADOW = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_shadow.png");
+    private static final ResourceLocation ARDONI_SHADOW = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_shadow.png");
 
     public ArdoniSkinFeatureRenderer(RenderLayerParent<AbstractArdoniEntity, PlayerModel<AbstractArdoniEntity>> context) {
         super(context);

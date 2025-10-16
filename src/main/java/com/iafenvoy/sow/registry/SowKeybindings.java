@@ -3,7 +3,7 @@ package com.iafenvoy.sow.registry;
 import com.iafenvoy.neptune.ability.AbilityKeybindings;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.network.payload.JumpPressPayload;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -32,10 +32,10 @@ public final class SowKeybindings {
         event.register(PROTISIUM_POWER);
         event.register(SUPPORTIUM_POWER);
 
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.AGGRESSIUM.getCategory(), AGGRESSIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.MOBILIUM.getCategory(), MOBILIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.PROTISIUM.getCategory(), PROTISIUM_POWER);
-        AbilityKeybindings.registerKeyBinding(SowAbilityCategory.SUPPORTIUM.getCategory(), SUPPORTIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.AGGRESSIUM.get(), AGGRESSIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.MOBILIUM.get(), MOBILIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.PROTISIUM.get(), PROTISIUM_POWER);
+        AbilityKeybindings.registerKeyBinding(SowAbilityCategories.SUPPORTIUM.get(), SUPPORTIUM_POWER);
 
         JUMP.registerPressCallback(x -> {
             if (x) PacketDistributor.sendToServer(new JumpPressPayload());

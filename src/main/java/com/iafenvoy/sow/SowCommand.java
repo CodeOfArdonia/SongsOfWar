@@ -4,7 +4,7 @@ import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.iafenvoy.sow.world.song.SongChunkData;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -52,7 +52,7 @@ public final class SowCommand {
         ItemStack stack = source.getPlayerOrException().getMainHandItem();
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCube) {
             for (ServerPlayer player : players)
-                AbilityData.get(player).get(songCube.getCategory().getCategory()).setActiveAbility(player, SongCubeItem.getPower(stack));
+                AbilityData.get(player).get(songCube.getCategory()).setActiveAbility(player, SongCubeItem.getPower(stack));
             source.sendSuccess(() -> Component.translatable("command." + SongsOfWar.MOD_ID + ".use_song.success"), false);
             return 1;
         }
@@ -63,7 +63,7 @@ public final class SowCommand {
     public static int enableSong(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "players");
         for (ServerPlayer player : players)
-            AbilityData.get(player).enable(player, SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
+            AbilityData.get(player).enable(player, SowAbilityCategories.ALL.get().toArray(AbilityCategory[]::new));
         context.getSource().sendSuccess(() -> Component.literal("Success!"), true);
         return 1;
     }
@@ -71,7 +71,7 @@ public final class SowCommand {
     public static int disableSong(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "players");
         for (ServerPlayer player : players)
-            AbilityData.get(player).disable(player, SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new));
+            AbilityData.get(player).disable(player, SowAbilityCategories.ALL.get().toArray(AbilityCategory[]::new));
         context.getSource().sendSuccess(() -> Component.literal("Success!"), true);
         return 1;
     }

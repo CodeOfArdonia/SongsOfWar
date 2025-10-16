@@ -12,7 +12,7 @@ public class CydoniaSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Cydonia;
+        return KingdomType.CYDONIA;
     }
 
     @Override

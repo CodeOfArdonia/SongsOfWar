@@ -1,10 +1,10 @@
 package com.iafenvoy.sow.compat.tooltips;
 
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.type.Ability;
 import com.iafenvoy.neptune.ability.type.DummyAbility;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 @OnlyIn(Dist.CLIENT)
 public class SongPowerComponent implements ClientTooltipComponent {
     @Nullable
-    private final SowAbilityCategory category;
+    private final AbilityCategory category;
     private final Ability<?> ability;
 
     public SongPowerComponent(ItemStack stack) {
@@ -47,7 +47,7 @@ public class SongPowerComponent implements ClientTooltipComponent {
     public void renderImage(Font textRenderer, int x, int y, @NotNull GuiGraphics context) {
         int lineY = y - textRenderer.lineHeight - 1;
         MutableComponent mutableText = Component.translatable(this.ability.getTranslateKey());
-        if (this.category != null) mutableText = this.category.getCategory().appendColor(mutableText);
+        if (this.category != null) mutableText = this.category.appendColor(mutableText);
         lineY += textRenderer.lineHeight + 1;
         context.blit(this.ability.getIconTexture(), x, lineY - 1, 10, 10, 0, 0, 16, 16, 16, 16);
         context.drawString(textRenderer, mutableText, x + 12, lineY, -1, true);

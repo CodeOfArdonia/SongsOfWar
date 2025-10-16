@@ -12,7 +12,7 @@ public class KarthenGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Karthen;
+        return KingdomType.KARTHEN;
     }
 
     @Override

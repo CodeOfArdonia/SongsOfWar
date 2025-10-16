@@ -30,7 +30,7 @@ public enum ArdoniName implements ResourceManagerReloadListener, ArdoniNameProxy
     }
 
     private static void load(ResourceManager manager, String language) {
-        ResourceLocation file = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "ardoni_name/%s.txt".formatted(language));
+        ResourceLocation file = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "ardoni_name/%s.txt".formatted(language));
         for (Resource resource : manager.getResourceStack(file))
             try (BufferedReader reader = resource.openAsReader()) {
                 String s;

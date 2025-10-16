@@ -12,7 +12,7 @@ public class EthereaGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Etherea;
+        return KingdomType.ETHEREA;
     }
 
     @Override

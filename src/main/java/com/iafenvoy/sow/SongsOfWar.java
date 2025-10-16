@@ -20,6 +20,7 @@ public final class SongsOfWar {
         ConfigManager.getInstance().registerConfigHandler(SowCommonConfig.INSTANCE);
         ConfigManager.getInstance().registerServerConfig(SowCommonConfig.INSTANCE, ServerConfigManager.PermissionChecker.IS_OPERATOR);
 
+        SowAbilityCategories.REGISTRY.register(bus);
         SowArmorMaterials.REGISTRY.register(bus);
         SowAttachments.REGISTRY.register(bus);
         SowBlocks.REGISTRY.register(bus);
@@ -36,8 +37,6 @@ public final class SongsOfWar {
         SowSkulls.ITEM_REGISTRY.register(bus);
         SowSounds.REGISTRY.register(bus);
         SowWeapons.REGISTRY.register(bus);
-        //Powers
-        SowAbilityCategories.REGISTRY.register(bus);
         AggressiumPowers.REGISTRY.register(bus);
         MobiliumPowers.REGISTRY.register(bus);
         ProtisiumPowers.REGISTRY.register(bus);

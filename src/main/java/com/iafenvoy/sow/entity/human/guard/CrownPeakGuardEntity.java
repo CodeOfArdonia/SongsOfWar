@@ -12,7 +12,7 @@ public class CrownPeakGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.CrownPeak;
+        return KingdomType.CROWN_PEAK;
     }
 
     @Override

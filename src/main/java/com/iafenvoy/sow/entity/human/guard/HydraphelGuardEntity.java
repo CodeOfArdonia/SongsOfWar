@@ -12,7 +12,7 @@ public class HydraphelGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Hydraphel;
+        return KingdomType.HYDRAPHEL;
     }
 
     @Override

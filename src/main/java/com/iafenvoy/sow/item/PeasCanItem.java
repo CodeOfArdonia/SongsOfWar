@@ -8,15 +8,16 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PeasCanItem extends PeasDelightItem {
+public class PeasCanItem extends Item {
     public PeasCanItem() {
-        super(p -> p.food(new FoodProperties.Builder().alwaysEdible().nutrition(4).saturationModifier(0.5f).fast().build()));
+        super(new Properties().food(new FoodProperties.Builder().alwaysEdible().nutrition(4).saturationModifier(0.5f).fast().build()));
     }
 
     @Override

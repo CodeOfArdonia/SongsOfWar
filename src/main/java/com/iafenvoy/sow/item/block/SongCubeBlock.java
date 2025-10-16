@@ -1,11 +1,12 @@
 package com.iafenvoy.sow.item.block;
 
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.type.Ability;
 import com.iafenvoy.sow.Constants;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -15,10 +16,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -28,22 +29,22 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class SongCubeBlock extends BaseEntityBlock {
-    private static final MapCodec<SongCubeBlock> CODEC = simpleCodec(x -> new SongCubeBlock(SowAbilityCategory.AGGRESSIUM));
-    public static final Map<SowAbilityCategory, ItemLike> BLOCKS_MAP = new HashMap<>();
-    private final SowAbilityCategory category;
+    private static final MapCodec<SongCubeBlock> CODEC = simpleCodec(x -> new SongCubeBlock(SowAbilityCategories.AGGRESSIUM));
+    public static final List<SongCubeBlock> BLOCKS = new LinkedList<>();
+    private final DeferredHolder<AbilityCategory, AbilityCategory> category;
 
-    public SongCubeBlock(SowAbilityCategory category) {
+    public SongCubeBlock(DeferredHolder<AbilityCategory, AbilityCategory> category) {
         super(Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(state -> 15).instabreak().noLootTable());
         this.category = category;
-        BLOCKS_MAP.put(category, this);
+        BLOCKS.add(this);
     }
 
     @Override
@@ -55,8 +56,12 @@ public class SongCubeBlock extends BaseEntityBlock {
         }
     }
 
-    public SowAbilityCategory getCategory() {
-        return this.category;
+    public AbilityCategory getCategory() {
+        return this.category.get();
+    }
+
+    public static Block getBlock(AbilityCategory category) {
+        return BLOCKS.stream().filter(x -> x.category.get() == category).findFirst().map(Block.class::cast).orElse(Blocks.AIR);
     }
 
     @Override
@@ -73,7 +78,7 @@ public class SongCubeBlock extends BaseEntityBlock {
     public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         Ability<?> power = SongCubeItem.getPower(stack);
-        tooltipComponents.add(this.category.getCategory().appendColor(Component.translatable(power.getTranslateKey())));
+        tooltipComponents.add(this.category.get().appendColor(Component.translatable(power.getTranslateKey())));
         Constants.LAST_SONG_POWER_TOOLTIP = power.getTranslateKey();
         if (power.isExperimental()) tooltipComponents.add(Component.translatable("item.sow.song.experimental"));
     }
@@ -88,10 +93,8 @@ public class SongCubeBlock extends BaseEntityBlock {
     @Override
     public @NotNull ItemStack getCloneItemStack(@NotNull BlockState state, @NotNull HitResult target, @NotNull LevelReader level, @NotNull BlockPos pos, @NotNull Player player) {
         ItemStack stack = super.getCloneItemStack(state, target, level, pos, player);
-        if (level.getBlockEntity(pos) instanceof SongCubeBlockEntity blockEntity) {
-            Ability<?> power = blockEntity.getPower();
-            SongCubeItem.appendComponent(power, stack);
-        }
+        if (level.getBlockEntity(pos) instanceof SongCubeBlockEntity blockEntity)
+            SongCubeItem.appendComponent(blockEntity.getPower(), stack);
         return stack;
     }
 

@@ -1,28 +1,29 @@
 package com.iafenvoy.sow.item;
 
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.neptune.ability.AbilityCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 public class NoteItem extends Item {
-    private static final Map<SowAbilityCategory, Item> ITEMS = new HashMap<>();
-    private final SowAbilityCategory category;
+    private static final List<NoteItem> ITEMS = new LinkedList<>();
+    private final DeferredHolder<AbilityCategory, AbilityCategory> category;
 
-    public NoteItem(SowAbilityCategory category) {
+    public NoteItem(DeferredHolder<AbilityCategory, AbilityCategory> category) {
         super(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON));
         this.category = category;
-        ITEMS.put(this.category, this);
+        ITEMS.add(this);
     }
 
-    public SowAbilityCategory getCategory() {
-        return this.category;
+    public AbilityCategory getCategory() {
+        return this.category.get();
     }
 
-    public static Item getItem(SowAbilityCategory category) {
-        return ITEMS.getOrDefault(category, Items.AIR);
+    public static Item getItem(AbilityCategory category) {
+        return ITEMS.stream().filter(x -> x.category.get() == category).findFirst().map(Item.class::cast).orElse(Items.AIR);
     }
 }

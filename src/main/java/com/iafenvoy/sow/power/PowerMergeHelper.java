@@ -10,7 +10,7 @@ import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
 import com.iafenvoy.sow.item.block.entity.SongCubeBlockEntity;
 import com.iafenvoy.sow.registry.SowParticles;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +34,7 @@ public class PowerMergeHelper {
     private static final Map<Player, MergeData> DATA = new HashMap<>();
 
     public static void run(AbilityData data, Player player, ServerLevel serverWorld) {
-        if (!data.isEnabled(SowAbilityCategory.ALL.get().toArray(AbilityCategory[]::new)))
+        if (!data.isEnabled(SowAbilityCategories.ALL.get().toArray(AbilityCategory[]::new)))
             return;
         if (!DATA.containsKey(player)) DATA.put(player, new MergeData());
         MergeData mergeData = DATA.get(player);
@@ -51,12 +51,12 @@ public class PowerMergeHelper {
                     InteractHolder holder = InteractHolder.of(serverWorld, songPos);
                     if (holder.isPresent() && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
                         Vec3 center = songPos.getCenter();
-                        SowAbilityCategory category = holder.getCategory();
-                        Color4i color = category.getCategory().getColor();
+                        AbilityCategory category = holder.getCategory();
+                        Color4i color = category.getColor();
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
                             serverWorld.sendParticles(SowParticles.SONG_EFFECT.get(), center.x(), center.y() - 0.25, center.z(), 0, color.getR(), color.getG(), color.getB(), 1);
                         if (mergeData.sneakTick == 60) {
-                            AbilityData.SingleAbilityData d = data.get(category.getCategory());
+                            AbilityData.SingleAbilityData d = data.get(category);
                             Ability<?> newPower = holder.getPower();
                             if (d.hasAbility()) holder.setPower(d.getActiveAbility());
                             else holder.destroy();
@@ -121,11 +121,11 @@ public class PowerMergeHelper {
             return null;
         }
 
-        public SowAbilityCategory getCategory() {
+        public AbilityCategory getCategory() {
             if (this.blockEntity != null) return this.blockEntity.getCategory();
             if (this.itemEntity != null && this.itemEntity.getItem().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SongCubeBlock songCubeBlock)
                 return songCubeBlock.getCategory();
-            return SowAbilityCategory.AGGRESSIUM;
+            return SowAbilityCategories.AGGRESSIUM.get();
         }
 
         public void setPower(Ability<?> power) {

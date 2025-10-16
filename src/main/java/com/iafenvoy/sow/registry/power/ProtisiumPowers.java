@@ -31,7 +31,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ProtisiumPowers {
     public static final DeferredRegister<Ability<?>> REGISTRY = DeferredRegister.create(NeptuneRegistries.ABILITY, SongsOfWar.MOD_ID);
 
-    public static final DeferredHolder<Ability<?>, PersistAbility> PROTEARMOR = REGISTRY.register("protearmor", () -> new PersistAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> PROTEARMOR = REGISTRY.register("protearmor", () -> new PersistAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEARMOR)
             .setUnapplySound(SowSounds.PROTEARMOR_UNAPPLY)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protearmorPrimaryCooldown.getValue())
@@ -40,11 +40,11 @@ public final class ProtisiumPowers {
             .onInit(self -> NeoForge.EVENT_BUS.<LivingDamageEvent.Pre>addListener(event -> {
                 AbilityData data = AbilityData.get(event.getEntity());
                 if (data.abilityEnabled(self)) {
-                    data.get(SowAbilityCategory.PROTISIUM.getCategory()).disable(event.getEntity());
+                    data.get(SowAbilityCategories.PROTISIUM.get()).disable(event.getEntity());
                     event.setNewDamage(Math.max(event.getOriginalDamage() - SowCommonConfig.INSTANCE.protisium.protearmorMaxReduceDamage.getValue().floatValue(), 0));
                 }
             })));
-    public static final DeferredHolder<Ability<?>, InstantAbility> PROTEBARRIER = REGISTRY.register("protebarrier", () -> new InstantAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, InstantAbility> PROTEBARRIER = REGISTRY.register("protebarrier", () -> new InstantAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEBARRIER)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protebarrierPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.protebarrierSecondaryCooldown.getValue())
@@ -62,7 +62,7 @@ public final class ProtisiumPowers {
                             TemporaryTransparentBlock.place(world, pos, SowBlocks.PROTE_BARRIER.get().defaultBlockState(), 20 * SowCommonConfig.INSTANCE.protisium.protebarrierExistTime.getValue());
                     }
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> PROTECLONE = REGISTRY.register("proteclone", () -> new DelayAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> PROTECLONE = REGISTRY.register("proteclone", () -> new DelayAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTECLONE)
             .setDelay(12)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.protisium.proteclonePrimaryCooldown.getValue())
@@ -78,7 +78,7 @@ public final class ProtisiumPowers {
                     world.addFreshEntity(proteClone);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, IntervalAbility> PROTEHEAL = REGISTRY.register("proteheal", () -> new IntervalAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, IntervalAbility> PROTEHEAL = REGISTRY.register("proteheal", () -> new IntervalAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEHEAL)
             .setInterval(10)
             .setTimes(10)
@@ -93,7 +93,7 @@ public final class ProtisiumPowers {
                 }
                 living.heal(1);
             }));
-    public static final DeferredHolder<Ability<?>, PersistAbility> PROTEPOINT = REGISTRY.register("protepoint", () -> new PersistAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> PROTEPOINT = REGISTRY.register("protepoint", () -> new PersistAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTEPOINT)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.protisium.protepointExhaustion.getValue())
             .onApply(holder -> {
@@ -106,7 +106,7 @@ public final class ProtisiumPowers {
                 if (living.getOffhandItem().is(SowItems.PROTEPOINT_SHIELD.get()))
                     living.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY.copy());
             }));
-    public static final DeferredHolder<Ability<?>, PersistAbility> PROTESPHERE = REGISTRY.register("protesphere", () -> new PersistAbility(SowAbilityCategory.PROTISIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, PersistAbility> PROTESPHERE = REGISTRY.register("protesphere", () -> new PersistAbility(SowAbilityCategories.PROTISIUM)
             .setApplySound(SowSounds.PROTESPHERE)
             .setUnapplySound(SowSounds.PROTESPHERE_UNAPPLY)
             .setExhaustion(holder -> SowCommonConfig.INSTANCE.protisium.protesphereExhaustion.getValue())

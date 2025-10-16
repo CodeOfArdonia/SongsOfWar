@@ -12,7 +12,7 @@ public class CrownPeakSoldierEntity extends AbstractSoldierEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.CrownPeak;
+        return KingdomType.CROWN_PEAK;
     }
 
     @Override

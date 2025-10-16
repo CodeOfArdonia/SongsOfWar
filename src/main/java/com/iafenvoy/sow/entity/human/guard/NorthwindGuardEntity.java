@@ -12,7 +12,7 @@ public class NorthwindGuardEntity extends AbstractGuardEntity {
 
     @Override
     public KingdomType getKingdom() {
-        return KingdomType.Northwind;
+        return KingdomType.NORTHWIND;
     }
 
     @Override

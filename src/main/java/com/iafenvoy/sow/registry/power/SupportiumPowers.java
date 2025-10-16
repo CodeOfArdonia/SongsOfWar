@@ -38,7 +38,7 @@ import java.util.Objects;
 public final class SupportiumPowers {
     public static final DeferredRegister<Ability<?>> REGISTRY = DeferredRegister.create(NeptuneRegistries.ABILITY, SongsOfWar.MOD_ID);
 
-    public static final DeferredHolder<Ability<?>, DelayAbility> SUPPOREKESIS = REGISTRY.register("supporekesis", () -> new DelayAbility(SowAbilityCategory.SUPPORTIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> SUPPOREKESIS = REGISTRY.register("supporekesis", () -> new DelayAbility(SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOREKESIS)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporekesisPrimaryCooldown.getValue())
@@ -56,7 +56,7 @@ public final class SupportiumPowers {
                         controllable.setDisappearCd(70, true);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, DelayAbility> SUPPOROFORM = REGISTRY.register("supporoform", () -> new DelayAbility(SowAbilityCategory.SUPPORTIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, DelayAbility> SUPPOROFORM = REGISTRY.register("supporoform", () -> new DelayAbility(SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROFORM)
             .setDelay(20)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoformPrimaryCooldown.getValue())
@@ -83,7 +83,7 @@ public final class SupportiumPowers {
                     if (!stack1.isEmpty()) player.getInventory().setItem(i, stack1);
                 }
             }));
-    public static final DeferredHolder<Ability<?>, InstantAbility> SUPPOROLIFT = REGISTRY.register("supporolift", () -> new InstantAbility(SowAbilityCategory.SUPPORTIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, InstantAbility> SUPPOROLIFT = REGISTRY.register("supporolift", () -> new InstantAbility(SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROLIFT)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftPrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporoliftSecondaryCooldown.getValue())
@@ -98,7 +98,7 @@ public final class SupportiumPowers {
                     l.hurtMarked = true;
                 } else holder.cancel();
             }));
-    public static final DeferredHolder<Ability<?>, InstantAbility> SUPPOROSPIKE = REGISTRY.register("supporospike", () -> new InstantAbility(SowAbilityCategory.SUPPORTIUM.getCategory())
+    public static final DeferredHolder<Ability<?>, InstantAbility> SUPPOROSPIKE = REGISTRY.register("supporospike", () -> new InstantAbility(SowAbilityCategories.SUPPORTIUM)
             .setApplySound(SowSounds.SUPPOROSPIKE)
             .setPrimaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikePrimaryCooldown.getValue())
             .setSecondaryCooldown(holder -> SowCommonConfig.INSTANCE.supportium.supporospikeSecondaryCooldown.getValue())

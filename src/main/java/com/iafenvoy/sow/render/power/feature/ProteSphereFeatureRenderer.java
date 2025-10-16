@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class ProteSphereFeatureRenderer<T extends Player, M extends PlayerModel<T>> extends RenderLayer<T, M> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/sphere/protesphere.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/sphere/protesphere.png");
     private final SphereModel<T> sphereModel;
 
     public ProteSphereFeatureRenderer(RenderLayerParent<T, M> context) {

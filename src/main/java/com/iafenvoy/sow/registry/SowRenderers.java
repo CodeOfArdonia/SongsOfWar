@@ -20,7 +20,7 @@ import com.iafenvoy.sow.item.SongStoneItem;
 import com.iafenvoy.sow.particle.AggroblastParticle;
 import com.iafenvoy.sow.particle.LaserParticle;
 import com.iafenvoy.sow.particle.SongEffectParticle;
-import com.iafenvoy.sow.registry.power.SowAbilityCategory;
+import com.iafenvoy.sow.registry.power.SowAbilityCategories;
 import com.iafenvoy.sow.render.block.ArdoniGraveBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.SongCubeBlockEntityRenderer;
 import com.iafenvoy.sow.render.block.WallsOfTimeBlockEntityRenderer;
@@ -227,7 +227,7 @@ public final class SowRenderers {
     }
 
     public static void registerModelPredicate() {
-        ItemProperties.registerGeneric(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> Optional.ofNullable(stack.get(NeptuneDataComponents.ABILITY_CATEGORY)).map(x -> SowAbilityCategory.ALL.get().indexOf(x)).orElse(-1) + 1.0F);
+        ItemProperties.registerGeneric(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, SongStoneItem.POWER_KEY), (stack, world, entity, seed) -> Optional.ofNullable(stack.get(NeptuneDataComponents.ABILITY_CATEGORY)).map(x -> SowAbilityCategories.ALL.get().indexOf(x)).orElse(-1) + 1.0F);
         ItemProperties.registerGeneric(ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, AdjustedSongStoneItem.NEAR_KEY), (stack, world, entity, seed) -> stack.getOrDefault(SowDataComponents.SONG_STONE_NEAR, 0F));
     }
 }
