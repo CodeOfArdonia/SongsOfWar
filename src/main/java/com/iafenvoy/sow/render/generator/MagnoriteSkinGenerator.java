@@ -1,10 +1,10 @@
 package com.iafenvoy.sow.render.generator;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.util.PerlinNoise;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.render.util.ImageRenderUtils;
 import com.mojang.blaze3d.platform.NativeImage;
+import it.unimi.dsi.fastutil.floats.Float2IntFunction;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 
@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.function.DoubleFunction;
 
 public class MagnoriteSkinGenerator {
     private static final ResourceLocation DEFAULT = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/magnorite/magnorite_default.png");
@@ -67,26 +66,26 @@ public class MagnoriteSkinGenerator {
             EXECUTOR.execute(() -> {
                 NativeImage skin = new NativeImage(64, 64, true);
                 NativeImage marker = new NativeImage(64, 64, true);
-                Color4i[][] lavaMap = generateColors(this.seed, 0.2, List.of(
+                int[][] lavaMap = generateColors(this.seed, 0.2, List.of(
                         PerlinNoise.NoiseConfig.of(8, 0.5),
                         PerlinNoise.NoiseConfig.of(5, 0.25),
                         PerlinNoise.NoiseConfig.of(3, 0.125),
                         PerlinNoise.NoiseConfig.of(1, 0.0625)
-                ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x00, 0x45, 0xff, 0xff), new Color4i(0x00, 0xff, 0xff, 0xff), h));
+                ), h -> ImageRenderUtils.interpolateColor(0xFF0045FF, 0xFF00FFFF, h));
                 ImageRenderUtils.fillWithCondition(skin, lavaMap, ImageRenderUtils::inFirstLayer);
                 ImageRenderUtils.fillWithCondition(marker, lavaMap, ImageRenderUtils::inFirstLayer);
 
-                Color4i[][] carveColor = generateColors(this.seed + 1, 0, List.of(
+                int[][] carveColor = generateColors(this.seed + 1, 0, List.of(
                         PerlinNoise.NoiseConfig.of(1, 0.75),
                         PerlinNoise.NoiseConfig.of(0.5, 0.5),
                         PerlinNoise.NoiseConfig.of(0.25, 0.25)
-                ), h -> ImageRenderUtils.interpolateColor(new Color4i(0x52, 0x5f, 0x72, 0xff), new Color4i(0x12, 0x15, 0x1c, 0xff), h));
-                Color4i[][] carve = generateColors(this.seed + 2, -0.5, List.of(
+                ), h -> ImageRenderUtils.interpolateColor(0xFF525F72, 0xFF12151C, h));
+                int[][] carve = generateColors(this.seed + 2, -0.5, List.of(
                         PerlinNoise.NoiseConfig.of(2, 1.5),
                         PerlinNoise.NoiseConfig.of(1.5, 1.5),
                         PerlinNoise.NoiseConfig.of(0.5, 0.5)
-                ), h -> h > 0 ? new Color4i(0xff, 0xff, 0xff, 0xff) : new Color4i(0, 0, 0, 0));
-                Color4i[][] firstLayer = ImageRenderUtils.create(64, 64), secondLayer = ImageRenderUtils.create(64, 64);
+                ), h -> h > 0 ? 0xFFFFFFFF : 0x00000000);
+                int[][] firstLayer = ImageRenderUtils.create(64, 64), secondLayer = ImageRenderUtils.create(64, 64);
                 ImageRenderUtils.resolveCarve(carveColor, carve, firstLayer, secondLayer);
                 ImageRenderUtils.fillWithCondition(skin, firstLayer, ImageRenderUtils::inFirstLayer);
                 ImageRenderUtils.fillWithCondition(skin, secondLayer, ImageRenderUtils::inSecondLayer);
@@ -94,10 +93,10 @@ public class MagnoriteSkinGenerator {
                 ImageRenderUtils.removeDuplicateWithCondition(marker, firstLayer, ImageRenderUtils::inFirstLayer);
                 ImageRenderUtils.removeDuplicateWithCondition(marker, carveColor, ImageRenderUtils::isFirstFace);
 
-                skin.setPixelRGBA(9, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
-                skin.setPixelRGBA(14, 11, new Color4i(0x1F, 0x27, 0x30, 0xFF).getIntValue());
-                marker.setPixelRGBA(10, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
-                marker.setPixelRGBA(13, 11, new Color4i(0x19, 0x95, 0xF8, 0xFF).getIntValue());
+                skin.setPixelRGBA(9, 11, 0xFF1F2730);
+                skin.setPixelRGBA(14, 11, 0xFF1F2730);
+                marker.setPixelRGBA(10, 11, 0xFF1995F8);
+                marker.setPixelRGBA(13, 11, 0xFF1995F8);
 
                 Minecraft.getInstance().execute(() -> {
                     ImageRenderUtils.upload(skin, this.skinId);
@@ -119,12 +118,12 @@ public class MagnoriteSkinGenerator {
     }
 
     //这里会自动去除噪点，防止太多单像素点太丑
-    public static Color4i[][] generateColors(long seed, double base, List<PerlinNoise.NoiseConfig> config, DoubleFunction<Color4i> colorLoader) {
+    public static int[][] generateColors(long seed, double base, List<PerlinNoise.NoiseConfig> config, Float2IntFunction colorLoader) {
         double[][] perlinMap = generatePerlin(seed, base, config);
-        Color4i[][] colorMap = ImageRenderUtils.create(64, 64);
+        int[][] colorMap = ImageRenderUtils.create(64, 64);
         for (int i = 0; i < 64; i++)
             for (int j = 0; j < 64; j++)
-                colorMap[i][j] = colorLoader.apply(perlinMap[i][j]);
+                colorMap[i][j] = colorLoader.apply((float) perlinMap[i][j]);
         ImageRenderUtils.smooth(colorMap, 0, 0, 64, 64);
         return colorMap;
     }

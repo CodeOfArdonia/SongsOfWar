@@ -21,6 +21,7 @@ repositories {
     maven { url = "https://api.modrinth.com/maven" }
     maven { url = "https://maven.terraformersmc.com/" }
     maven { url = "https://maven.kessokuteatime.work/releases" }
+    maven { url = "https://maven.theillusivec4.top/" }
 }
 
 base {
@@ -114,8 +115,11 @@ configurations {
 }
 
 dependencies {
-    implementation "maven.modrinth:neptune:tJY9nHLT"
+    implementation "maven.modrinth:neptune:WZ0Cj96V"
     implementation "maven.modrinth:jupiter:I4i9vhEW"
+
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
     // Optional
     implementation "dev.emi:emi-neoforge:${emi_version}"

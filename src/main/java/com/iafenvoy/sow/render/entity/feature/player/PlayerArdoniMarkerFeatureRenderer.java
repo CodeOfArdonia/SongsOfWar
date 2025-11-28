@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.player;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
 import com.iafenvoy.sow.render.entity.feature.ArdoniSkinHelper;
@@ -32,8 +31,8 @@ public class PlayerArdoniMarkerFeatureRenderer<T extends Player, M extends Playe
         this.getParentModel().copyPropertiesTo(model);
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(entity);
         if (data != null) {
-            Color4i color = data.color();
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(data.marker())), light, OverlayTexture.NO_OVERLAY, color.getIntValue());
+            int color = data.color();
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(data.marker())), light, OverlayTexture.NO_OVERLAY, color);
         }
         matrices.popPose();
     }

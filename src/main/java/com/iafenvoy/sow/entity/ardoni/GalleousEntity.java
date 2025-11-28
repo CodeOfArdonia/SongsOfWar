@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +12,7 @@ import java.util.Optional;
 public class GalleousEntity extends AbstractArdoniEntity {
     public static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/galleous.png");
     public static final ResourceLocation TEXTURE_MARKER = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/galleous_marker.png");
-    public static final Color4i COLOR = new Color4i(0, 162, 232, 255);
+    public static final int COLOR = 0xFF00A2E8;
 
     public GalleousEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -30,7 +29,7 @@ public class GalleousEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         return COLOR;
     }
 

@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
 import com.iafenvoy.sow.entity.ardoni.random.ArdoniEntity;
@@ -38,8 +37,7 @@ public class ArdoniMarkerFeatureRenderer extends RenderLayer<AbstractArdoniEntit
             model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(marker.get())), light, OverlayTexture.NO_OVERLAY, -1);
         else if (entity instanceof ArdoniEntity ardoni) {
             ArdoniMarkerGenerator generator = ArdoniMarkerGenerator.getOrCreate(ardoni.getMarkerSeed());
-            Color4i color = entity.getColor();
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(generator.getForSkin())), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(generator.getForSkin())), light, OverlayTexture.NO_OVERLAY, entity.getColor() | 0xFF000000);
         }
         matrices.popPose();
     }

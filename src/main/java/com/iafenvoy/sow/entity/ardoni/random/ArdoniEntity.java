@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni.random;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
@@ -22,6 +21,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.Optional;
 
 public abstract class ArdoniEntity extends AbstractArdoniEntity {
@@ -51,9 +51,9 @@ public abstract class ArdoniEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         if (this.hasCustomName() && this.getName().getString().equals("jeb_"))
-            return Color4i.fromHSV((this.tickCount + this.getId()) / 100.0f, 1, 1);
+            return Color.HSBtoRGB((this.tickCount + this.getId()) / 100.0f, 1, 1);
         return this.getArdoniType().getColor(this.getMarkerSeed());
     }
 

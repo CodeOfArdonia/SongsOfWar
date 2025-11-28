@@ -1,7 +1,6 @@
 package com.iafenvoy.sow.entity.ardoni;
 
 import com.iafenvoy.neptune.render.EntityWithMarkerTextureProvider;
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
 import net.minecraft.world.damagesource.DamageSource;
@@ -64,7 +63,7 @@ public abstract class AbstractArdoniEntity extends Monster implements EntityWith
         this.spawnAtLocation(this.toGrave());
     }
 
-    public abstract Color4i getColor();
+    public abstract int getColor();
 
     public abstract ArdoniType getArdoniType();
 

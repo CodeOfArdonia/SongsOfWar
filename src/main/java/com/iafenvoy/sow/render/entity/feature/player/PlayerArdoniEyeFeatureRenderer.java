@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.player;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
@@ -40,9 +39,9 @@ public class PlayerArdoniEyeFeatureRenderer<T extends Player, M extends PlayerMo
         this.getParentModel().copyPropertiesTo(model);
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(entity);
         if (data != null) {
-            Color4i color = data.color();
+            int color = data.color();
             ResourceLocation pupil = data.female() ? PUPIL_FEMALE : PUPIL_MALE;
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(pupil)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(pupil)), light, OverlayTexture.NO_OVERLAY, color | 0xFF000000);
             if (!data.fixed()) {
                 ResourceLocation eye = data.female() ? EYE_FEMALE : EYE_MALE;
                 int darkness = ArdoniSkinFeatureRenderer.getDarkness(data.dark(), data.seed());

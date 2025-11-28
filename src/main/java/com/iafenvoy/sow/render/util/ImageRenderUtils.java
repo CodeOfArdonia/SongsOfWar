@@ -1,16 +1,17 @@
 package com.iafenvoy.sow.render.util;
 
 import com.iafenvoy.neptune.render.SimpleTexture;
-import com.iafenvoy.neptune.util.Color4i;
 import com.mojang.blaze3d.platform.NativeImage;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
@@ -32,11 +33,11 @@ public final class ImageRenderUtils {
             new Tuple<>(new Rectangle(32, 52, 47, 63), new Rectangle(48, 52, 63, 63))
     );
 
-    public static Color4i[][] create(int x, int y) {
-        Color4i[][] data = new Color4i[x][y];
+    public static int[][] create(int x, int y) {
+        int[][] data = new int[x][y];
         for (int i = 0; i < x; i++)
             for (int j = 0; j < y; j++)
-                data[i][j] = new Color4i(0, 0, 0, 0);
+                data[i][j] = 0;
         return data;
     }
 
@@ -46,42 +47,37 @@ public final class ImageRenderUtils {
         Minecraft.getInstance().getTextureManager().register(id, skinTexture);
     }
 
-    public static void fillWithCondition(NativeImage image, Color4i[][] source, Int2BooleanBiFunction allow) {
+    public static void fillWithCondition(NativeImage image, int[][] source, Int2BooleanBiFunction allow) {
         for (int i = 0; i < 64; i++)
             for (int j = 0; j < 64; j++)
-                if (allow.applyAsBoolean(i, j) && source[i][j].a > 0)
-                    image.setPixelRGBA(i, j, source[i][j].getIntValue());
+                if (allow.applyAsBoolean(i, j) && (source[i][j] & 0xFF000000) > 0)
+                    image.setPixelRGBA(i, j, source[i][j]);
     }
 
-    public static void removeDuplicateWithCondition(NativeImage image, Color4i[][] source, Int2BooleanBiFunction allow) {
+    public static void removeDuplicateWithCondition(NativeImage image, int[][] source, Int2BooleanBiFunction allow) {
         for (int i = 0; i < 64; i++)
             for (int j = 0; j < 64; j++)
-                if (allow.applyAsBoolean(i, j) && source[i][j].a > 0)
+                if (allow.applyAsBoolean(i, j) && (source[i][j] & 0xFF000000) > 0)
                     image.setPixelRGBA(i, j, 0);
     }
 
-    public static Color4i interpolateColor(Color4i color1, Color4i color2, double t) {
+    public static int interpolateColor(int color1, int color2, float t) {
         t = Mth.clamp(t, 0, 1);
-        return new Color4i(
-                (int) (color1.r + (color2.r - color1.r) * t),
-                (int) (color1.g + (color2.g - color1.g) * t),
-                (int) (color1.b + (color2.b - color1.b) * t),
-                (int) (color1.a + (color2.a - color1.a) * t)
-        );
+        return FastColor.ARGB32.lerp(t, color1, color2);
     }
 
-    public static void smooth(Color4i[][] colorMap, int minX, int minY, int maxX, int maxY) {
+    public static void smooth(int[][] colorMap, int minX, int minY, int maxX, int maxY) {
         for (int i = minX; i < maxX; i++)
             for (int j = minY; j < maxY; j++) {
                 if (isAlone(colorMap, i, j))
-                    colorMap[i][j] = new Color4i(0, 0, 0, 0);
+                    colorMap[i][j] = 0;
                 else if (isHole(colorMap, i, j))
                     colorMap[i][j] = average(colorMap, i, j);
             }
     }
 
-    public static List<Color4i> getAround(Color4i[][] colorMap, int i, int j) {
-        List<Color4i> list = new LinkedList<>();
+    public static IntList getAround(int[][] colorMap, int i, int j) {
+        IntList list = new IntArrayList();
         if (i > 0) list.add(colorMap[i - 1][j]);
         if (j > 0) list.add(colorMap[i][j - 1]);
         if (i < colorMap.length - 1) list.add(colorMap[i + 1][j]);
@@ -89,21 +85,21 @@ public final class ImageRenderUtils {
         return list;
     }
 
-    public static boolean isAlone(Color4i[][] colorMap, int i, int j) {
-        return getAround(colorMap, i, j).stream().allMatch(x -> x.a == 0);
+    public static boolean isAlone(int[][] colorMap, int i, int j) {
+        return getAround(colorMap, i, j).intStream().allMatch(x -> (x & 0xFF000000) == 0);
     }
 
-    public static boolean isHole(Color4i[][] colorMap, int i, int j) {
-        return getAround(colorMap, i, j).stream().allMatch(x -> x.a > 0);
+    public static boolean isHole(int[][] colorMap, int i, int j) {
+        return getAround(colorMap, i, j).intStream().allMatch(x -> (x & 0xFF000000) > 0);
     }
 
-    public static Color4i average(Color4i[][] colorMap, int i, int j) {
-        List<Color4i> around = getAround(colorMap, i, j);
-        return new Color4i(
-                around.stream().map(x -> x.r).reduce(0, Integer::sum, Integer::sum) / around.size(),
-                around.stream().map(x -> x.g).reduce(0, Integer::sum, Integer::sum) / around.size(),
-                around.stream().map(x -> x.b).reduce(0, Integer::sum, Integer::sum) / around.size(),
-                around.stream().map(x -> x.a).reduce(0, Integer::sum, Integer::sum) / around.size()
+    public static int average(int[][] colorMap, int i, int j) {
+        IntList around = getAround(colorMap, i, j);
+        return FastColor.ARGB32.color(
+                around.intStream().map(FastColor.ARGB32::alpha).reduce(0, Integer::sum) / around.size(),
+                around.intStream().map(FastColor.ARGB32::red).reduce(0, Integer::sum) / around.size(),
+                around.intStream().map(FastColor.ARGB32::green).reduce(0, Integer::sum) / around.size(),
+                around.intStream().map(FastColor.ARGB32::blue).reduce(0, Integer::sum) / around.size()
         );
     }
 
@@ -131,11 +127,11 @@ public final class ImageRenderUtils {
         return 41 <= i && i <= 42 && 10 <= j && j <= 12 || 45 <= i && i <= 46 && 10 <= j && j <= 12;
     }
 
-    public static void resolveCarve(Color4i[][] carveColor, Color4i[][] carve, Color4i[][] firstLayer, Color4i[][] secondLayer) {
+    public static void resolveCarve(int[][] carveColor, int[][] carve, int[][] firstLayer, int[][] secondLayer) {
         for (Tuple<Rectangle, Rectangle> pair : LAYER_MAPPING)
             for (int i = pair.getA().xMin(); i <= pair.getA().xMax(); i++)
                 for (int j = pair.getA().yMin(); j <= pair.getA().yMax(); j++)
-                    if (carve[i][j].a > 0) firstLayer[i][j] = carveColor[i][j];
+                    if ((carve[i][j] & 0xFF000000) > 0) firstLayer[i][j] = carveColor[i][j];
                     else
                         secondLayer[i - pair.getA().xMin() + pair.getB().xMin()][j - pair.getA().yMin() + pair.getB().yMin()] = carveColor[i][j];
     }

@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.registry.SowWeapons;
@@ -16,7 +15,7 @@ import java.util.Optional;
 public class SendarisMasterEntity extends AbstractArdoniEntity {
     public static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/sendaris_master.png");
     public static final ResourceLocation TEXTURE_MARKER = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/sendaris_master_marker.png");
-    public static final Color4i COLOR = new Color4i(126, 239, 255, 255);
+    public static final int COLOR = 0xFF7EEFFF;
 
     public SendarisMasterEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -34,7 +33,7 @@ public class SendarisMasterEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         return COLOR;
     }
 

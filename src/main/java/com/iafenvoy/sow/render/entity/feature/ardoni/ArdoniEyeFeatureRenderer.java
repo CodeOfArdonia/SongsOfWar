@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
@@ -35,9 +34,9 @@ public class ArdoniEyeFeatureRenderer extends RenderLayer<AbstractArdoniEntity, 
         SowClientConfig.processEmissiveStack(matrices);
         PlayerModel<AbstractArdoniEntity> model = new PlayerModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER), false);
         this.getParentModel().copyPropertiesTo(model);
-        Color4i color = entity.getColor();
+        int color = entity.getColor();
         ResourceLocation pupil = entity.isFemale() ? PUPIL_FEMALE : PUPIL_MALE;
-        model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(pupil)), light, OverlayTexture.NO_OVERLAY, color.getIntValue());
+        model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(pupil)), light, OverlayTexture.NO_OVERLAY, color);
         if (entity instanceof ArdoniEntity ardoni) {
             ResourceLocation eye = entity.isFemale() ? EYE_FEMALE : EYE_MALE;
             int darkness = ArdoniSkinFeatureRenderer.getDarkness(ardoni.getArdoniType().dark(), ardoni.getMarkerSeed());

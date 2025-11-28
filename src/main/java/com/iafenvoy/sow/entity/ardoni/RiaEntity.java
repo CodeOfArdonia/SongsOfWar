@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.Proxies;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
@@ -17,7 +16,7 @@ import java.util.Optional;
 public class RiaEntity extends AbstractArdoniEntity {
     public static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ria.png");
     public static final ResourceLocation TEXTURE_MARKER = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/ria_marker.png");
-    public static final Color4i COLOR = new Color4i(136, 241, 255, 255);
+    public static final int COLOR = 0xFF88F1FF;
 
     public RiaEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -36,7 +35,7 @@ public class RiaEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         return COLOR;
     }
 

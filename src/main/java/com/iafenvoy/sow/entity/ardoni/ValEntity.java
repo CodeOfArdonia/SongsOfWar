@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.registry.SowWeapons;
@@ -16,7 +15,7 @@ import java.util.Optional;
 public class ValEntity extends AbstractArdoniEntity {
     public static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/val.png");
     public static final ResourceLocation TEXTURE_MARKER = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/val_marker.png");
-    public static final Color4i COLOR = new Color4i(255, 168, 249, 255);
+    public static final int COLOR = 0xFFFFA8F9;
 
     public ValEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -35,7 +34,7 @@ public class ValEntity extends AbstractArdoniEntity {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         return COLOR;
     }
 

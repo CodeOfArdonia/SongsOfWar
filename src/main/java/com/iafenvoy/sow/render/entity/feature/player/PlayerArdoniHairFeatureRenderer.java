@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.player;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
@@ -36,14 +35,14 @@ public class PlayerArdoniHairFeatureRenderer<T extends Player, M extends PlayerM
         this.getParentModel().copyPropertiesTo(model);
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(entity);
         if (data != null && !data.fixed()) {
-            Color4i color = data.color();
+            int color = data.color();
             int age = data.age();
             ResourceLocation hair = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + ".png");
             ResourceLocation hairMarker = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + "_marker.png");
             model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityCutout(hair)), light, OverlayTexture.NO_OVERLAY, -1);
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(hairMarker)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(hairMarker)), light, OverlayTexture.NO_OVERLAY, color | 0xFF000000);
             if (data.female())
-                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(FEMALE_EXTRA_HAIR)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(FEMALE_EXTRA_HAIR)), light, OverlayTexture.NO_OVERLAY, color | 0xFF000000);
         }
         matrices.popPose();
     }

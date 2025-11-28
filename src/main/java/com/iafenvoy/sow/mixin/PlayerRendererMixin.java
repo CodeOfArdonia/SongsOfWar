@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.mixin;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
 import com.iafenvoy.sow.render.entity.feature.ArdoniSkinHelper;
 import com.iafenvoy.sow.render.entity.feature.ardoni.ArdoniSkinFeatureRenderer;
@@ -54,8 +53,7 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(player);
         if (data == null) return;
         int darkness = ArdoniSkinFeatureRenderer.getDarkness(data.dark(), data.seed());
-        Color4i color = data.color();
         arm.render(matrices, vertexConsumers.getBuffer(RenderType.entitySolid(player.getSkin().texture())), light, OverlayTexture.NO_OVERLAY, 0x010101 * darkness + 0xFF000000);
-        arm.render(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(data.marker())), light, OverlayTexture.NO_OVERLAY, color.getIntValue());
+        arm.render(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(data.marker())), light, OverlayTexture.NO_OVERLAY, data.color());
     }
 }

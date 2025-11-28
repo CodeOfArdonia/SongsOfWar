@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.entity.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.Anniversary;
 import com.iafenvoy.sow.data.ArdoniType;
@@ -22,7 +21,7 @@ import java.util.Optional;
 public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
     public static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren.png");
     public static final ResourceLocation TEXTURE_MARKER = ResourceLocation.tryBuild(SongsOfWar.MOD_ID, "textures/entity/ardoni/special/tygren_marker.png");
-    public static final Color4i COLOR = new Color4i(255, 0, 0, 255);
+    public static final int COLOR = 0xFFFF0000;
     private static final EntityDataAccessor<Boolean> FLAT = SynchedEntityData.defineId(TygrenEntity.class, EntityDataSerializers.BOOLEAN);
 
     public TygrenEntity(EntityType<? extends Monster> entityType, Level world) {
@@ -47,7 +46,7 @@ public class TygrenEntity extends AbstractArdoniEntity implements Flatable {
     }
 
     @Override
-    public Color4i getColor() {
+    public int getColor() {
         return COLOR;
     }
 

@@ -1,16 +1,19 @@
 package com.iafenvoy.sow.data;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.sow.item.SowSpawnEggItem;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
-public record ArdoniType(String id, boolean dark, Color4i primaryColor, List<Color4i> altColors) {
+public record ArdoniType(String id, boolean dark, int primaryColor, IntList altColors) {
     private static final Map<String, ArdoniType> BY_ID = new HashMap<>();
     public static final ArdoniType NONE;
     public static final ArdoniType VOLTARIS;
@@ -19,12 +22,12 @@ public record ArdoniType(String id, boolean dark, Color4i primaryColor, List<Col
     public static final ArdoniType KALTARIS;
     public static final ArdoniType MENDORIS;
 
-    public ArdoniType(String id, boolean dark, Color4i primaryColor, Color4i... altColors) {
-        this(id, dark, primaryColor, List.of(altColors));
+    public ArdoniType(String id, boolean dark, int primaryColor, int... altColors) {
+        this(id, dark, primaryColor, IntList.of(altColors));
         BY_ID.put(id, this);
     }
 
-    public Color4i getColor(long seed) {
+    public int getColor(long seed) {
         Random random = new Random(seed);
         if (this.altColors.isEmpty() || random.nextInt(3) > 0) return this.primaryColor;
         return RandomHelper.randomOne(random, this.altColors);
@@ -39,7 +42,7 @@ public record ArdoniType(String id, boolean dark, Color4i primaryColor, List<Col
     }
 
     public SowSpawnEggItem createSpawnEgg(DeferredHolder<EntityType<?>, ? extends EntityType<? extends Mob>> type) {
-        return new SowSpawnEggItem(type, 0xFF888888, this.primaryColor.getIntValue());
+        return new SowSpawnEggItem(type, 0xFF888888, this.primaryColor);
     }
 
     public Component formatName(String prefix) {
@@ -48,11 +51,11 @@ public record ArdoniType(String id, boolean dark, Color4i primaryColor, List<Col
     }
 
     static {
-        NONE = new ArdoniType("none", false, new Color4i(255, 255, 255, 255));
-        VOLTARIS = new ArdoniType("voltaris", true, new Color4i(255, 0, 0, 255));
-        SENDARIS = new ArdoniType("sendaris", false, new Color4i(0, 0, 255, 255), new Color4i(0, 255, 255, 255));
-        NESTORIS = new ArdoniType("nestoris", false, new Color4i(255, 255, 0, 255), new Color4i(240, 155, 89, 255));
-        KALTARIS = new ArdoniType("kaltaris", false, new Color4i(0, 255, 0, 255));
-        MENDORIS = new ArdoniType("mendoris", false, new Color4i(160, 32, 240, 255), new Color4i(234, 63, 247, 255));
+        NONE = new ArdoniType("none", false, 0xFFFFFFFF);
+        VOLTARIS = new ArdoniType("voltaris", true, 0xFFFF0000);
+        SENDARIS = new ArdoniType("sendaris", false, 0xFF0000FF, 0xFF00FFFF);
+        NESTORIS = new ArdoniType("nestoris", false, 0xFFFFFF00, 0xFFF09B59);
+        KALTARIS = new ArdoniType("kaltaris", false, 0xFF00FF00);
+        MENDORIS = new ArdoniType("mendoris", false, 0xFFA020F0, 0xFFEA3FF7);
     }
 }

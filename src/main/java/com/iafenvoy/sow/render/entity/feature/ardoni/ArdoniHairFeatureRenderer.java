@@ -1,6 +1,5 @@
 package com.iafenvoy.sow.render.entity.feature.ardoni;
 
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
@@ -33,15 +32,15 @@ public class ArdoniHairFeatureRenderer extends RenderLayer<AbstractArdoniEntity,
         SowClientConfig.processEmissiveStack(matrices);
         PlayerModel<AbstractArdoniEntity> model = new PlayerModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER), false);
         this.getParentModel().copyPropertiesTo(model);
-        Color4i color = entity.getColor();
+        int color = entity.getColor();
         if (entity instanceof ArdoniEntity ardoni) {
             int age = ardoni.getAge();
             ResourceLocation hair = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + ".png");
             ResourceLocation hairMarker = ResourceLocation.fromNamespaceAndPath(SongsOfWar.MOD_ID, "textures/entity/ardoni/ardoni_hair_" + age + "_marker.png");
             model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityCutout(hair)), light, OverlayTexture.NO_OVERLAY, -1);
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(hairMarker)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(hairMarker)), light, OverlayTexture.NO_OVERLAY, color | 0xFF000000);
             if (ardoni.isFemale())
-                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(FEMALE_EXTRA_HAIR)), light, OverlayTexture.NO_OVERLAY, Color4i.copy(color, 0xFF).getIntValue());
+                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucentEmissive(FEMALE_EXTRA_HAIR)), light, OverlayTexture.NO_OVERLAY, color | 0xFF000000);
         }
         matrices.popPose();
     }

@@ -1,7 +1,6 @@
 package com.iafenvoy.sow.item;
 
 import com.iafenvoy.neptune.render.SkullRenderRegistry;
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.data.ArdoniType;
 import com.iafenvoy.sow.item.block.ArdoniGraveBlock;
@@ -37,11 +36,11 @@ public class ArdoniGraveItem extends BlockItem implements SkullRenderRegistry.Sk
         return stack;
     }
 
-    public static ItemStack buildGrave(ResourceLocation texture, Color4i color) {
+    public static ItemStack buildGrave(ResourceLocation texture, int color) {
         CompoundTag nbt = new CompoundTag();
         nbt.putBoolean("fixed", true);
         nbt.putString("texturePath", texture.toString());
-        nbt.putInt("color", color.getIntValue());
+        nbt.putInt("color", color);
         ItemStack stack = new ItemStack(SowBlocks.ARDONI_GRAVE.get());
         stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(nbt));
         return stack;
@@ -66,13 +65,13 @@ public class ArdoniGraveItem extends BlockItem implements SkullRenderRegistry.Sk
             return new ArdoniData(nbt.getLong("seed"), ArdoniType.byId(nbt.getString("type")), nbt.getInt("age"), nbt.getBoolean("female"));
     }
 
-    public record ArdoniData(boolean fixed, long seed, ResourceLocation marker, Color4i color, int age, boolean female,
+    public record ArdoniData(boolean fixed, long seed, ResourceLocation marker, int color, int age, boolean female,
                              boolean dark) {
         public ArdoniData(String texture, int color) {
-            this(ResourceLocation.tryParse(texture), new Color4i(color));
+            this(ResourceLocation.tryParse(texture), color);
         }
 
-        public ArdoniData(ResourceLocation texture, Color4i color) {
+        public ArdoniData(ResourceLocation texture, int color) {
             this(true, 0, texture, color, 0, false, false);
         }
 

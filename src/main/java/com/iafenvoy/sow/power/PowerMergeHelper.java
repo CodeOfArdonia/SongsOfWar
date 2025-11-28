@@ -4,7 +4,6 @@ import com.iafenvoy.neptune.ability.AbilityCategory;
 import com.iafenvoy.neptune.ability.AbilityData;
 import com.iafenvoy.neptune.ability.type.Ability;
 import com.iafenvoy.neptune.object.DamageUtil;
-import com.iafenvoy.neptune.util.Color4i;
 import com.iafenvoy.neptune.world.FakeExplosionBehavior;
 import com.iafenvoy.sow.item.SongCubeItem;
 import com.iafenvoy.sow.item.block.SongCubeBlock;
@@ -15,6 +14,7 @@ import com.iafenvoy.sow.world.ShrineStructureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -52,9 +52,9 @@ public class PowerMergeHelper {
                     if (holder.isPresent() && ShrineStructureHelper.match(mergeData.sneakPos, serverWorld)) {
                         Vec3 center = songPos.getCenter();
                         AbilityCategory category = holder.getCategory();
-                        Color4i color = category.getColor();
+                        int color = category.getColor();
                         if (mergeData.sneakTick >= 20 && mergeData.sneakTick <= 60)
-                            serverWorld.sendParticles(SowParticles.SONG_EFFECT.get(), center.x(), center.y() - 0.25, center.z(), 0, color.getR(), color.getG(), color.getB(), 1);
+                            serverWorld.sendParticles(SowParticles.SONG_EFFECT.get(), center.x(), center.y() - 0.25, center.z(), 0, FastColor.ARGB32.red(color), FastColor.ARGB32.green(color), FastColor.ARGB32.blue(color), 1);
                         if (mergeData.sneakTick == 60) {
                             AbilityData.SingleAbilityData d = data.get(category);
                             Ability<?> newPower = holder.getPower();
