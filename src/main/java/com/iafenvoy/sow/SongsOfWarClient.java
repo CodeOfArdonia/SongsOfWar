@@ -41,7 +41,7 @@ public final class SongsOfWarClient {
         SowRenderers.registerModelPredicate();
         LitematicaHelper.extractFile();
         ItemProperties.register(SowItems.PROTEPOINT_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() ? 1 : 0);
-        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (container, parent) -> ConfigSelectScreen.builder(Component.translatable("config.sow.title"), parent).common(SowCommonConfig.INSTANCE).client(SowClientConfig.INSTANCE).build());
+        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (container, parent) -> ConfigSelectScreen.builder(Component.translatable("config.sow.title"), parent).server(SowCommonConfig.INSTANCE).client(SowClientConfig.INSTANCE).build());
     }
 
     @SubscribeEvent

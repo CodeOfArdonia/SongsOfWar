@@ -116,7 +116,7 @@ configurations {
 
 dependencies {
     implementation "maven.modrinth:neptune:WZ0Cj96V"
-    implementation "maven.modrinth:jupiter:bjogSV4z"
+    implementation "maven.modrinth:jupiter:m2itNS7Z"
 
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
