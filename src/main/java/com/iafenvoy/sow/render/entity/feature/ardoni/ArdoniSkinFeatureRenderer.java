@@ -5,9 +5,7 @@ import com.iafenvoy.sow.SongsOfWar;
 import com.iafenvoy.sow.entity.ardoni.AbstractArdoniEntity;
 import com.iafenvoy.sow.entity.ardoni.random.ArdoniEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -30,13 +28,11 @@ public class ArdoniSkinFeatureRenderer extends RenderLayer<AbstractArdoniEntity,
     @Override
     public void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, AbstractArdoniEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         matrices.pushPose();
-        matrices.scale(1.001f, 1.001f, 1.001f);
         int darkness = entity instanceof ArdoniEntity ardoni ? getDarkness(ardoni.getArdoniType().dark(), ardoni.getMarkerSeed()) : 1;
-        PlayerModel<AbstractArdoniEntity> model = new PlayerModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER), false);
-        this.getParentModel().copyPropertiesTo(model);
-        model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(entity.getTextureId())), light, LivingEntityRenderer.getOverlayCoords(entity, 0), 0x010101 * darkness + 0xFF000000);
+        PlayerModel<AbstractArdoniEntity> model = this.getParentModel();
+        model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(entity.getTextureId())), light, LivingEntityRenderer.getOverlayCoords(entity, 0), 0x010101 * darkness | 0xFF000000);
         if (entity instanceof ArdoniEntity ardoni && ardoni.getAge() >= 4)
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucent(ARDONI_SHADOW)), light, LivingEntityRenderer.getOverlayCoords(entity, 0), 0x010101 * darkness + 0xFF000000);
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityTranslucent(ARDONI_SHADOW)), light, LivingEntityRenderer.getOverlayCoords(entity, 0), 0x010101 * darkness | 0xFF000000);
         matrices.popPose();
     }
 

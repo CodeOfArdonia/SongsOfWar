@@ -30,9 +30,7 @@ public class ArdoniEntityRenderer extends HumanoidMobRenderer<AbstractArdoniEnti
     @Override
     public void render(@NotNull AbstractArdoniEntity entity, float f, float g, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int i) {
         matrices.pushPose();
-        matrices.scale(1.1f, 1.1f, 1.1f);
-        if (entity instanceof Flatable flatable && flatable.isFlat())
-            matrices.scale(1, 0.001f, 1);
+        matrices.scale(1.1f, entity instanceof Flatable flatable && flatable.isFlat() ? 0.001f : 1.1f, 1.1f);
         super.render(entity, f, g, matrices, vertexConsumers, i);
         matrices.popPose();
     }

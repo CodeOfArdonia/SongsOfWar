@@ -1,14 +1,11 @@
 package com.iafenvoy.sow.render.entity.feature.player;
 
 import com.iafenvoy.sow.SongsOfWar;
-import com.iafenvoy.sow.config.SowClientConfig;
 import com.iafenvoy.sow.item.ArdoniGraveItem;
 import com.iafenvoy.sow.render.entity.feature.ArdoniSkinHelper;
 import com.iafenvoy.sow.render.entity.feature.ardoni.ArdoniSkinFeatureRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -34,9 +31,7 @@ public class PlayerArdoniEyeFeatureRenderer<T extends Player, M extends PlayerMo
     @Override
     public void render(PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, @NotNull T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         matrices.pushPose();
-        SowClientConfig.processEmissiveStack(matrices);
-        PlayerModel<T> model = new PlayerModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER), false);
-        this.getParentModel().copyPropertiesTo(model);
+        M model = this.getParentModel();
         ArdoniGraveItem.ArdoniData data = ArdoniSkinHelper.getMarkerTexture(entity);
         if (data != null) {
             int color = data.color();
@@ -45,7 +40,7 @@ public class PlayerArdoniEyeFeatureRenderer<T extends Player, M extends PlayerMo
             if (!data.fixed()) {
                 ResourceLocation eye = data.female() ? EYE_FEMALE : EYE_MALE;
                 int darkness = ArdoniSkinFeatureRenderer.getDarkness(data.dark(), data.seed());
-                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityCutout(eye)), light, OverlayTexture.NO_OVERLAY, 0x010101 * darkness + 0xFF000000);
+                model.renderToBuffer(matrices, vertexConsumers.getBuffer(RenderType.entityCutout(eye)), light, OverlayTexture.NO_OVERLAY, 0x010101 * darkness | 0xFF000000);
             }
         }
         matrices.popPose();
