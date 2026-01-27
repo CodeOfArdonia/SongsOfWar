@@ -1,8 +1,5 @@
 package com.iafenvoy.sow.config;
 
-import com.iafenvoy.jupiter.interfaces.IConfigEnumEntry;
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDate;
 
 public class Anniversary {
@@ -21,23 +18,7 @@ public class Anniversary {
         return !currentDate.isBefore(startDate) && !currentDate.isAfter(endDate);
     }
 
-    public enum InvokeType implements IConfigEnumEntry {
-        TRUE, NORMAL, FALSE;
-
-        @Override
-        public String getName() {
-            return this.name();
-        }
-
-        @Override
-        public @NotNull IConfigEnumEntry getByName(String s) {
-            return valueOf(s);
-        }
-
-        @Override
-        public IConfigEnumEntry cycle(boolean b) {
-            InvokeType[] types = values();
-            return types[(this.ordinal() + (b ? 1 : -1)) % types.length];
-        }
+    public enum InvokeType {
+        TRUE, NORMAL, FALSE
     }
 }

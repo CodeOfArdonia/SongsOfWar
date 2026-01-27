@@ -15,7 +15,7 @@ public final class ArdoniSkinHelper {
     public static ArdoniGraveItem.ArdoniData getMarkerTexture(Player player) {
         ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
         if (!(head.getItem() instanceof PlayerHeadItem))
-            head = CuriosHelper.getEquippedForCosmetic(player).get(CuriosHelper.Place.HAT);
+            head = CuriosHelper.getEquippedForCosmetic(player).getOrDefault(CuriosHelper.Place.HAT, ItemStack.EMPTY);
         if (head.getItem() instanceof PlayerHeadItem skull) {
             Tuple<ResourceLocation, Integer> pair = SkullManager.getMarkerTexture(skull);
             if (pair != null) return new ArdoniGraveItem.ArdoniData(pair.getA(), pair.getB());

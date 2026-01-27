@@ -1,1 +1,12 @@
-{"title":{"text":"SoW Quote","bold":true,"underline":true,"color":"yellow"},"tip":{"translate":"tips.sop.1"}}
+{
+  "type": "tipsmod:simple",
+  "title": {
+    "text": "SoW Quote",
+    "bold": true,
+    "underline": true,
+    "color": "yellow"
+  },
+  "text": {
+    "translate": "tips.sop.1"
+  }
+}
